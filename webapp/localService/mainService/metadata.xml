@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    m:DataServiceVersion="2.0">
+    <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZFIORI_LEARNING_SRV">
+        <EntityType Name="FioriLearning">
+            <Key>
+                <PropertyRef Name="QuestionID"/>
+            </Key>
+            <Property Name="QuestionID" Type="Edm.Int32" Nullable="false"/>
+            <Property Name="QuestionText" Type="Edm.String"/>
+            <Property Name="AnswerA" Type="Edm.String"/>
+            <Property Name="AnswerA_boolean" Type="Edm.Boolean"/>
+            <Property Name="AnswerB" Type="Edm.String"/>
+            <Property Name="AnswerB_boolean" Type="Edm.Boolean"/>
+            <Property Name="AnswerC" Type="Edm.String"/>
+            <Property Name="AnswerC_boolean" Type="Edm.Boolean"/>
+            <Property Name="AnswerD" Type="Edm.String"/>
+            <Property Name="AnswerD_boolean" Type="Edm.Boolean"/>
+            <Property Name="AnswerE" Type="Edm.String"/>
+            <Property Name="AnswerE_boolean" Type="Edm.Boolean"/>
+            <Property Name="AnswerF" Type="Edm.String"/>
+            <Property Name="AnswerF_boolean" Type="Edm.Boolean"/>
+            <Property Name="AmountOfTrueAnswers" Type="Edm.Int32"/>
+            <Property Name="QuestionTopicArea" Type="Edm.String"/>
+            <Property Name="QuestionCreatedBy" Type="Edm.String"/>
+        </EntityType>
+        
+        <EntityContainer Name="ZFIORI_LEARNING_SRV_Entities" m:IsDefaultEntityContainer="true">
+            <EntitySet Name="FioriLearning" EntityType="ZFIORI_LEARNING_SRV.FioriLearning"/>
+        </EntityContainer>
+    </Schema>
+</edmx:DataServices>
+</edmx:Edmx>
