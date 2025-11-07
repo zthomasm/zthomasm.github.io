@@ -1,0 +1,28 @@
+<mvc:View controllerName="learninggame.controller.StartPage"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core">
+
+    <Page id="page0030" title="{i18n>title}" titleAlignment="Center">
+
+
+        <content>
+        
+            <Wizard id="wizard" class="sapUiLargeMargin">
+                <!-- Steps werden dynamisch im Controller erzeugt -->
+            </Wizard>
+
+            <Button
+                id="btnSubmit"
+                text="Auswertung anzeigen"
+                type="Emphasized"
+                press=".onSubmit"
+                visible="false"
+                class="sapUiMediumMarginTop"
+            />
+        
+        </content>
+
+    </Page>
+</mvc:View>

@@ -1,0 +1,17 @@
+{
+  "selectedTopics": [],            /* initially all topics => we can fill on app start */
+  "availableTopics": [
+    "SAPUI5 Basics",
+    "Fiori Architecture",
+    "SAPUI5 Controls"
+  ],
+  "selectedCreators": ["ALL"],     /* "ALL" bedeutet: alles ausgewählt */
+  "availableCreators": [
+    "ALL",
+    "AI",
+    "LearningHub",
+    "Employees"
+  ],
+  "numberOfQuestions": 10,
+  "availableQuestionCounts": [5, 10, 15, 20]
+}

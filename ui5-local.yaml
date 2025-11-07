@@ -9,6 +9,7 @@ framework:
   version: 1.142.0
   libraries:
     - name: sap.m
+    - name: sap.f
     - name: sap.ui.core
     - name: sap.ushell
     - name: themelib_sap_horizon

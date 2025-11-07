@@ -1,0 +1,50 @@
+<mvc:View controllerName="learninggame.controller.BeforeStartingGame"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Page id="pageBeforeGame" title="Quiz starten" titleAlignment="Center">
+        <content>
+            <VBox class="sapUiLargeMargin">
+
+                <!-- Anzahl Fragen Slider -->
+                <Text text="Wie viele Fragen möchtest du beantworten?" />
+                <Slider
+                    min="5"
+                    max="20"
+                    step="5"
+                    value="{GameSettings>/numberOfQuestions}"
+                    liveChange=".onSliderChange"
+                    showAdvancedTooltip="true"
+                    showHandleTooltip="true"
+                />
+                <Text text="Anzahl: {GameSettings>/numberOfQuestions} Fragen" />
+
+                <!-- Themenauswahl MultiComboBox -->
+                <Text text="Wähle Themenbereiche aus:" class="sapUiMediumMarginTop" />
+                <HBox>
+                    <MultiComboBox
+                        id="multiTopics"
+                        items="{GameSettings>/availableTopics}"
+                        selectedKeys="{GameSettings>/selectedTopics}"
+                        width="70%">
+                        <core:Item key="{GameSettings>key}" text="{GameSettings>text}" />
+                    </MultiComboBox>
+                    <VBox class="sapUiSmallMarginBegin">
+                        <Button text="Alles" press=".onSelectAllTopics" />
+                        <Button text="Keine" press=".onDeselectAllTopics" />
+                    </VBox>
+                </HBox>
+
+                <!-- Weiter Button -->
+                <Button
+                    text="Weiter"
+                    type="Emphasized"
+                    press=".onStartGamePress"
+                    class="sapUiMediumMarginTop"
+                />
+
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
