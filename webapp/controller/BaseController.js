@@ -13,6 +13,10 @@ sap.ui.define([
         onInit() {
         },
 
+        onDebug(oModel) {
+            console.log(oModel);
+        }
+
 
     });
 });

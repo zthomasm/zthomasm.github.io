@@ -1,4 +1,4 @@
-<mvc:View controllerName="learninggame.controller.StartPage"
+<mvc:View controllerName="learninggame.controller.GameWizard"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:f="sap.f"
@@ -8,6 +8,9 @@
 
 
         <content>
+
+            <Button text="Zeig mir die GameSettings" press=".onShowSettings"></Button>
+            <Button text="Zeig mir die GameSettingsAfterChange" press=".onShowSettingsAfterChange"></Button>
         
             <Wizard id="wizard" class="sapUiLargeMargin">
                 <!-- Steps werden dynamisch im Controller erzeugt -->

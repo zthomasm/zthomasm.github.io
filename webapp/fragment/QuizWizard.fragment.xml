@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+
+    <Wizard id="wizardquiz" xmlns="sap.m" xmlns:core="sap.ui.core">
+        <WizardStep title="{quiz>QuestionText}" id="step{quiz>QuestionID}">
+            <VBox>
+                <Text text="Wie viele Antworten sind korrekt: {quiz>AmountOfTrueAnswers}" />
+                <VBox items="{quiz>Answers}">
+                    <HBox>
+                        <CheckBox text="{text}" selected="{selected}" />
+                        <Text text="{feedback}" class="{= ${feedback} === 'richtig' ? 'sapUiTextSuccess' : 'sapUiTextError'}" />
+                    </HBox>
+                </VBox>
+                <HBox>
+                    <Button text="Bestätigen" press=".onCheckAnswer" />
+                    <Button text="Nächste Frage" press=".onNextStep" enabled="{= ${feedbackShown} }"/>
+                </HBox>
+            </VBox>
+        </WizardStep>
+    </Wizard>
+
+</core:FragmentDefinition>

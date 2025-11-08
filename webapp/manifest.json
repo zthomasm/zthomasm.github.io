@@ -104,13 +104,6 @@
           ]
         },
         {
-          "name": "RouteBeforeStartingGame",
-          "pattern": "BeforeStartingGame",
-          "target": [
-            "TargetBeforeStartingGame"
-          ]
-        },
-        {
           "name": "RouteGameWizard",
           "pattern": "GameWizard",
           "target": [
@@ -123,11 +116,6 @@
           "transition": "slide",
           "id": "StartPage",
           "name": "StartPage"
-        },
-        "TargetBeforeStartingGame": {
-          "transition": "slide",
-          "id": "BeforeStartingGame",
-          "name": "BeforeStartingGame"
         },
         "TargetGameWizard": {
           "transition": "slide",
