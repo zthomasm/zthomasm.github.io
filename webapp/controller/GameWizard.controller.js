@@ -1,145 +1,200 @@
 sap.ui.define([
-  "learninggame/controller/BaseController",
-  "sap/ui/model/json/JSONModel",
-  "sap/m/MessageToast"
-], function(BaseController, JSONModel, MessageToast) {
-  "use strict";
+    "learninggame/controller/BaseController",
+    "sap/ui/model/json/JSONModel",
+    "sap/m/MessageToast",
+    "sap/m/WizardStep",
+    "sap/m/HBox",
+    "sap/m/VBox",
+    "sap/m/CheckBox",
+    "sap/m/Text",
+    "sap/m/Button"
+], function(BaseController, JSONModel, MessageToast, WizardStep, HBox, VBox, CheckBox, Text, Button) {
+    "use strict";
 
-  return BaseController.extend("learninggame.controller.GameWizard", {
+    return BaseController.extend("learninggame.controller.GameWizard", {
 
-    onInit: function() {
-        console.log("OnInit GameWizard")
-        this.oGameSettings = this.getOwnerComponent().getModel("GameSettings");
+        onInit: function() {
+            console.log("GameWizard.onInit gestartet");
 
+            this.oGameSettings = this.getOwnerComponent().getModel("GameSettings");
 
-        const bIsSet = this.oGameSettings.getProperty("/settingsAreSet");
-        if (!bIsSet) {
-          this.getOwnerComponent().getRouter().navTo("RouteStartPage");
-        };
+            if (!this.oGameSettings.getProperty("/settingsAreSet")) {
+                console.warn("Settings nicht gesetzt – zurück zur StartPage");
+                this.getOwnerComponent().getRouter().navTo("RouteStartPage");
+                return;
+            }
 
-        // Quiz-Daten vorbereiten
-        this._prepareQuiz();
+            if (!this.oGameSettings.getProperty("/correctAnswersCount")) {
+                this.oGameSettings.setProperty("/correctAnswersCount", 0);
+            }
 
-    },
+            this._prepareQuiz()
+                .then(() => this._createWizardSteps())
+                .catch(err => console.error("Fehler beim Quiz vorbereiten:", err));
+        },
 
-    onShowSettings: function() {
-      // this.oModel = this.getOwnerComponent().getModel("GameSettings");
-      // console.log(this.oModel);
-      // console.log(this.getOwnerComponent().getModel("GameSettings"))
-    
-    console.log("GameSettings:", this.oGameSettings.getData());
-    const oData = this.oGameSettings.getProperty("/numberOfQuestions");
-    console.log(oData);
-    
-    },
+        onShowSettings: function() {
+            console.log("GameSettings aktuell:", this.oGameSettings.getData());
+        },
 
-    onShowSettingsAfterChange: function() {
+        onShowSettingsAfterChange: function() {
+            this.oGameSettings.setProperty("/numberOfQuestions", 3);
+            console.log("GameSettings nach Änderung:", this.oGameSettings.getData());
+        },
 
-      // const oModel = this.getOwnerComponent().getModel("GameSettings");
-      this.oGameSettings.setProperty("/numberOfQuestions", 3);
-      const oDataNew = this.oGameSettings.getProperty("/numberOfQuestions");
-      console.log(oDataNew);
+        _prepareQuiz: function() {
+            console.log("Starte Laden der Fragen aus JSON...");
+            return new Promise((resolve, reject) => {
+                const oQuizModel = new JSONModel();
+                oQuizModel.loadData("/model/FioriQuestions.json");
 
-    },
+                oQuizModel.attachRequestCompleted(() => {
+                    console.log("FioriQuestions.json geladen:", oQuizModel.getData());
+                    const oData = oQuizModel.getData();
 
-    _prepareQuiz: function() {
-            const aAllQuestions = this._getQuestionsFromService(); // mock service call oder OData
-            const nQuestions = this.oGameSettings.getProperty("/numberOfQuestions");
-            const selectedTopics = this.oGameSettings.getProperty("/selectedTopics");
+                    if (!oData || !oData.results) {
+                        console.error("Keine Fragen gefunden!");
+                        reject("Keine Fragen im JSON");
+                        return;
+                    }
 
-            // Pool nach Topic filtern
-            const aPool = aAllQuestions.filter(q => selectedTopics.includes(q.QuestionTopicArea));
+                    let aAllQuestions = oData.results;
+                    const nQuestions = this.oGameSettings.getProperty("/numberOfQuestions") || 3;
+                    const selectedTopics = this.oGameSettings.getProperty("/selectedTopics") || [];
 
-            // Zufällige Fragen auswählen
-            const aRandomQuestions = this._getRandomItems(aPool, nQuestions);
+                    console.log("Gefiltert nach Topics:", selectedTopics);
 
-            const aQuizQuestions = aRandomQuestions.map(q => ({
-                QuestionID: q.QuestionID,
-                QuestionText: q.QuestionText,
-                AmountOfTrueAnswers: q.AmountOfTrueAnswers,
-                feedbackShown: false,
-                Answers: ["A","B","C","D","E","F"]
-                    .map(key => ({
-                        key,
-                        text: q["Answer"+key],
-                        correct: q["Answer"+key+"_boolean"],
-                        selected: false,
-                        feedback: ""
-                    }))
-                    .filter(a => a.text) // leere Antworten entfernen
-                    .sort(() => Math.random() - 0.5)
-            }));
+                    if (selectedTopics.length > 0) {
+                        aAllQuestions = aAllQuestions.filter(q => selectedTopics.includes(q.QuestionTopicArea));
+                    }
 
-            const oQuizModel = new JSONModel({ currentStep: 0, questions: aQuizQuestions });
-            this.getView().setModel(oQuizModel, "quiz");
+                    console.log("Gefilterte Fragen:", aAllQuestions);
+
+                    const aRandomQuestions = this._getRandomItems(aAllQuestions, nQuestions);
+                    console.log("Zufällige Auswahl:", aRandomQuestions);
+
+                    const aQuizQuestions = aRandomQuestions.map(q => ({
+                        QuestionID: q.QuestionID,
+                        QuestionText: q.QuestionText,
+                        AmountOfTrueAnswers: q.AmountOfTrueAnswers,
+                        feedbackShown: false,
+                        Answers: ["A","B","C","D","E","F"]
+                            .map(key => ({
+                                key,
+                                text: q["Answer"+key],
+                                correct: q["Answer"+key+"_boolean"],
+                                selected: false,
+                                feedback: ""
+                            }))
+                            .filter(a => a.text)
+                            .sort(() => Math.random() - 0.5)
+                    }));
+
+                    console.log("Quiz Questions vorbereitet:", aQuizQuestions);
+                    const oModel = new JSONModel({ currentStep: 0, questions: aQuizQuestions });
+                    this.getView().setModel(oModel, "quiz");
+                    console.log("QuizModel gesetzt!");
+                    resolve();
+                });
+
+                oQuizModel.attachRequestFailed(err => {
+                    console.error("Fehler beim Laden von FioriQuestions.json:", err);
+                    reject(err);
+                });
+            });
         },
 
         _getRandomItems: function(array, n) {
-            const shuffled = array.sort(() => 0.5 - Math.random());
-            return shuffled.slice(0, n);
+            return array.sort(() => 0.5 - Math.random()).slice(0, n);
         },
 
-        _getQuestionsFromService: function() {
-            // Hier OData-Call oder Mock-Daten
-            return [
-                {
-                    QuestionID: 1,
-                    QuestionText: "Welche Programmiersprache wird hauptsächlich für SAPUI5/Fiori verwendet?",
-                    AnswerA: "JavaScript", AnswerA_boolean: true,
-                    AnswerB: "Python", AnswerB_boolean: false,
-                    AnswerC: "Java", AnswerC_boolean: false,
-                    AnswerD: "C++", AnswerD_boolean: false,
-                    AnswerE: "", AnswerE_boolean: false,
-                    AnswerF: "", AnswerF_boolean: false,
-                    AmountOfTrueAnswers: 1,
-                    QuestionTopicArea: "SAPUI5 Basics"
-                },
-                {
-                    QuestionID: 2,
-                    QuestionText: "Welche Dateien sind typisch in einem SAPUI5-Projekt enthalten?",
-                    AnswerA: "Component.js", AnswerA_boolean: true,
-                    AnswerB: "manifest.json", AnswerB_boolean: true,
-                    AnswerC: "package-lock.json", AnswerC_boolean: false,
-                    AnswerD: "styles.css", AnswerD_boolean: false,
-                    AnswerE: "", AnswerE_boolean: false,
-                    AnswerF: "", AnswerF_boolean: false,
-                    AmountOfTrueAnswers: 2,
-                    QuestionTopicArea: "Fiori Architecture"
-                }
-                // weitere Fragen …
-            ];
+        _createWizardSteps: function() {
+            console.log("WizardSteps werden erstellt...");
+            const oWizard = this.byId("quizWizard");
+            if (!oWizard) {
+                console.error("Wizard Control nicht gefunden!");
+                return;
+            }
+
+            const aQuestions = this.getView().getModel("quiz").getProperty("/questions");
+            console.log("Fragen für Wizard:", aQuestions);
+
+            aQuestions.forEach((q, index) => {
+                const stepTitle = ["Erste Frage", "Zweite Frage", "Dritte Frage"][index] || `Frage ${index+1}`;
+
+                const oStep = new WizardStep({
+                    title: stepTitle,
+                    id: "step" + q.QuestionID
+                });
+
+                // Frage Text
+                const oQuestionText = new Text({ text: q.QuestionText, wrapping: true });
+                oStep.addContent(oQuestionText);
+
+                // Hinweis: wie viele Antworten richtig sind
+                const oInfo = new Text({ text: `Richtige Antworten: ${q.AmountOfTrueAnswers}`, wrapping: true, class: "sapUiSmallMarginTop" });
+                oStep.addContent(oInfo);
+
+                // Antworten
+                const aAnswerControls = q.Answers.map(ans => new CheckBox({
+                    text: ans.text,
+                    selected: ans.selected,
+                    enabled: true
+                }));
+
+                const oVBoxAnswers = new VBox({ items: aAnswerControls, class: "sapUiSmallMarginTop" });
+                oStep.addContent(oVBoxAnswers);
+
+                // Bestätigen Button
+                const oBtnConfirm = new Button({
+                    text: "Bestätigen",
+                    press: () => this.onCheckAnswer(q, aAnswerControls, oBtnConfirm, oWizard)
+                });
+                oStep.addContent(new HBox({ items: [oBtnConfirm], class: "sapUiSmallMarginTop" }));
+
+                oWizard.addStep(oStep);
+            });
+
+            console.log("WizardSteps erfolgreich erstellt!");
         },
 
-        onCheckAnswer: function(oEvent) {
-            const oContext = oEvent.getSource().getBindingContext("quiz");
-            const aAnswers = oContext.getProperty("Answers");
+        onCheckAnswer: function(oQuestion, aAnswerControls, oBtnConfirm, oWizard) {
+            console.log("CheckAnswer für Frage:", oQuestion.QuestionID);
+
             let nCorrectThisQuestion = 0;
 
-            aAnswers.forEach(ans => {
+            oQuestion.Answers.forEach((ans, i) => {
+                const oCheckBox = aAnswerControls[i];
                 if (ans.selected === ans.correct) {
                     ans.feedback = "richtig";
-                    if (ans.correct) nCorrectThisQuestion++;
+                    oCheckBox.setEnabled(false);
+                    nCorrectThisQuestion++;
+                    oCheckBox.addStyleClass("sapUiTextSuccess");
                 } else {
                     ans.feedback = "falsch";
+                    oCheckBox.setEnabled(false);
+                    oCheckBox.addStyleClass("sapUiTextError");
                 }
             });
 
-            oContext.setProperty("Answers", aAnswers);
-            oContext.setProperty("feedbackShown", true);
+            oQuestion.feedbackShown = true;
+            this.getView().getModel("quiz").refresh();
 
-            // Score im GameSettings-Model hochzählen
-            const nTotalCorrect = nCorrectThisQuestion === oContext.getProperty("AmountOfTrueAnswers") ?
+            // Score hochzählen
+            const nTotalCorrect = nCorrectThisQuestion === oQuestion.AmountOfTrueAnswers ?
                 this.oGameSettings.getProperty("/correctAnswersCount") + 1 :
                 this.oGameSettings.getProperty("/correctAnswersCount");
 
             this.oGameSettings.setProperty("/correctAnswersCount", nTotalCorrect);
-        },
+            console.log("Aktueller Score:", nTotalCorrect);
 
-        onNextStep: function(oEvent) {
-            const wizard = this.byId("wizard");
-            wizard.nextStep();
+            // Button deaktivieren
+            oBtnConfirm.setEnabled(false);
+
+            // Automatisch zum nächsten Step
+            oWizard.nextStep();
         }
-  
-  
-  });
+
+
+    });
 });

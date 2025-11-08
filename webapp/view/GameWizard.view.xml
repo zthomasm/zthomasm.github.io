@@ -4,28 +4,16 @@
     xmlns:f="sap.f"
     xmlns:core="sap.ui.core">
 
-    <Page id="page0030" title="{i18n>title}" titleAlignment="Center">
-
-
+    <Page id="pageGameWizard" title="Game Wizard" titleAlignment="Center">
         <content>
+            <!-- Debug Buttons -->
+            <HBox class="sapUiSmallMarginBottom" justifyContent="Center">
+                <Button text="Zeig GameSettings" press=".onShowSettings"/>
+                <Button text="Zeig GameSettingsAfterChange" press=".onShowSettingsAfterChange"/>
+            </HBox>
 
-            <Button text="Zeig mir die GameSettings" press=".onShowSettings"></Button>
-            <Button text="Zeig mir die GameSettingsAfterChange" press=".onShowSettingsAfterChange"></Button>
-        
-            <Wizard id="wizard" class="sapUiLargeMargin">
-                <!-- Steps werden dynamisch im Controller erzeugt -->
-            </Wizard>
-
-            <Button
-                id="btnSubmit"
-                text="Auswertung anzeigen"
-                type="Emphasized"
-                press=".onSubmit"
-                visible="false"
-                class="sapUiMediumMarginTop"
-            />
-        
+            <!-- Wizard direkt hier -->
+            <Wizard id="quizWizard"/>
         </content>
-
     </Page>
 </mvc:View>
