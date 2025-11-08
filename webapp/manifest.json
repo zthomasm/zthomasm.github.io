@@ -109,6 +109,13 @@
           "target": [
             "TargetGameWizard"
           ]
+        },
+        {
+          "name": "RouteGameLinear",
+          "pattern": "GameLinear",
+          "target": [
+            "TargetGameLinear"
+          ]
         }
       ],
       "targets": {
@@ -121,6 +128,11 @@
           "transition": "slide",
           "id": "GameWizard",
           "name": "GameWizard"
+        },
+        "TargetGameLinear": {
+          "transition": "slide",
+          "id": "GameLinear",
+          "name": "GameLinear"
         }
       }
     },

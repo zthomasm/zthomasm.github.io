@@ -54,7 +54,7 @@ sap.ui.define([
                 oModel.setProperty("/settingsAreSet", true);
 
                 const oRouter = sap.ui.core.UIComponent.getRouterFor(oController);
-                oRouter.navTo("RouteGameWizard");
+                oRouter.navTo("RouteGameLinear");
                 // this.getOwnerComponent().getRouter().navTo("RouteBeforeStartingGame");
             },
 

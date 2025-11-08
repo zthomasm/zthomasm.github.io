@@ -1,0 +1,21 @@
+<mvc:View
+    controllerName="learninggame.controller.GameLinear"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    
+    <ScrollContainer
+        id="quizContainer"
+        width="100%"
+        height="100vh"
+        vertical="true"
+        horizontal="false"
+        focusable="true"
+        class="sapUiContentPadding">
+        
+        <VBox
+            id="quizContainerVBox"
+            width="100%"       
+            class="sapUiContentPadding sapUiSmallMarginAuto"/>
+            
+    </ScrollContainer>
+</mvc:View>

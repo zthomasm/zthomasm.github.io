@@ -109,91 +109,117 @@ sap.ui.define([
         },
 
         _createWizardSteps: function() {
-            console.log("WizardSteps werden erstellt...");
-            const oWizard = this.byId("quizWizard");
-            if (!oWizard) {
-                console.error("Wizard Control nicht gefunden!");
-                return;
-            }
+    console.log("WizardSteps werden erstellt...");
+    const oWizard = this.byId("quizWizard");
+    if (!oWizard) {
+        console.error("Wizard Control nicht gefunden!");
+        return;
+    }
 
-            const aQuestions = this.getView().getModel("quiz").getProperty("/questions");
-            console.log("Fragen für Wizard:", aQuestions);
+    const aQuestions = this.getView().getModel("quiz").getProperty("/questions");
+    console.log("Fragen für Wizard:", aQuestions);
 
-            aQuestions.forEach((q, index) => {
-                const stepTitle = ["Erste Frage", "Zweite Frage", "Dritte Frage"][index] || `Frage ${index+1}`;
+    aQuestions.forEach((q, index) => {
+        const stepTitle = `Frage ${index + 1}`;
 
-                const oStep = new WizardStep({
-                    title: stepTitle,
-                    id: "step" + q.QuestionID
-                });
+        const oStep = new WizardStep({
+            title: stepTitle,
+            id: "step" + q.QuestionID,
+            visible: index === 0 // nur erste Frage sichtbar
+        });
 
-                // Frage Text
-                const oQuestionText = new Text({ text: q.QuestionText, wrapping: true });
-                oStep.addContent(oQuestionText);
+        // Frage Text
+        const oQuestionText = new Text({ text: q.QuestionText, wrapping: true });
+        oStep.addContent(oQuestionText);
 
-                // Hinweis: wie viele Antworten richtig sind
-                const oInfo = new Text({ text: `Richtige Antworten: ${q.AmountOfTrueAnswers}`, wrapping: true, class: "sapUiSmallMarginTop" });
-                oStep.addContent(oInfo);
+        // VBox für Benutzer-Checkboxen
+        const oVBoxUser = new VBox({ class: "sapUiSmallMarginTop" });
+        const aAnswerControls = q.Answers.map(ans => new CheckBox({
+            text: ans.text,
+            selected: ans.selected,
+            enabled: true
+        }));
+        aAnswerControls.forEach(cb => oVBoxUser.addItem(cb));
+        oStep.addContent(oVBoxUser);
 
-                // Antworten
-                const aAnswerControls = q.Answers.map(ans => new CheckBox({
-                    text: ans.text,
-                    selected: ans.selected,
-                    enabled: true
-                }));
+        // Bestätigen Button
+        const oBtnConfirm = new Button({
+            text: "Bestätigen",
+            press: () => this.onCheckAnswerLinear(q, aAnswerControls, oBtnConfirm, oStep, index, aQuestions)
+        });
+        oStep.addContent(new HBox({ items: [oBtnConfirm], class: "sapUiSmallMarginTop" }));
 
-                const oVBoxAnswers = new VBox({ items: aAnswerControls, class: "sapUiSmallMarginTop" });
-                oStep.addContent(oVBoxAnswers);
+        // VBox für Richtige Antworten (erst nach Bestätigung sichtbar)
+        const oVBoxSolutionBelow = new VBox({ class: "sapUiSmallMarginTop" });
+        oVBoxSolutionBelow.setVisible(false);
+        oStep.addContent(oVBoxSolutionBelow);
 
-                // Bestätigen Button
-                const oBtnConfirm = new Button({
-                    text: "Bestätigen",
-                    press: () => this.onCheckAnswer(q, aAnswerControls, oBtnConfirm, oWizard)
-                });
-                oStep.addContent(new HBox({ items: [oBtnConfirm], class: "sapUiSmallMarginTop" }));
+        oStep._oVBoxSolutionBelow = oVBoxSolutionBelow;
 
-                oWizard.addStep(oStep);
-            });
+        oWizard.addStep(oStep);
+    });
 
-            console.log("WizardSteps erfolgreich erstellt!");
-        },
+    console.log("WizardSteps erfolgreich erstellt!");
+}
+,
 
-        onCheckAnswer: function(oQuestion, aAnswerControls, oBtnConfirm, oWizard) {
-            console.log("CheckAnswer für Frage:", oQuestion.QuestionID);
 
-            let nCorrectThisQuestion = 0;
+onCheckAnswerLinear: function(oQuestion, aAnswerControls, oBtnConfirm, oStep, currentIndex, aQuestions) {
+    let nCorrectThisQuestion = 0;
 
-            oQuestion.Answers.forEach((ans, i) => {
-                const oCheckBox = aAnswerControls[i];
-                if (ans.selected === ans.correct) {
-                    ans.feedback = "richtig";
-                    oCheckBox.setEnabled(false);
-                    nCorrectThisQuestion++;
-                    oCheckBox.addStyleClass("sapUiTextSuccess");
-                } else {
-                    ans.feedback = "falsch";
-                    oCheckBox.setEnabled(false);
-                    oCheckBox.addStyleClass("sapUiTextError");
-                }
-            });
+    // User-Auswahl auswerten
+    oQuestion.Answers.forEach((ans, i) => {
+        const oCheckBox = aAnswerControls[i];
+        ans.selected = oCheckBox.getSelected();
+        oCheckBox.setEnabled(false);
 
-            oQuestion.feedbackShown = true;
-            this.getView().getModel("quiz").refresh();
-
-            // Score hochzählen
-            const nTotalCorrect = nCorrectThisQuestion === oQuestion.AmountOfTrueAnswers ?
-                this.oGameSettings.getProperty("/correctAnswersCount") + 1 :
-                this.oGameSettings.getProperty("/correctAnswersCount");
-
-            this.oGameSettings.setProperty("/correctAnswersCount", nTotalCorrect);
-            console.log("Aktueller Score:", nTotalCorrect);
-
-            // Button deaktivieren
-            oBtnConfirm.setEnabled(false);
-
-            // Automatisch zum nächsten Step
-            oWizard.nextStep();
+        if (ans.selected === ans.correct) {
+            oCheckBox.addStyleClass("sapUiTextSuccess");
+        } else {
+            oCheckBox.addStyleClass("sapUiTextError");
         }
+
+        if (ans.correct && ans.selected) nCorrectThisQuestion++;
+    });
+
+    // Richtige Antworten untereinander anzeigen
+    const oVBoxSolution = oStep._oVBoxSolutionBelow;
+    oVBoxSolution.removeAllItems();
+    oVBoxSolution.addItem(new Text({ text: "Richtige Antworten:" }));
+    oQuestion.Answers.forEach(ans => {
+        const oSolutionCheckBox = new CheckBox({
+            text: ans.text,
+            selected: ans.correct,
+            enabled: false
+        });
+        if (ans.correct) oSolutionCheckBox.addStyleClass("solutionCorrect");
+        else oSolutionCheckBox.addStyleClass("solutionWrong");
+        oVBoxSolution.addItem(oSolutionCheckBox);
+    });
+    oVBoxSolution.setVisible(true);
+
+    // Score hochzählen
+    if (nCorrectThisQuestion === oQuestion.AmountOfTrueAnswers) {
+        const nTotalCorrect = this.oGameSettings.getProperty("/correctAnswersCount") + 1;
+        this.oGameSettings.setProperty("/correctAnswersCount", nTotalCorrect);
+    }
+
+    // Bestätigen Button deaktivieren
+    oBtnConfirm.setEnabled(false);
+
+    // Nächsten Step sichtbar machen
+    const oWizard = this.byId("quizWizard");
+    const nextStep = aQuestions[currentIndex + 1];
+    if (nextStep) {
+        const oNextStepControl = oWizard.getSteps().find(s => s.getId() === "step" + nextStep.QuestionID);
+        if (oNextStepControl) oNextStepControl.setVisible(true);
+    }
+}
+
+
+
+
+
 
 
     });

@@ -13,8 +13,8 @@
       <!-- Anzahl Fragen -->
       <Text text="Wie viele Fragen möchtest du beantworten?" />
         <Slider
-            min="1"
-            max="20"
+            min="3"
+            max="15"
             step="1"
             value="{GameSettings>/numberOfQuestions}"
             liveChange=".onSliderChange"
