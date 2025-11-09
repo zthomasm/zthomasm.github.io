@@ -116,6 +116,13 @@
           "target": [
             "TargetGameLinear"
           ]
+        },
+        {
+          "name": "RouteAddQuestion",
+          "pattern": "AddQuestion",
+          "target": [
+            "TargetAddQuestion"
+          ]
         }
       ],
       "targets": {
@@ -133,6 +140,11 @@
           "transition": "slide",
           "id": "GameLinear",
           "name": "GameLinear"
+        },
+        "TargetAddQuestion": {
+          "transition": "slide",
+          "id": "AddQuestion",
+          "name": "AddQuestion"
         }
       }
     },

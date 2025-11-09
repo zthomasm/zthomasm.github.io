@@ -16,7 +16,7 @@
       "AnswerF": "",
       "AnswerF_boolean": false,
       "AmountOfTrueAnswers": 1,
-      "QuestionTopicArea": "SAPUI5 Basics"
+      "QuestionTopicArea": "SAPUI5_LH"
     },
     {
       "QuestionID": 2,
@@ -34,7 +34,7 @@
       "AnswerF": "",
       "AnswerF_boolean": false,
       "AmountOfTrueAnswers": 2,
-      "QuestionTopicArea": "Fiori Architecture"
+      "QuestionTopicArea": "SAPUI5_LH"
     },
     {
       "QuestionID": 3,
@@ -52,7 +52,7 @@
       "AnswerF": "",
       "AnswerF_boolean": false,
       "AmountOfTrueAnswers": 2,
-      "QuestionTopicArea": "SAPUI5 Controls"
+      "QuestionTopicArea": "SAPUI5_LH"
     },
     {
       "QuestionID": 4,
@@ -70,7 +70,7 @@
       "AnswerF": "",
       "AnswerF_boolean": false,
       "AmountOfTrueAnswers": 2,
-      "QuestionTopicArea": "SAPUI5 Controls"
+      "QuestionTopicArea": "SAPUI5_LH"
     },
     {
       "QuestionID": 5,
@@ -88,7 +88,7 @@
       "AnswerF": "",
       "AnswerF_boolean": false,
       "AmountOfTrueAnswers": 1,
-      "QuestionTopicArea": "SAPUI5 Basics"
+      "QuestionTopicArea": "SAPUI5_LH"
     },
     {
       "QuestionID": 6,
@@ -106,7 +106,7 @@
       "AnswerF": "",
       "AnswerF_boolean": false,
       "AmountOfTrueAnswers": 2,
-      "QuestionTopicArea": "SAPUI5 Basics"
+      "QuestionTopicArea": "SAPUI5_LH"
     },
     {
       "QuestionID": 7,
@@ -412,6 +412,24 @@
       "AnswerF": "",
       "AnswerF_boolean": false,
       "AmountOfTrueAnswers": 2,
+      "QuestionTopicArea": "KI"
+    },
+    {
+      "QuestionID": 100,
+      "QuestionText": "Init",
+      "AnswerA": "sap",
+      "AnswerA_boolean": true,
+      "AnswerB": "",
+      "AnswerB_boolean": false,
+      "AnswerC": "",
+      "AnswerC_boolean": false,
+      "AnswerD": "",
+      "AnswerD_boolean": false,
+      "AnswerE": "",
+      "AnswerE_boolean": false,
+      "AnswerF": "",
+      "AnswerF_boolean": false,
+      "AmountOfTrueAnswers": 1,
       "QuestionTopicArea": "KI"
     }
 

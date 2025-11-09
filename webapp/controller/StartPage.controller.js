@@ -14,6 +14,10 @@ sap.ui.define([
         onPressBeforeStartGame() {
             sap.m.MessageToast.show("onPressBeforeStartGame wird gestartet");
             BeforeStartingGame.openBeforeStartDialog(this);
+        },
+
+        onPressAddQuestion() {
+            this.getOwnerComponent().getRouter().navTo("RouteAddQuestion");
         }
     });
 });
