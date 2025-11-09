@@ -431,7 +431,61 @@
       "AnswerF_boolean": false,
       "AmountOfTrueAnswers": 1,
       "QuestionTopicArea": "KI"
-    }
+    },
+{
+    "QuestionID": 101,
+    "QuestionText": "Why is it advisable to not use a custom CSS file in your SAP UI5 applications?",
+    "AmountOfTrueAnswers": 1,
+    "QuestionTopicArea": "SAPF_LH",
+    "AnswerA": "SAPUI5 has problems with custom CSS.",
+    "AnswerA_boolean": false,
+    "AnswerB": "Having one central design created with the theme designer is very efficient. When something needs to be changed at the client interface, it is easier to handle.",
+    "AnswerB_boolean": true,
+    "AnswerC": "Time spent designing modified CSS is expensive.",
+    "AnswerC_boolean": false,
+    "AnswerD": "",
+    "AnswerD_boolean": false,
+    "AnswerE": "",
+    "AnswerE_boolean": false,
+    "AnswerF": "",
+    "AnswerF_boolean": false
+},
+{
+    "QuestionID": 102,
+    "QuestionText": "Which of the following should you avoid with regard to the golden rule \"Every SAP Fiori app must run as a web app\"?",
+    "AmountOfTrueAnswers": 4,
+    "QuestionTopicArea": "SAPF_LH",
+    "AnswerA": "Absolute URLs generated in front or back-end.",
+    "AnswerA_boolean": true,
+    "AnswerB": "Using SAPUI5",
+    "AnswerB_boolean": false,
+    "AnswerC": "Hard dependencies between apps",
+    "AnswerC_boolean": true,
+    "AnswerD": "Calling UI2 services directly instead of using APIs",
+    "AnswerD_boolean": true,
+    "AnswerE": "Use of platform-specific functionality without availability check",
+    "AnswerE_boolean": true,
+    "AnswerF": "",
+    "AnswerF_boolean": false
+},
+{
+    "QuestionID": 103,
+    "QuestionText": "What is the idea behind the golden rule of having one common UX?",
+    "AmountOfTrueAnswers": 1,
+    "QuestionTopicArea": "SAPF_LH",
+    "AnswerA": "Having a common UX reduces training costs and increases the quality of data.",
+    "AnswerA_boolean": true,
+    "AnswerB": "Having a common UX reduces the overall total cost of ownership.",
+    "AnswerB_boolean": false,
+    "AnswerC": "Having a common UX reduces development costs.",
+    "AnswerC_boolean": false,
+    "AnswerD": "",
+    "AnswerD_boolean": false,
+    "AnswerE": "",
+    "AnswerE_boolean": false,
+    "AnswerF": "",
+    "AnswerF_boolean": false
+}
 
   ]
 }
