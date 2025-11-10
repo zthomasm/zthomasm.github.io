@@ -1,0 +1,55 @@
+<mvc:View controllerName="learninggame.controller.StartPage"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core">
+
+    <Page id="page0010" title="{i18n>title}" titleAlignment="Center">
+
+
+        <content>
+        
+            <VBox id="Start0010" class="sapUiSmallMargin">
+            
+                <Title text="Aktionen" level="H1" id="Title0010"></Title>
+                    <f:GridContainer class="sapUiSmallMargin">
+                        <f:layout>
+                            <f:GridContainerSettings
+                                rowSize="11rem"
+                                columnSize="11rem"
+                                gap="1rem" />
+                        </f:layout>
+
+
+                        <!-- Tile 1 -->
+                        <GenericTile
+                            class="tileLayout"
+                            header="Game Fiori"
+                            subheader="Fiori Übungen"
+                            press=".onPressBeforeStartGame">
+                            <TileContent footer="Lets Go!!">
+                                <ImageContent src="sap-icon://da-2"></ImageContent>
+                            </TileContent>
+                        </GenericTile>
+
+
+                        <!-- Tile 2 -->
+                        <GenericTile
+                            class="tileLayout"
+                            header="Game Fiori"
+                            subheader="Fragen hinzufügen"
+                            press=".onPressAddQuestion">
+                            <TileContent footer="Admin">
+                                <ImageContent src="sap-icon://da"></ImageContent>
+                            </TileContent>
+                        </GenericTile>
+
+                    </f:GridContainer>
+
+
+            </VBox>
+        
+        </content>
+
+    </Page>
+</mvc:View>

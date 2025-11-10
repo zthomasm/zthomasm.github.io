@@ -1,0 +1,167 @@
+{
+	"_version": "1.76.0",
+	"sap.app": {
+		"id": "learninggame",
+		"type": "application",
+		"i18n": {
+			"bundleUrl": "i18n/i18n.properties",
+			"supportedLocales": [
+				""
+			]
+		},
+		"applicationVersion": {
+			"version": "0.0.1"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"resources": "resources.json",
+		"sourceTemplate": {
+			"id": "@sap/generator-fiori:basic",
+			"version": "1.19.3",
+			"toolsId": "c5c431f2-ba3f-4038-9641-c7efe6f8cfef"
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "/sap/opu/odata/sap/ZFIORI_LEARNING_SRV/",
+				"type": "OData",
+				"settings": {
+					"annotations": [],
+					"localUri": "localService/mainService/metadata.xml",
+					"odataVersion": "2.0"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"fullWidth": true,
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"dependencies": {
+			"minUI5Version": "1.142.0",
+			"libs": {
+				"sap.ushell": {},
+				"sap.ui.table": {},
+				"sap.ui.generic.app": {},
+				"sap.ui.comp": {},
+				"sap.suite.ui.generic.template": {},
+				"sap.f": {},
+				"sap.m": {},
+				"sap.ui.core": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "learninggame.i18n.i18n",
+					"supportedLocales": [
+						""
+					]
+				}
+			},
+			"": {
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"transition": "slide",
+				"type": "View",
+				"viewType": "XML",
+				"path": "learninggame.view",
+				"async": true,
+				"viewPath": "learninggame.view"
+			},
+			"routes": [
+				{
+					"name": "RouteStartPage",
+					"pattern": "",
+					"target": [
+						"TargetStartPage"
+					]
+				},
+				{
+					"name": "RouteGameWizard",
+					"pattern": "GameWizard",
+					"target": [
+						"TargetGameWizard"
+					]
+				},
+				{
+					"name": "RouteGameLinear",
+					"pattern": "GameLinear",
+					"target": [
+						"TargetGameLinear"
+					]
+				},
+				{
+					"name": "RouteAddQuestion",
+					"pattern": "AddQuestion",
+					"target": [
+						"TargetAddQuestion"
+					]
+				}
+			],
+			"targets": {
+				"TargetStartPage": {
+					"transition": "slide",
+					"id": "StartPage",
+					"name": "StartPage"
+				},
+				"TargetGameWizard": {
+					"transition": "slide",
+					"id": "GameWizard",
+					"name": "GameWizard"
+				},
+				"TargetGameLinear": {
+					"transition": "slide",
+					"id": "GameLinear",
+					"name": "GameLinear"
+				},
+				"TargetAddQuestion": {
+					"transition": "slide",
+					"id": "AddQuestion",
+					"name": "AddQuestion"
+				}
+			}
+		},
+		"rootView": {
+			"viewName": "learninggame.view.App",
+			"type": "XML",
+			"id": "App",
+			"async": true
+		},
+		"flexBundle": false
+	}
+}

@@ -1,0 +1,32 @@
+/* Enter your custom styles here */
+
+.solutionCorrect .sapMCbBg {
+    background-color: #d4edda; /* grün */
+}
+.solutionWrong .sapMCbBg {
+    background-color: #f8d7da; /* rot */
+}
+
+/* customCardPanel.css */
+.customCardPanel {
+    border-radius: 12px;          /* Abgerundete Ecken */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);  /* leichter Schatten */
+    background-color: #ffffff;    /* weiße Hintergrundfarbe */
+    padding: 1rem;                /* Innenabstand */
+    transition: transform 0.2s;   /* kleine Animation beim Hover */
+}
+
+.customCardPanel:hover {
+    transform: translateY(-3px);  /* kleiner Lift-Effekt beim Hover */
+}
+
+/* Optional: Header-Farbe leicht absetzen */
+.customCardPanel .sapMPanelHdr {
+    background-color: #f0f4f7;    /* dezenter hellblauer Header */
+    font-weight: 600;
+}
+
+/* Checkboxen ein wenig absetzen */
+.customCardPanel .sapMCb {
+    margin-left: 0.5rem; 
+}

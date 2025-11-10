@@ -1,0 +1,19 @@
+<mvc:View controllerName="learninggame.controller.GameWizard"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core">
+
+    <Page id="pageGameWizard" title="Game Wizard" titleAlignment="Center">
+        <content>
+            <!-- Debug Buttons -->
+            <HBox class="sapUiSmallMarginBottom" justifyContent="Center">
+                <Button text="Zeig GameSettings" press=".onShowSettings"/>
+                <Button text="Zeig GameSettingsAfterChange" press=".onShowSettingsAfterChange"/>
+            </HBox>
+
+            <!-- Wizard direkt hier -->
+            <Wizard id="quizWizard"/>
+        </content>
+    </Page>
+</mvc:View>
