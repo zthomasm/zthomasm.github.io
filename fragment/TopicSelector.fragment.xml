@@ -1,0 +1,13 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+  <VBox>
+    <MultiComboBox id="topicMCB" items="{settings>/availableTopics}" selectedKeys="{settings>/selectedTopics}">
+      <items>
+        <core:Item key="{settings>}" text="{settings>}" />
+      </items>
+    </MultiComboBox>
+    <HBox>
+      <Button text="Alle auswählen" press=".onSelectAllTopics"/>
+      <Button text="Alle abwählen" press=".onDeselectAllTopics"/>
+    </HBox>
+  </VBox>
+</core:FragmentDefinition>

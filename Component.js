@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/UIComponent","learninggame/model/models","learninggame/model/GameSettings"],(e,t,i)=>{"use strict";return e.extend("learninggame.Component",{metadata:{manifest:"json",interfaces:["sap.ui.core.IAsyncContentCreation"]},init(){e.prototype.init.apply(this,arguments);const n=i.createSettingsForGameModel();this.setModel(n,"GameSettings");this.setModel(t.createDeviceModel(),"device");this.getRouter().initialize()}})});
+//# sourceMappingURL=Component.js.map

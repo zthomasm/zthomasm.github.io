@@ -1,0 +1,2 @@
+sap.ui.define(["learninggame/controller/BaseController","learninggame/utils/BeforeStartingGame"],function(e,t){"use strict";return e.extend("learninggame.controller.StartPage",{onInit(){this._oSettingsModel=this.getOwnerComponent().getModel("GameSettings")},onPressBeforeStartGame(){sap.m.MessageToast.show("onPressBeforeStartGame wird gestartet");t.openBeforeStartDialog(this)},onPressAddQuestion(){this.getOwnerComponent().getRouter().navTo("RouteAddQuestion")}})});
+//# sourceMappingURL=StartPage.controller.js.map
