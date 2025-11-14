@@ -1,0 +1,53 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+  <Dialog
+    id="beforeStartingDialog"
+    title="Bevor du startest"
+    class="sapUiContentPadding"
+    draggable="true"
+    resizable="true"
+    contentHeight="50%"
+    contentWidth="50%">
+
+    <VBox class="sapUiSmallMargin">
+
+      <!-- Anzahl Fragen -->
+      <Text text="Wie viele Fragen möchtest du beantworten?" />
+        <Slider
+            min="3"
+            max="15"
+            step="1"
+            value="{GameSettings>/numberOfQuestions}"
+            liveChange=".onSliderChange"
+            showAdvancedTooltip="true"
+            showHandleTooltip="true"
+        />
+      <Text text="Anzahl: {GameSettings>/numberOfQuestions}" />
+
+      <!-- Themenauswahl -->
+      <Text text="Wähle Themenbereiche aus:" class="sapUiMediumMarginTop" />
+        <HBox>
+            <MultiComboBox
+            items="{GameSettings>/availableTopics}"
+            selectedKeys="{GameSettings>/selectedTopics}"
+            width="100%">
+            <core:Item key="{GameSettings>key}" text="{GameSettings>text}" />
+            </MultiComboBox>
+        </HBox>
+        <HBox class="sapUiSmallMarginTop">
+            <Button text="Alle selektieren" press=".onSelectAllTopics" type="Accept"/>
+            <Button text="Alle deselektieren" press=".onDeselectAllTopics" type="Reject" class="sapUiSmallMarginBegin"/>
+        </HBox>
+
+        <Button text="Debug" press=".onDebug"></Button>
+
+    </VBox>
+
+    <endButton>
+        <Button text="Abbrechen" press=".onCancelDialog" />
+    </endButton>
+    <beginButton>
+        <Button text="Los!" type="Emphasized" press=".onConfirmDialog" />
+    </beginButton>
+
+  </Dialog>
+</core:FragmentDefinition>
