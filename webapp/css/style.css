@@ -30,3 +30,53 @@
 .customCardPanel .sapMCb {
     margin-left: 0.5rem; 
 }
+
+
+.panelCorrect {
+    border: 2px solid #4CAF50;
+    animation: flashGreen 0.5s ease-in-out;
+}
+.panelWrong {
+    border: 2px solid #F44336;
+    animation: flashRed 0.5s ease-in-out;
+}
+
+@keyframes flashGreen {
+    0% { box-shadow: 0 0 10px #4CAF50; }
+    50% { box-shadow: 0 0 20px #4CAF50; }
+    100% { box-shadow: 0 0 0px #4CAF50; }
+}
+
+@keyframes flashRed {
+    0% { box-shadow: 0 0 10px #F44336; }
+    50% { box-shadow: 0 0 20px #F44336; }
+    100% { box-shadow: 0 0 0px #F44336; }
+}
+
+
+.footerProgressContainer {
+    display: flex !important; /* SAPUI5 kann Flex überschreiben */
+    flex-direction: row;
+    justify-content: center;   /* zentriert horizontal */
+    align-items: center;       /* zentriert vertikal */
+    height: 24px;
+    gap: 4px;
+    padding: 0;                /* padding-left raus, Center sonst unsauber */
+}
+
+
+.footerProgressDot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #ccc; /* unbeantwortet */
+    display: inline-block;   /* wichtig für Label/Text */
+}
+
+.footerProgressDot.correct {
+    background-color: #4CAF50; /* grün */
+}
+
+.footerProgressDot.wrong {
+    background-color: #F44336; /* rot */
+}
