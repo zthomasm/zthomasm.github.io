@@ -81,145 +81,215 @@ sap.ui.define([
         },
 
         _createLinearSteps: function() {
-    const oContainer = this.byId("quizContainerVBox");
-    if (!oContainer) {
-        console.error("Container Control nicht gefunden!");
-        return;
-    }
+            const oContainer = this.byId("quizContainerVBox");
+            if (!oContainer) {
+                console.error("Container Control nicht gefunden!");
+                return;
+            }
 
-    const aQuestions = this.getView().getModel("quiz").getProperty("/questions");
-    this._questionControls = [];
+            const aQuestions = this.getView().getModel("quiz").getProperty("/questions");
+            this._questionControls = [];
 
-    aQuestions.forEach((q, index) => {
-        // Fragetext
-        const oQuestionText = new Text({ text: q.QuestionText, wrapping: true });
-        oQuestionText.addStyleClass("sapUiMediumMarginBottom");
+            aQuestions.forEach((q, index) => {
+                // Fragetext
+                const oQuestionText = new Text({ text: q.QuestionText, wrapping: true });
+                oQuestionText.addStyleClass("sapUiMediumMarginBottom");
 
-        // VBox für Fragetext + Anzahl korrekter Antworten
-        const oVBoxQuestionInfo = new VBox({ width: "100%" });
-        oVBoxQuestionInfo.addItem(oQuestionText);
-        oVBoxQuestionInfo.addItem(new Text({
-            text: `Anzahl korrekter Antworten: ${q.AmountOfTrueAnswers}`,
-            wrapping: true,
-            class: "sapUiSmallMarginTop sapUiEmphasizedText"
-        }));
+                // VBox für Fragetext + Anzahl korrekter Antworten
+                const oVBoxQuestionInfo = new VBox({ width: "100%" });
+                oVBoxQuestionInfo.addItem(oQuestionText);
+                oVBoxQuestionInfo.addItem(new Text({
+                    text: `Anzahl korrekter Antworten: ${q.AmountOfTrueAnswers}`,
+                    wrapping: true,
+                    class: "sapUiSmallMarginTop sapUiEmphasizedText"
+                }));
 
-        // VBox für Nutzerantworten (Checkboxen)
-        const oVBoxUser = new VBox({ width: "100%" });
-        oVBoxUser.addStyleClass("sapUiMediumMarginBottom sapUiMediumMarginBeginEnd");
+                // VBox für Nutzerantworten (Checkboxen)
+                const oVBoxUser = new VBox({ width: "100%" });
+                oVBoxUser.addStyleClass("sapUiMediumMarginBottom sapUiMediumMarginBeginEnd");
 
-        const aAnswerControls = q.Answers.map(ans => {
-            const cb = new CheckBox({ text: ans.text, selected: ans.selected, enabled: true });
-            cb.addStyleClass("sapUiTinyMarginBottom");
-            return cb;
-        });
-        aAnswerControls.forEach(cb => oVBoxUser.addItem(cb));
+                const aAnswerControls = q.Answers.map(ans => {
+                    const cb = new CheckBox({ text: ans.text, selected: ans.selected, enabled: true });
+                    cb.addStyleClass("sapUiTinyMarginBottom");
+                    return cb;
+                });
+                aAnswerControls.forEach(cb => oVBoxUser.addItem(cb));
 
-        // Bestätigen Button
-        const oBtnConfirm = new Button({
-            text: "Bestätigen",
-            type: "Emphasized",
-            press: () => this.onCheckAnswerLinear(q, aAnswerControls, oPanel, index)
-        });
-        oBtnConfirm.addStyleClass("sapUiSmallMarginBottom sapUiMediumMarginBegin");
+                // Bestätigen Button
+                const oBtnConfirm = new Button({
+                    text: "Bestätigen",
+                    type: "Emphasized",
+                    press: () => this.onCheckAnswerLinear(q, aAnswerControls, oPanel, index)
+                });
+                oBtnConfirm.addStyleClass("sapUiSmallMarginBottom sapUiMediumMarginBegin");
 
-        // VBox für Lösungsvorschau
-        const oVBoxSolution = new VBox();
-        oVBoxSolution.setVisible(false);
-        oVBoxSolution.addStyleClass("sapUiSmallMarginTop sapUiMediumMarginBeginEnd");
+                const oBtnAskGPT = new Button({
+                    text: "Bei ChatGPT nachfragen",
+                    icon: "sap-icon://message-information",
+                    press: () => this._openGPT(q)
+                });
+                oBtnAskGPT.addStyleClass("sapUiSmallMarginBottom sapUiMediumMarginBegin");
 
-        // Panel für die Frage
-        const oPanel = new Panel({
-            headerText: `Frage ${index + 1}`,
-            expandable: false,
-            width: "100%",
-            content: [
-                oVBoxQuestionInfo, // Fragetext + Info untereinander
-                oVBoxUser,
-                new HBox({ items: [oBtnConfirm] }),
-                oVBoxSolution
-            ],
-            visible: index === 0
-        });
-        oPanel.addStyleClass("sapUiLargeMarginBottom customCardPanel");
-        oPanel._oVBoxSolutionBelow = oVBoxSolution;
+                // VBox für Lösungsvorschau
+                const oVBoxSolution = new VBox();
+                oVBoxSolution.setVisible(false);
+                oVBoxSolution.addStyleClass("sapUiSmallMarginTop sapUiMediumMarginBeginEnd");
 
-        oContainer.addItem(oPanel);
-        this._questionControls.push(oPanel);
-    });
-}
+                // Panel für die Frage
+                const oPanel = new Panel({
+                    headerText: `Frage ${index + 1}`,
+                    expandable: false,
+                    width: "100%",
+                    content: [
+                        oVBoxQuestionInfo, // Fragetext + Info untereinander
+                        oVBoxUser,
+                        new HBox({ items: [oBtnConfirm] }),
+                        oVBoxSolution
+                    ],
+                    visible: index === 0
+                });
+                oPanel.addStyleClass("sapUiLargeMarginBottom customCardPanel");
+                oPanel._oVBoxSolutionBelow = oVBoxSolution;
 
-,
+                oContainer.addItem(oPanel);
+                this._questionControls.push(oPanel);
+            });
+        },
 
-onCheckAnswerLinear: function(oQuestion, aAnswerControls, oStepPanel, currentIndex) {
-    let nCorrectThisQuestion = 0;
+        onCheckAnswerLinear: function(oQuestion, aAnswerControls, oStepPanel, currentIndex) {
+            let nCorrectThisQuestion = 0;
 
-    // Nutzer-Antworten auswerten und einfärben
-    oQuestion.Answers.forEach((ans, i) => {
-        const oCheckBox = aAnswerControls[i];
-        ans.selected = oCheckBox.getSelected();
-        oCheckBox.setEnabled(false);
+            // Nutzer-Antworten auswerten und einfärben
+            oQuestion.Answers.forEach((ans, i) => {
+                const oCheckBox = aAnswerControls[i];
+                ans.selected = oCheckBox.getSelected();
+                oCheckBox.setEnabled(false);
 
-        // Farbliche Markierung:
-        // Grün = Nutzer hat es richtig gemacht (ankreuzen oder nicht ankreuzen)
-        // Rot = Nutzer hat es falsch gemacht
-        if ((ans.selected && ans.correct) || (!ans.selected && !ans.correct)) {
-            oCheckBox.addStyleClass("sapUiTextSuccess"); // grün
-        } else {
-            oCheckBox.addStyleClass("sapUiTextError");   // rot
+                // Farbliche Markierung:
+                // Grün = Nutzer hat es richtig gemacht (ankreuzen oder nicht ankreuzen)
+                // Rot = Nutzer hat es falsch gemacht
+                if ((ans.selected && ans.correct) || (!ans.selected && !ans.correct)) {
+                    oCheckBox.addStyleClass("sapUiTextSuccess"); // grün
+                } else {
+                    oCheckBox.addStyleClass("sapUiTextError");   // rot
+                }
+
+                // Zähler für komplett richtige Antworten
+                if (ans.selected === ans.correct && ans.correct) {
+                    nCorrectThisQuestion++;
+                }
+            });
+
+            // Lösungsvorschau unter der Frage (optional)
+            const oVBoxSolution = oStepPanel._oVBoxSolutionBelow;
+            oVBoxSolution.removeAllItems();
+            oVBoxSolution.addItem(new Text({ text: "Richtige Antworten:" }));
+
+            oQuestion.Answers.forEach(ans => {
+                const oSolutionCheckBox = new CheckBox({
+                    text: ans.text,
+                    selected: ans.correct,
+                    enabled: false
+                });
+
+                // Gleiche Logik für die Lösungsvorschau
+                if ((ans.selected && ans.correct) || (!ans.selected && !ans.correct)) {
+                    oSolutionCheckBox.addStyleClass("solutionCorrect");
+                } else {
+                    oSolutionCheckBox.addStyleClass("solutionWrong");
+                }
+
+                oVBoxSolution.addItem(oSolutionCheckBox);
+            });
+            oVBoxSolution.setVisible(true);
+
+            // --- ChatGPT Button unter der Lösung einfügen ---
+            const oBtnAskGPT = new sap.m.Button({
+                text: "Panel kopieren und bei ChatGPT nachfragen",
+                icon: "sap-icon://locate-me-2",
+                type: "Transparent",
+                press: () => this._openGPT(oQuestion)
+            });
+            oBtnAskGPT.addStyleClass("sapUiSmallMarginTop");
+
+            oVBoxSolution.addItem(oBtnAskGPT);
+
+            // Gesamtanzahl der korrekten Antworten aktualisieren
+            if (nCorrectThisQuestion === oQuestion.AmountOfTrueAnswers) {
+                const nTotalCorrect = this.oGameSettings.getProperty("/correctAnswersCount") + 1;
+                this.oGameSettings.setProperty("/correctAnswersCount", nTotalCorrect);
+            }
+
+            // Bestätigen Button deaktivieren
+            oStepPanel.getContent().forEach(item => {
+                if (item instanceof HBox) item.getItems().forEach(btn => btn.setEnabled(false));
+            });
+
+            // Nächste Frage sichtbar machen
+            const nextStep = this._questionControls[currentIndex + 1];
+            if (nextStep) {
+                nextStep.setVisible(true);
+            } else {
+                // Letzte Frage beantwortet → Messenger-Toast
+                const nCorrect = this.oGameSettings.getProperty("/correctAnswersCount");
+                const nTotal = this._questionControls.length;
+                MessageToast.show(`Du hast ${nCorrect} von ${nTotal} richtig beantwortet!`);
+            }
+
+            if (nCorrectThisQuestion === oQuestion.AmountOfTrueAnswers) {
+                oStepPanel.addStyleClass("panelCorrect");
+            } else {
+                oStepPanel.addStyleClass("panelWrong");
+            }
+
+            oStepPanel.data("question", oQuestion);
+            this._updateFooterProgress();
+        },
+        _openGPT: function(oQuestion) {
+            // Prompt generieren
+            let prompt = "Bitte erkläre mir folgende Prüfungsfrage:\n\n";
+            prompt += "Frage:\n" + oQuestion.QuestionText + "\n\n";
+            prompt += "Antwortmöglichkeiten:\n";
+
+            oQuestion.Answers.forEach(a => {
+                prompt += `- ${a.text} (${a.correct ? "RICHTIG" : "FALSCH"})\n`;
+            });
+
+            prompt += "\nBitte erkläre mir ausführlich, warum die Antworten so sind. Also warum sie richtig oder falsch sind. Versuche ggf. ein kindereinfaches Beispiel anzuhängen";
+
+            // Kopieren + ChatGPT öffnen
+            navigator.clipboard.writeText(prompt).then(() => {
+                sap.m.MessageToast.show("Prompt kopiert! Öffne ChatGPT...");
+                window.open("https://chatgpt.com", "_blank");   // iOS öffnet App
+            });
+        },
+        _updateFooterProgress: function() {
+            const oFooter = this.byId("footerProgress");
+            if (!oFooter) return;
+
+            oFooter.removeAllItems();
+
+            this._questionControls.forEach(panel => {
+                let dotClass = "footerProgressDot";
+
+                const solutionVisible = panel._oVBoxSolutionBelow.getVisible();
+                if (solutionVisible) {
+                    // Prüfen ob die Frage richtig war
+                    let nCorrect = 0;
+                    const oQuestion = panel.data("question"); // optional setzen bei _createLinearSteps
+                    oQuestion.Answers.forEach(a => { if (a.selected === a.correct && a.correct) nCorrect++; });
+
+                    if (nCorrect === oQuestion.AmountOfTrueAnswers) dotClass += " correct";
+                    else dotClass += " wrong";
+                }
+
+                const dot = new sap.m.Text({ text: "●" }); // Unicode Punkt
+                dot.addStyleClass(dotClass);
+                oFooter.addItem(dot);
+            });
         }
 
-        // Zähler für komplett richtige Antworten
-        if (ans.selected === ans.correct && ans.correct) {
-            nCorrectThisQuestion++;
-        }
-    });
 
-    // Lösungsvorschau unter der Frage (optional)
-    const oVBoxSolution = oStepPanel._oVBoxSolutionBelow;
-    oVBoxSolution.removeAllItems();
-    oVBoxSolution.addItem(new Text({ text: "Richtige Antworten:" }));
-
-    oQuestion.Answers.forEach(ans => {
-        const oSolutionCheckBox = new CheckBox({
-            text: ans.text,
-            selected: ans.correct,
-            enabled: false
-        });
-
-        // Gleiche Logik für die Lösungsvorschau
-        if ((ans.selected && ans.correct) || (!ans.selected && !ans.correct)) {
-            oSolutionCheckBox.addStyleClass("solutionCorrect");
-        } else {
-            oSolutionCheckBox.addStyleClass("solutionWrong");
-        }
-
-        oVBoxSolution.addItem(oSolutionCheckBox);
-    });
-    oVBoxSolution.setVisible(true);
-
-    // Gesamtanzahl der korrekten Antworten aktualisieren
-    if (nCorrectThisQuestion === oQuestion.AmountOfTrueAnswers) {
-        const nTotalCorrect = this.oGameSettings.getProperty("/correctAnswersCount") + 1;
-        this.oGameSettings.setProperty("/correctAnswersCount", nTotalCorrect);
-    }
-
-    // Bestätigen Button deaktivieren
-    oStepPanel.getContent().forEach(item => {
-        if (item instanceof HBox) item.getItems().forEach(btn => btn.setEnabled(false));
-    });
-
-    // Nächste Frage sichtbar machen
-    const nextStep = this._questionControls[currentIndex + 1];
-    if (nextStep) {
-        nextStep.setVisible(true);
-    } else {
-        // Letzte Frage beantwortet → Messenger-Toast
-        const nCorrect = this.oGameSettings.getProperty("/correctAnswersCount");
-        const nTotal = this._questionControls.length;
-        MessageToast.show(`Du hast ${nCorrect} von ${nTotal} richtig beantwortet!`);
-    }
-}
 
 
 
