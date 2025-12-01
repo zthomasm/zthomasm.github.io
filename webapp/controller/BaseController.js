@@ -4,9 +4,8 @@ sap.ui.define([
     "sap/m/MessageToast",
     "sap/m/Label",
     // Models
-    "learninggame/model/GameSettings",
-    "learninggame/model/ResultsOfGame"
-], function (Controller, library, MessageToast, Label, GameSettings, ResultsOfGame) {
+    "learninggame/model/GameSettings"
+], function (Controller, library, MessageToast, Label, GameSettings) {
     "use strict";
 
     return Controller.extend("learninggame.controller.BaseController", {

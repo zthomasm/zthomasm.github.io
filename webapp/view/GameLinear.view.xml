@@ -1,7 +1,9 @@
 <mvc:View
     controllerName="learninggame.controller.GameLinear"
     xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.f"
     xmlns="sap.m">
+
     
     <ScrollContainer
         id="quizContainer"
@@ -18,4 +20,5 @@
             class="sapUiContentPadding sapUiSmallMarginAuto"/>
             
     </ScrollContainer>
+    
 </mvc:View>
