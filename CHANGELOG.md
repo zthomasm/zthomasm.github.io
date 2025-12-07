@@ -1,6 +1,28 @@
 # Changelog
 
 ---
+## [v1.0.3] - 01.12.2025
+
+### Added
+
+- A lot of cool stuff
+
+### Changed
+
+### Fixed
+
+---
+## [v1.0.2] - 01.12.2025
+
+### Added
+
+- A lot of questions
+
+### Changed
+
+### Fixed
+
+---
 ## [v1.0.1] - 07.11.2025
 
 ### Added

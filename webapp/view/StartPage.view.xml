@@ -51,5 +51,9 @@
         
         </content>
 
+        <footer>
+            <core:Fragment fragmentName="learninggame.fragment.FooterMain" type="XML" />
+        </footer>
+
     </Page>
 </mvc:View>
