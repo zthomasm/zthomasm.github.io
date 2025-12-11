@@ -287,6 +287,27 @@ sap.ui.define([
                 dot.addStyleClass(dotClass);
                 oFooter.addItem(dot);
             });
+
+            // --- Prozentanzeige rechts im Footer ergänzen (on top) ---
+            const nTotal = this._questionControls ? this._questionControls.length : 0;
+            const nCorrectTotal = this.oGameSettings.getProperty("/correctAnswersCount") || 0;
+
+            let sText = "";
+            if (nTotal > 0) {
+                const percent = Math.round((nCorrectTotal / nTotal) * 100);
+                sText = nCorrectTotal + " / " + nTotal + " (" + percent + "%)";
+            } else {
+                sText = "0 / 0 (0%)";
+            }
+
+            // Spacer + Text ans Toolbar-Ende setzen
+            const oSpacer = new sap.m.ToolbarSpacer();
+            const oPercentText = new sap.m.Text({ text: sText });
+            oPercentText.addStyleClass("footerProgressPercent");
+
+            oFooter.addItem(oSpacer);
+            oFooter.addItem(oPercentText);
+
         }
 
 
