@@ -1,6 +1,20 @@
 # Changelog
 
 ---
+## [v1.0.4] - 11.12.2025
+
+### Added
+
+- Added all questions + AI stuff
+- Now it shows the % of correct answered questions
+
+### Changed
+
+### Fixed
+
+- Fixed some bugs
+
+---
 ## [v1.0.3] - 01.12.2025
 
 ### Added
