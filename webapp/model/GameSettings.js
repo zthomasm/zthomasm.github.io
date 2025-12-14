@@ -8,7 +8,8 @@ sap.ui.define([
             return new JSONModel({
                 // 
                 settingsAreSet: false,
-                numberOfQuestions: 5,
+                bTCA: true,                 // TellCorrectAnswerToAI
+                numberOfQuestions: 15,
                 selectedTopics: [],
                 availableTopics: [
                     // Learning Hub
@@ -19,9 +20,6 @@ sap.ui.define([
                     { key: "SAPFEV4RAP_LH", text: "5, SAP Fiori Elements V4 RAP Service Learning Hub" },    // done
                     { key: "SAPF_LH", text: "6, Fiori Learning Hub" },                                      // done
                     // Dumps
-                    { key: "DUMP1", text: "Dump, P2P" },
-                    { key: "DUMP2", text: "Dump, Certshero" },
-                    { key: "DUMP3", text: "Dump, XY" },
                     { key: "DUMP_COLL", text: "Dump, Collection" },
                     // AI
                     { key: "DUMP_AI", text: "Questions from AI based on Dumps" }

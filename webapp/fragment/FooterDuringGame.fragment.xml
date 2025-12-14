@@ -5,6 +5,10 @@
         
         <ToolbarSpacer/>
         
+        <CheckBox 
+            text="TCA"
+            selected="{GameSettings>/bTCA}"
+        ></CheckBox>
     
     
     </OverflowToolbar>

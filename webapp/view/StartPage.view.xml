@@ -24,10 +24,10 @@
                         <!-- Tile 1 -->
                         <GenericTile
                             class="tileLayout"
-                            header="Game Fiori"
+                            header="Game starten..."
                             subheader="Fiori Übungen"
                             press=".onPressBeforeStartGame">
-                            <TileContent footer="Lets Go!!">
+                            <TileContent footer="Anwender">
                                 <ImageContent src="sap-icon://da-2"></ImageContent>
                             </TileContent>
                         </GenericTile>
@@ -36,8 +36,8 @@
                         <!-- Tile 2 -->
                         <GenericTile
                             class="tileLayout"
-                            header="Game Fiori"
-                            subheader="Fragen hinzufügen"
+                            header="Fragen hinzufügen..."
+                            subheader="Fiori Fragen"
                             press=".onPressAddQuestion">
                             <TileContent footer="Admin">
                                 <ImageContent src="sap-icon://da"></ImageContent>
