@@ -1,6 +1,19 @@
 # Changelog
 
 ---
+## [v1.0.5] - 15.12.2025
+
+### Added
+
+- Added Questions
+
+### Changed
+
+### Fixed
+
+- A lof of Bug fixes
+
+---
 ## [v1.0.4] - 11.12.2025
 
 ### Added
