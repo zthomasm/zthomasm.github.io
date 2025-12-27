@@ -37,12 +37,12 @@ sap.ui.define([
         _sanitizeText: function(text) {
             if (!text) return "";
             return text
-                .replace(/\$/g, "S|")          // $ → S
+                .replace(/\$/g, "S|")           // $ → S
                 .replace(/@/g, "(at)")          // @ → at
-                .replace(/#/g, "(HASHTAG)")           // # → -
-                .replace(/\{/g, "((")          // { → (
-                .replace(/\}/g, "))")          // } → )
-                .replace(/\*/g, "•");          // * → löschen
+                .replace(/#/g, "(HASHTAG)")     // # → -
+                .replace(/\{/g, "((")           // { → (
+                .replace(/\}/g, "))")           // } → )
+                .replace(/\*/g, "•");           // * → •
         },
 
         _prepareQuiz: function() {
@@ -50,22 +50,23 @@ sap.ui.define([
                 console.log("_prepareQuiz STARTED");
                 console.log("GameSettings Data:", this.oGameSettings.getData());
                 const oQuizModel = new JSONModel();
-                oQuizModel.loadData("/model/FioriQuestions.json");
+
+                oQuizModel.loadData("/model/QuestionsFiori.json"); // #zchange, muss generisch werden
 
                 oQuizModel.attachRequestCompleted(() => {
-                    console.log("FioriQuestions.json LOADED");
+                    console.log("QuestionsFiori.json LOADED");
                     const oData = oQuizModel.getData();
-                    if (!oData || !oData.results) return reject("Keine Fragen im JSON");
+                    if (!oData || !oData.results) return reject("Keine Fragen vorhanden");
 
                     let aAllQuestions = oData.results;
                     const nQuestions = this.oGameSettings.getProperty("/numberOfQuestions") || 3;
                     const selectedTopics = this.oGameSettings.getProperty("/selectedTopics") || [];
 
-                    console.log("Filter Start:", { 
-                        totalQuestions: aAllQuestions.length, 
-                        nQuestions, 
-                        selectedTopics 
-                    });
+                    // console.log("Filter Start:", { 
+                    //     totalQuestions: aAllQuestions.length, 
+                    //     nQuestions, 
+                    //     selectedTopics 
+                    // });
 
                     // Nach Themen filtern
                     if (selectedTopics.length > 0) {
@@ -75,12 +76,11 @@ sap.ui.define([
 
                     const available = aAllQuestions.length;
                     if (available < nQuestions) {
-                    console.warn(`⚠️ Nur ${available}/${nQuestions} Fragen verfügbar!`);
+                    console.warn(`Nur ${available}/${nQuestions} Fragen verfügbar!`);
                     MessageToast.show(`Nur ${available}/${nQuestions} Fragen für "${selectedTopics}" verfügbar!`);
                     }
 
-                    // Fragen zufällig mischen
-                    // aAllQuestions = aAllQuestions.sort(() => 0.5 - Math.random());
+                    // Fragen mischen
                     for (let i = aAllQuestions.length - 1; i > 0; i--) {
                     const j = Math.floor(Math.random() * (i + 1));
                     [aAllQuestions[i], aAllQuestions[j]] = [aAllQuestions[j], aAllQuestions[i]];
@@ -116,12 +116,7 @@ sap.ui.define([
                     dataStructure: JSON.stringify(aQuizQuestions[0], null, 2)
                     });
 
-                    console.log("🔴 ABOUT TO SET MODEL");
-                    console.log("   Quiz Qs:", aQuizQuestions.length);
-                    console.log("   First Q Answers:", aQuizQuestions[0].Answers);
-                    // this.getView().setModel(oModel, "quiz");
-
-                    console.log("🟠 Try-Catch START");
+                    console.log("Try-Catch START");
                     try {
                         this.getView().setModel(oModel, "quiz");
                         console.log("✅ setModel SUCCESSFUL");
@@ -131,9 +126,9 @@ sap.ui.define([
                         return;
                     }
                     
-                    console.log("🟢 About to resolve()");
+                    console.log("About to resolve()");
                     resolve();
-                    console.log("🔵 After resolve() call");
+                    console.log("After resolve() call");
                 });
 
                 oQuizModel.attachRequestFailed(err => reject(err));
@@ -167,7 +162,7 @@ sap.ui.define([
                 oBtnID.addStyleClass("sapUiTinyMarginEnd");
 
                 const oBtnTopic = new Button({
-                    text: `${q.QuestionTopicArea}`,  // ← Noch das KÜRZEL
+                    text: `${q.QuestionTopicArea}`,  // ← Aktuell das KÜRZEL
                     enabled: false,
                     type: "Default"
                 });
@@ -213,7 +208,7 @@ sap.ui.define([
                 const oBtnAskGPT = new Button({
                     text: "Bei Perplexity nachfragen",
                     icon: "sap-icon://message-information",
-                    press: () => this._openGPT(q)
+                    press: () => this._openHelpOfAI(q)
                 });
                 oBtnAskGPT.addStyleClass("sapUiSmallMarginBottom sapUiMediumMarginBegin");
 
@@ -222,30 +217,16 @@ sap.ui.define([
                 oVBoxSolution.setVisible(false);
                 oVBoxSolution.addStyleClass("sapUiSmallMarginTop sapUiMediumMarginBeginEnd");
 
-                // Panel für die Frage
-                // const oPanel = new Panel({
-                //     headerText: `Frage ${index + 1} | ID: ${q.QuestionID} | ${q.QuestionTopicArea}`,
-                //     expandable: false,
-                //     width: "100%",
-                //     content: [
-                //         oVBoxQuestionInfo, // Fragetext + Info untereinander
-                //         oVBoxUser,
-                //         new HBox({ items: [oBtnConfirm] }),
-                //         oVBoxSolution
-                //     ],
-                //     visible: index === 0
-                // });
-
                 // Neue Panel
                 const oPanel = new Panel({
-                    headerText: `Frage ${index + 1}`,  // ← Nur noch die Nummer!
+                    headerText: `Frage ${index + 1}`,
                     expandable: false,
                     width: "100%",
                     content: [
-                        oVBoxQuestionInfo,     // ← ZWEITES Element: Frage
+                        oVBoxQuestionInfo,
                         oVBoxUser,
                         new HBox({ items: [oBtnConfirm] }),
-                        oInfoBox,              // ← ERSTES Element: ID + TopicArea
+                        oInfoBox,
                         oVBoxSolution
                     ],
                     visible: index === 0
@@ -284,7 +265,7 @@ sap.ui.define([
                 }
             });
 
-            // Lösungsvorschau unter der Frage (optional)
+            // Lösungsvorschau unter der Frage
             const oVBoxSolution = oStepPanel._oVBoxSolutionBelow;
             oVBoxSolution.removeAllItems();
             oVBoxSolution.addItem(new Text({ text: "Richtige Antworten:" }));
@@ -307,12 +288,14 @@ sap.ui.define([
             });
             oVBoxSolution.setVisible(true);
 
-            // --- Perplexity Button unter der Lösung einfügen ---
+            // --- AI Button unter der Lösung einfügen ---
+            const currentAI = this.getOwnerComponent().getModel("AIModels").getProperty("/selectedAI");
+            const currentAIName = this.getOwnerComponent().getModel("AIModels").getProperty("/availableAI").find(item => item.key === this.getOwnerComponent().getModel("AIModels").getProperty("/selectedAI")).text;
             const oBtnAskGPT = new sap.m.Button({
-                text: "Panel kopieren und bei Perplexity nachfragen",
+                text: `Panel kopieren und bei ${currentAIName} nachfragen`,
                 icon: "sap-icon://locate-me-2",
                 type: "Transparent",
-                press: () => this._openGPT(oQuestion)
+                press: () => this._openHelpOfAI(oQuestion)
             });
             oBtnAskGPT.addStyleClass("sapUiSmallMarginTop");
 
@@ -349,7 +332,8 @@ sap.ui.define([
             oStepPanel.data("question", oQuestion);
             this._updateFooterProgress();
         },
-        _openGPT: function(oQuestion) {
+
+        _openHelpOfAI: function(oQuestion) {
             // Prompt generieren
             let prompt = "Bitte erkläre mir folgende Prüfungsfrage:\n\n";
             prompt += "Frage:\n" + oQuestion.QuestionText + "\n\n";
@@ -360,8 +344,7 @@ sap.ui.define([
             const oGameSettings = this.getOwnerComponent().getModel("GameSettings");
             const bTCA = oGameSettings.getProperty("/bTCA");
 
-            if (bTCA) {
-                
+            if (bTCA) { 
                 oQuestion.Answers.forEach(a => {
                     prompt += `- ${a.text} (${a.correct ? "RICHTIG" : "FALSCH"})\n`;
                 });
@@ -371,14 +354,26 @@ sap.ui.define([
                 });
             }
 
-            prompt += "\nBitte erkläre mir ausführlich, warum die Antworten so sind. Also warum sie richtig oder falsch sind. Versuche ggf. ein Anwendungsbeispiel anzuhängen";
+            prompt += "\nBitte erkläre mir ausführlich, warum die Antworten so sind. Also warum sie richtig oder falsch sind. Versuche ggf. am Ende ein Anwendungsbeispiel anzuhängen. Antworte unvoreingenommen.";
 
             // Kopieren + Perplexity  öffnen
+            const currentAI = this.getOwnerComponent().getModel("AIModels").getProperty("/selectedAI");
             navigator.clipboard.writeText(prompt).then(() => {
-                sap.m.MessageToast.show("Prompt kopiert! Öffne Perplexity...");
-                window.open("https://www.perplexity.ai", "_blank");   // iOS öffnet App
+                sap.m.MessageToast.show(`Prompt kopiert! Öffne ${currentAI}...`);
+                window.open(this._getAIUrl(currentAI), "_blank");
             });
         },
+
+        _getAIUrl: function(aiKey) {
+            const URLCollection = {
+                "AI01": "https://chat.openai.com",  // ChatGPT
+                "AI02": "https://gemini.google.com", // Gemini  
+                "AI03": "https://www.perplexity.ai", // Perplexity
+                "AI04": "https://chat.mistral.ai"    // Mistral
+            };
+            return URLCollection[aiKey];
+        },
+
         _updateFooterProgress: function() {
             const oFooter = this.byId("footerProgress");
             if (!oFooter) return;
@@ -404,7 +399,7 @@ sap.ui.define([
                 oFooter.addItem(dot);
             });
 
-            // --- Prozentanzeige rechts im Footer ergänzen (on top) ---
+            // --- Prozentanzeige rechts im Footer ergänzen ---
             const nTotal = this._questionControls ? this._questionControls.length : 0;
             const nCorrectTotal = this.oGameSettings.getProperty("/correctAnswersCount") || 0;
 

@@ -2,7 +2,7 @@
     <OverflowToolbar >
     
         <Button 
-            text="zthomasm - v1.0.4"
+            text="zthomasm - {i18n>applicationVersion}"
             icon="sap-icon://ai"
             enabled="false"
         ></Button>
