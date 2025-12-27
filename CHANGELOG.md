@@ -1,5 +1,19 @@
 # Changelog
 
+
+---
+## [v1.0.6] - 27.12.2025
+
+### Added
+
+- Added Selection Of AI Models
+
+### Changed
+
+- Structure of some code, cleaning parts of code
+
+### Fixed
+
 ---
 ## [v1.0.5] - 15.12.2025
 

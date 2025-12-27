@@ -20,6 +20,9 @@ sap.ui.define([
             const oGameSettingsModel = GameSettings.createSettingsForGameModel();
             this.setModel(oGameSettingsModel, "GameSettings");
 
+            const oBundleofAIModels = GameSettings.bundleofAIModels();
+            this.setModel(oBundleofAIModels, "AIModels");
+
             // set the device model
             this.setModel(models.createDeviceModel(), "device");
 

@@ -9,6 +9,7 @@ sap.ui.define([
      * Öffnet den "Bevor du startest"-Dialog.
      * @param {sap.ui.core.mvc.Controller} oController - Der aufrufende Controller (z. B. StartPage)
      */
+
     openBeforeStartDialog: function(oController) {
       const oView = oController.getView();
       const oModel = oController.getOwnerComponent().getModel("GameSettings");
@@ -44,18 +45,17 @@ sap.ui.define([
 
             onConfirmDialog: function() {
               const aSelTopics = oModel.getProperty("/selectedTopics") || [];
-              if (aSelTopics.length === 0) {
-                MessageToast.show("Bitte mindestens ein Thema auswählen.");
-                return;
-            }
+                if (aSelTopics.length === 0) {
+                  MessageToast.show("Bitte mindestens ein Thema auswählen.");
+                  return;
+                }
             
-                oView.byId("beforeStartingDialog").close();
-            
-                oModel.setProperty("/settingsAreSet", true);
+              oView.byId("beforeStartingDialog").close();
+          
+              oModel.setProperty("/settingsAreSet", true);
 
-                const oRouter = sap.ui.core.UIComponent.getRouterFor(oController);
-                oRouter.navTo("RouteGameLinear");
-                // this.getOwnerComponent().getRouter().navTo("RouteBeforeStartingGame");
+              const oRouter = sap.ui.core.UIComponent.getRouterFor(oController);
+              oRouter.navTo("RouteGameLinear");
             },
 
             onDebug: function() {
@@ -67,6 +67,7 @@ sap.ui.define([
                 console.log("DEBUG aktuell ausgewählte Topics:", aSel);
             }
           }
+        
         }).then(function(oDialog) {
           oView.addDependent(oDialog);
           return oDialog;
@@ -76,6 +77,7 @@ sap.ui.define([
       oController._pBeforeStartDialog.then(function(oDialog) {
         oDialog.open();
       });
+      
     }
   };
 });

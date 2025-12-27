@@ -4,7 +4,7 @@
     title="Bevor du startest"
     class="sapUiContentPadding"
     draggable="true"
-    resizable="true"
+    resizable="false"
     contentHeight="50%"
     contentWidth="50%">
 
@@ -38,6 +38,22 @@
             <Button text="Alle selektieren" press=".onSelectAllTopics" type="Accept"/>
             <Button text="Alle deselektieren" press=".onDeselectAllTopics" type="Reject" class="sapUiTinyMarginBegin"/>
         </HBox>
+
+      <!-- HelpOfAI-Auswahl -->
+      <Text text="Helpende KI" class="sapUiMediumMarginTop" />
+
+        <VBox>
+          <SegmentedButton 
+            selectedKey="{AIModels>/selectedAI}" 
+            items="{
+              path: 'AIModels>/availableAI'
+              }" 
+            >
+            <items>
+              <SegmentedButtonItem key="{AIModels>key}" text="{AIModels>text}" />
+            </items>
+          </SegmentedButton>
+        </VBox>
 
         <!-- <Button text="Debug" press=".onDebug"></Button> -->
 

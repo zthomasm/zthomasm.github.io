@@ -16,7 +16,7 @@ sap.ui.define([
 
             // Lade die vorhandenen Fragen um die höchste QuestionID zu bestimmen
             const oQuizModel = new JSONModel();
-            oQuizModel.loadData("/model/FioriQuestions.json");
+            oQuizModel.loadData("/model/QuestionsFiori.json");
 
             oQuizModel.attachRequestCompleted(() => {
                 const oData = oQuizModel.getData();

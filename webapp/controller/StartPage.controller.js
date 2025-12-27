@@ -12,7 +12,7 @@ sap.ui.define([
         },
 
         onPressBeforeStartGame() {
-            sap.m.MessageToast.show("onPressBeforeStartGame wird gestartet");
+            // sap.m.MessageToast.show("onPressBeforeStartGame wird gestartet");
             BeforeStartingGame.openBeforeStartDialog(this);
         },
 
