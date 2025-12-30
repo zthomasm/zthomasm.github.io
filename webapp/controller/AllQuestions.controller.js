@@ -148,6 +148,30 @@ sap.ui.define([
         
         onNavBack: function() {
             this.getOwnerComponent().getRouter().navTo("RouteStartPage");
+        },
+
+        onAfterRendering: function() {
+            const oScrollContainer = this.byId("allQuestionsContainer");
+            if (oScrollContainer && oScrollContainer.getDomRef()) {
+                this._scrollElement = oScrollContainer.getDomRef();
+                this._scrollElement.addEventListener("scroll", this._onScroll.bind(this));
+            }
+        },
+
+        _onScroll: function() {
+            const oProgress = this.byId("scrollProgress");
+            if (!this._scrollElement || !oProgress) return;
+            
+            const scrollTop = this._scrollElement.scrollTop;
+            const scrollHeight = this._scrollElement.scrollHeight;
+            const clientHeight = this._scrollElement.clientHeight;
+            
+            const progress = Math.min(scrollTop / (scrollHeight - clientHeight), 1);
+            oProgress.setPercentValue(progress * 100);
         }
+
+
+
+
     });
 });

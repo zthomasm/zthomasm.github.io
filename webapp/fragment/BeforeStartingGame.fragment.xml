@@ -22,10 +22,10 @@
             showAdvancedTooltip="true"
             showHandleTooltip="true"
         />
-      <Text text="Anzahl: {topicModel>/numberOfQuestions}" visible="{= ${topicModel>/sMode} === 'gameMode' }" />
+      <Text text="Anzahl: {topicModel>/numberOfQuestions}" visible="{= ${topicModel>/sMode} === 'gameMode' }" class="sapUiMediumMarginBottom" />
 
       <!-- Themenauswahl -->
-      <Text text="Wähle Themenbereiche aus:" class="sapUiMediumMarginTop" />
+      <Text text="Wähle Themenbereiche aus:" class="" />
         <HBox>
           <MultiComboBox
               visible="{= ${topicModel>/sMode} === 'gameMode' }"

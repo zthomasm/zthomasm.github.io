@@ -1,10 +1,20 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-    <OverflowToolbar >
+    <Toolbar>
     
+        <ProgressIndicator 
+            id="scrollProgress"
+            width="100%" 
+            height="4px"
+            displayValue=""
+            showValue="false"
+            state="Information" />
+        <ToolbarSpacer/>
         <Button 
             enabled="false"
             text="{= ${quiz>/questions}.length } Fragen zum Thema: {GameSettings>/selectedSingleTopic}"
         ></Button>
+
+
     
-    </OverflowToolbar>
+    </Toolbar>
 </core:FragmentDefinition>
