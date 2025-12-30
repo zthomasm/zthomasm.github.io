@@ -1,0 +1,41 @@
+{
+  "results": [
+    {
+        "QuestionID": 1000,
+        "QuestionText": "Empty1000?",
+        "AmountOfTrueAnswers": 1,
+        "QuestionTopicArea": "0010",
+        "AnswerA": "X",
+        "AnswerA_boolean": true,
+        "AnswerB": "Y",
+        "AnswerB_boolean": false,
+        "AnswerC": "Z",
+        "AnswerC_boolean": false,
+        "AnswerD": "",
+        "AnswerD_boolean": false,
+        "AnswerE": "",
+        "AnswerE_boolean": false,
+        "AnswerF": "",
+        "AnswerF_boolean": false
+    },
+    {
+        "QuestionID": 1001,
+        "QuestionText": "Empty1001?",
+        "AmountOfTrueAnswers": 1,
+        "QuestionTopicArea": "0010",
+        "AnswerA": "X",
+        "AnswerA_boolean": true,
+        "AnswerB": "Y",
+        "AnswerB_boolean": false,
+        "AnswerC": "Z",
+        "AnswerC_boolean": false,
+        "AnswerD": "",
+        "AnswerD_boolean": false,
+        "AnswerE": "",
+        "AnswerE_boolean": false,
+        "AnswerF": "",
+        "AnswerF_boolean": false
+    }
+
+
+]}

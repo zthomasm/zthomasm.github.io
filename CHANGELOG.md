@@ -2,6 +2,27 @@
 
 
 ---
+## [v1.1.0] - 30.12.2025
+
+### Added
+
+- Now you can Nav Back and switch as much as you want between pages without refreshing app
+- onNavBack Button & Logic
+- AllQuestion Page
+- Possibility of several GeneralTopics (Fiori, ABAP, ...)
+- Object-based structure
+- HelperJS built
+- Footer
+
+### Changed
+
+- Controller Coding of both
+
+### Fixed
+
+- Some small bugs
+
+---
 ## [v1.0.6] - 27.12.2025
 
 ### Added

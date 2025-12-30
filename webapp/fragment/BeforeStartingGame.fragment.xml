@@ -11,30 +11,41 @@
     <VBox class="sapUiSmallMargin">
 
       <!-- Anzahl Fragen -->
-      <Text text="Wie viele Fragen möchtest du beantworten?" />
+      <Text text="Wie viele Fragen möchtest du beantworten?" visible="{= ${topicModel>/sMode} === 'gameMode' }" />
         <Slider
+            visible="{= ${topicModel>/sMode} === 'gameMode' }"
             min="3"
             max="30"
             step="1"
-            value="{GameSettings>/numberOfQuestions}"
+            value="{topicModel>/numberOfQuestions}"
             liveChange=".onSliderChange"
             showAdvancedTooltip="true"
             showHandleTooltip="true"
         />
-      <Text text="Anzahl: {GameSettings>/numberOfQuestions}" />
+      <Text text="Anzahl: {topicModel>/numberOfQuestions}" visible="{= ${topicModel>/sMode} === 'gameMode' }" />
 
       <!-- Themenauswahl -->
       <Text text="Wähle Themenbereiche aus:" class="sapUiMediumMarginTop" />
         <HBox>
-            <MultiComboBox
-            items="{GameSettings>/availableTopics}"
-            selectedKeys="{GameSettings>/selectedTopics}"
+          <MultiComboBox
+              visible="{= ${topicModel>/sMode} === 'gameMode' }"
+              items="{topicModel>/availableTopics}"
+              selectedKeys="{topicModel>/selectedTopics}"
+              width="100%"
+              showClearIcon="true">
+              <core:Item key="{topicModel>key}" text="{topicModel>text}" />
+          </MultiComboBox>
+
+          <ComboBox
+            visible="{= ${topicModel>/sMode} === 'showAllQuestions' }"
+            items="{topicModel>/availableTopics}"
+            selectedKey="{topicModel>/singleTopic}"
             width="100%"
             showClearIcon="true">
-            <core:Item key="{GameSettings>key}" text="{GameSettings>text}" />
-            </MultiComboBox>
+            <core:Item key="{topicModel>key}" text="{topicModel>text}" />
+          </ComboBox>
         </HBox>
-        <HBox class="sapUiSmallMarginTop">
+        <HBox class="sapUiSmallMarginTop" visible="{= ${topicModel>/sMode} === 'gameMode' }">
             <Button text="Alle selektieren" press=".onSelectAllTopics" type="Accept"/>
             <Button text="Alle deselektieren" press=".onDeselectAllTopics" type="Reject" class="sapUiTinyMarginBegin"/>
         </HBox>
