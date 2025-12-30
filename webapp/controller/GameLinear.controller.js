@@ -7,14 +7,49 @@ sap.ui.define([
     "sap/m/CheckBox",
     "sap/m/Text",
     "sap/m/Button",
-    "sap/m/Panel"
-], function(BaseController, JSONModel, MessageToast, VBox, HBox, CheckBox, Text, Button, Panel) {
+    "sap/m/Panel",
+
+    // Utils
+    "learninggame/utils/QuestionHelper",
+    "learninggame/utils/CleanupHelper",
+
+], function(BaseController, JSONModel, MessageToast, VBox, HBox, CheckBox, Text, Button, Panel, QuestionHelper, CleanupHelper) {
     "use strict";
 
     return BaseController.extend("learninggame.controller.GameLinear", {
 
         onInit: function() {
-            this.oGameSettings = this.getOwnerComponent().getModel("GameSettings");
+            const oRouter = this.getOwnerComponent().getRouter();
+            oRouter.getRoute("RouteGameLinear").attachPatternMatched(this._onRouteMatched, this);
+            // oRouter.getRoute("RouteGameLinear").attachPatternMatched(this._cleanupAndInit, this);
+        },
+        
+        _onRouteMatched: function() {
+            // ← JEDESMAL wenn Route matched!
+            CleanupHelper.cleanupGameView(this);
+
+
+            const oTopicModel = this.getOwnerComponent().getModel("TopicModel");
+            const sActiveTopic = oTopicModel.getProperty("/activeTopic");
+    
+            let sGameSettingsModelName;
+            switch(sActiveTopic) {
+                case "FIORI":
+                    sGameSettingsModelName = "GameSettings";
+                    break;
+                case "ABAP":
+                    sGameSettingsModelName = "GameSettingsABAP";
+                    break;
+                default:
+                    console.error("Unbekanntes Topic:", sActiveTopic);
+                    this.getOwnerComponent().getRouter().navTo("RouteStartPage");
+                    return;
+            }
+    
+            this.oGameSettings = this.getOwnerComponent().getModel(sGameSettingsModelName);
+            this.oTopicModel = oTopicModel;
+    
+            // this.oGameSettings = this.getOwnerComponent().getModel("GameSettings");
     
             if (!this.oGameSettings.getProperty("/settingsAreSet")) {
                 this.getOwnerComponent().getRouter().navTo("RouteStartPage");
@@ -34,24 +69,19 @@ sap.ui.define([
 
         },
 
-        _sanitizeText: function(text) {
-            if (!text) return "";
-            return text
-                .replace(/\$/g, "S|")           // $ → S
-                .replace(/@/g, "(at)")          // @ → at
-                .replace(/#/g, "(HASHTAG)")     // # → -
-                .replace(/\{/g, "((")           // { → (
-                .replace(/\}/g, "))")           // } → )
-                .replace(/\*/g, "•");           // * → •
-        },
-
         _prepareQuiz: function() {
             return new Promise((resolve, reject) => {
                 console.log("_prepareQuiz STARTED");
                 console.log("GameSettings Data:", this.oGameSettings.getData());
                 const oQuizModel = new JSONModel();
 
-                oQuizModel.loadData("/model/QuestionsFiori.json"); // #zchange, muss generisch werden
+                const sActiveTopic = this.oTopicModel.getProperty("/activeTopic");
+                const sJsonPath = this.oTopicModel.getProperty(`/topics/${sActiveTopic}/jsonPath`);
+                
+                console.log("Loading from:", sJsonPath);
+                oQuizModel.loadData(sJsonPath);                
+
+                // oQuizModel.loadData("/model/QuestionsFiori.json"); // #zchange, muss generisch werden
 
                 oQuizModel.attachRequestCompleted(() => {
                     console.log("QuestionsFiori.json LOADED");
@@ -69,10 +99,7 @@ sap.ui.define([
                     // });
 
                     // Nach Themen filtern
-                    if (selectedTopics.length > 0) {
-                        aAllQuestions = aAllQuestions.filter(q => selectedTopics.includes(q.QuestionTopicArea));
-                        console.log(`${aAllQuestions.length} Fragen nach Filter`);
-                    }
+                    aAllQuestions = QuestionHelper.filterQuestionsByTopics(aAllQuestions, selectedTopics);
 
                     const available = aAllQuestions.length;
                     if (available < nQuestions) {
@@ -81,10 +108,7 @@ sap.ui.define([
                     }
 
                     // Fragen mischen
-                    for (let i = aAllQuestions.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [aAllQuestions[i], aAllQuestions[j]] = [aAllQuestions[j], aAllQuestions[i]];
-                    }
+                    aAllQuestions = QuestionHelper.shuffleQuestions(aAllQuestions);
 
                     // N Fragen auswählen
                     const aRandomQuestions = aAllQuestions.slice(0, nQuestions);
@@ -92,21 +116,8 @@ sap.ui.define([
                     console.log("First Question before mapping:", JSON.stringify(aRandomQuestions[0], null, 2));
 
                     // Antworten zufällig sortieren
-                    const aQuizQuestions = aRandomQuestions.map(q => ({
-                        QuestionID: q.QuestionID,
-                        QuestionText: this._sanitizeText(q.QuestionText),
-                        AmountOfTrueAnswers: q.AmountOfTrueAnswers,
-                        QuestionTopicArea: q.QuestionTopicArea,
-                        Answers: ["A","B","C","D","E","F"]
-                            .map(key => ({
-                                key,
-                                text: this._sanitizeText(q["Answer"+key]),
-                                correct: q["Answer"+key+"_boolean"],
-                                selected: false
-                            }))
-                            .filter(a => a.text)
-                            .sort(() => 0.5 - Math.random())
-                    }));
+                    const aQuizQuestions = QuestionHelper.transformQuestionsToModel(aRandomQuestions);
+
 
                     const oModel = new JSONModel({ questions: aQuizQuestions });
                     console.log("Quiz Questions IDs:", aQuizQuestions.map(q => q.QuestionID));
@@ -146,95 +157,12 @@ sap.ui.define([
             this._questionControls = [];
 
             aQuestions.forEach((q, index) => {
-                // Zusatz---
-                // ← NEUER CODE: Info-Button Box (ID + TopicArea)
-                const oInfoBox = new HBox({
-                    alignItems: "Center",
-                    justifyContent: "End",  // ← Ganz rechts!
-                    width: "100%",
-                });
 
-                const oBtnID = new Button({
-                    text: `ID: ${q.QuestionID}`,
-                    enabled: false,
-                    type: "Default"
-                });
-                oBtnID.addStyleClass("sapUiTinyMarginEnd");
+                // Helper
+                const oPanel = QuestionHelper.createQuestionPanel(q, index);
 
-                const oBtnTopic = new Button({
-                    text: `${q.QuestionTopicArea}`,  // ← Aktuell das KÜRZEL
-                    enabled: false,
-                    type: "Default"
-                });
-
-                oInfoBox.addItem(oBtnID);
-                oInfoBox.addItem(oBtnTopic);
-                // Zusatz Ende---
-
-
-                // Fragetext
-                const oQuestionText = new Text({ text: q.QuestionText, wrapping: true });
-                oQuestionText.addStyleClass("sapUiMediumMarginBottom");
-
-                // VBox für Fragetext + Anzahl korrekter Antworten
-                const oVBoxQuestionInfo = new VBox({ width: "100%" });
-                oVBoxQuestionInfo.addItem(oQuestionText);
-                const oTextAnswers = new Text({
-                    text: `Anzahl korrekter Antworten: ${q.AmountOfTrueAnswers}`,
-                    wrapping: true
-                });
-                oTextAnswers.addStyleClass("sapUiSmallMarginTop sapUiEmphasizedText");
-                oVBoxQuestionInfo.addItem(oTextAnswers);
-
-                // VBox für Nutzerantworten (Checkboxen)
-                const oVBoxUser = new VBox({ width: "100%" });
-                oVBoxUser.addStyleClass("sapUiMediumMarginBottom sapUiMediumMarginBeginEnd");
-
-                const aAnswerControls = q.Answers.map(ans => {
-                    const cb = new CheckBox({ text: ans.text, selected: ans.selected, enabled: true });
-                    cb.addStyleClass("sapUiTinyMarginBottom");
-                    return cb;
-                });
-                aAnswerControls.forEach(cb => oVBoxUser.addItem(cb));
-
-                // Bestätigen Button
-                const oBtnConfirm = new Button({
-                    text: "Bestätigen",
-                    type: "Emphasized",
-                    press: () => this.onCheckAnswerLinear(q, aAnswerControls, oPanel, index)
-                });
-                oBtnConfirm.addStyleClass("sapUiSmallMarginBottom sapUiMediumMarginBegin");
-
-                const oBtnAskGPT = new Button({
-                    text: "Bei Perplexity nachfragen",
-                    icon: "sap-icon://message-information",
-                    press: () => this._openHelpOfAI(q)
-                });
-                oBtnAskGPT.addStyleClass("sapUiSmallMarginBottom sapUiMediumMarginBegin");
-
-                // VBox für Lösungsvorschau
-                const oVBoxSolution = new VBox();
-                oVBoxSolution.setVisible(false);
-                oVBoxSolution.addStyleClass("sapUiSmallMarginTop sapUiMediumMarginBeginEnd");
-
-                // Neue Panel
-                const oPanel = new Panel({
-                    headerText: `Frage ${index + 1}`,
-                    expandable: false,
-                    width: "100%",
-                    content: [
-                        oVBoxQuestionInfo,
-                        oVBoxUser,
-                        new HBox({ items: [oBtnConfirm] }),
-                        oInfoBox,
-                        oVBoxSolution
-                    ],
-                    visible: index === 0
-                });
-
-
-                oPanel.addStyleClass("sapUiLargeMarginBottom customCardPanel");
-                oPanel._oVBoxSolutionBelow = oVBoxSolution;
+                oPanel._oBtnConfirm.attachPress(() => this.onCheckAnswerLinear(q, oPanel._aAnswerControls, oPanel, index));
+                oPanel._oBtnAskGPT.attachPress(() => this._openHelpOfAI(q));
 
                 oContainer.addItem(oPanel);
                 this._questionControls.push(oPanel);
@@ -242,54 +170,16 @@ sap.ui.define([
         },
 
         onCheckAnswerLinear: function(oQuestion, aAnswerControls, oStepPanel, currentIndex) {
-            let nCorrectThisQuestion = 0;
+            
+            const nCorrectThisQuestion = QuestionHelper.evaluateAnswer(oQuestion, aAnswerControls);
 
-            // Nutzer-Antworten auswerten und einfärben
-            oQuestion.Answers.forEach((ans, i) => {
-                const oCheckBox = aAnswerControls[i];
-                ans.selected = oCheckBox.getSelected();
-                oCheckBox.setEnabled(false);
-
-                // Farbliche Markierung:
-                // Grün = Nutzer hat es richtig gemacht (ankreuzen oder nicht ankreuzen)
-                // Rot = Nutzer hat es falsch gemacht
-                if ((ans.selected && ans.correct) || (!ans.selected && !ans.correct)) {
-                    oCheckBox.addStyleClass("sapUiTextSuccess"); // grün
-                } else {
-                    oCheckBox.addStyleClass("sapUiTextError");   // rot
-                }
-
-                // Zähler für komplett richtige Antworten
-                if (ans.selected === ans.correct && ans.correct) {
-                    nCorrectThisQuestion++;
-                }
-            });
 
             // Lösungsvorschau unter der Frage
             const oVBoxSolution = oStepPanel._oVBoxSolutionBelow;
-            oVBoxSolution.removeAllItems();
-            oVBoxSolution.addItem(new Text({ text: "Richtige Antworten:" }));
+            QuestionHelper.createSolutionDisplay(oQuestion, oVBoxSolution);
 
-            oQuestion.Answers.forEach(ans => {
-                const oSolutionCheckBox = new CheckBox({
-                    text: ans.text,
-                    selected: ans.correct,
-                    enabled: false
-                });
-
-                // Gleiche Logik für die Lösungsvorschau
-                if ((ans.selected && ans.correct) || (!ans.selected && !ans.correct)) {
-                    oSolutionCheckBox.addStyleClass("solutionCorrect");
-                } else {
-                    oSolutionCheckBox.addStyleClass("solutionWrong");
-                }
-
-                oVBoxSolution.addItem(oSolutionCheckBox);
-            });
-            oVBoxSolution.setVisible(true);
 
             // --- AI Button unter der Lösung einfügen ---
-            const currentAI = this.getOwnerComponent().getModel("AIModels").getProperty("/selectedAI");
             const currentAIName = this.getOwnerComponent().getModel("AIModels").getProperty("/availableAI").find(item => item.key === this.getOwnerComponent().getModel("AIModels").getProperty("/selectedAI")).text;
             const oBtnAskGPT = new sap.m.Button({
                 text: `Panel kopieren und bei ${currentAIName} nachfragen`,
@@ -334,91 +224,35 @@ sap.ui.define([
         },
 
         _openHelpOfAI: function(oQuestion) {
-            // Prompt generieren
-            let prompt = "Bitte erkläre mir folgende Prüfungsfrage:\n\n";
-            prompt += "Frage:\n" + oQuestion.QuestionText + "\n\n";
-            prompt += "Es gibt anscheinend " + oQuestion.AmountOfTrueAnswers + " richtige Antwort(en).\n\n";
 
-            prompt += "Antwortmöglichkeiten:\n";
+            // const oGameSettings = this.getOwnerComponent().getModel("GameSettings");
+            // const sActiveTopic = this.oTopicModel.getProperty("/activeTopic");
+            // const sGameSettingsModelName = sActiveTopic === "FIORI" ? "GameSettings" : "GameSettingsABAP";
+            // const oGameSettings = this.getOwnerComponent().getModel(sGameSettingsModelName);
 
-            const oGameSettings = this.getOwnerComponent().getModel("GameSettings");
-            const bTCA = oGameSettings.getProperty("/bTCA");
 
-            if (bTCA) { 
-                oQuestion.Answers.forEach(a => {
-                    prompt += `- ${a.text} (${a.correct ? "RICHTIG" : "FALSCH"})\n`;
-                });
-            } else {
-                oQuestion.Answers.forEach(a => {
-                    prompt += `- ${a.text} \n`;
-                });
-            }
-
-            prompt += "\nBitte erkläre mir ausführlich, warum die Antworten so sind. Also warum sie richtig oder falsch sind. Versuche ggf. am Ende ein Anwendungsbeispiel anzuhängen. Antworte unvoreingenommen.";
-
-            // Kopieren + Perplexity  öffnen
+            const bTCA = this.oGameSettings.getProperty("/bTCA");
             const currentAI = this.getOwnerComponent().getModel("AIModels").getProperty("/selectedAI");
+            const prompt = QuestionHelper.generatePrompt(oQuestion, bTCA);
+
             navigator.clipboard.writeText(prompt).then(() => {
                 sap.m.MessageToast.show(`Prompt kopiert! Öffne ${currentAI}...`);
-                window.open(this._getAIUrl(currentAI), "_blank");
+                window.open(QuestionHelper.getAIUrl(currentAI), "_blank");
             });
-        },
 
-        _getAIUrl: function(aiKey) {
-            const URLCollection = {
-                "AI01": "https://chat.openai.com",  // ChatGPT
-                "AI02": "https://gemini.google.com", // Gemini  
-                "AI03": "https://www.perplexity.ai", // Perplexity
-                "AI04": "https://chat.mistral.ai"    // Mistral
-            };
-            return URLCollection[aiKey];
+
         },
 
         _updateFooterProgress: function() {
             const oFooter = this.byId("footerProgress");
             if (!oFooter) return;
 
-            oFooter.removeAllItems();
+            QuestionHelper.updateFooterProgress(oFooter, this._questionControls, this.oGameSettings);
 
-            this._questionControls.forEach(panel => {
-                let dotClass = "footerProgressDot";
+        },
 
-                const solutionVisible = panel._oVBoxSolutionBelow.getVisible();
-                if (solutionVisible) {
-                    // Prüfen ob die Frage richtig war
-                    let nCorrect = 0;
-                    const oQuestion = panel.data("question"); // optional setzen bei _createLinearSteps
-                    oQuestion.Answers.forEach(a => { if (a.selected === a.correct && a.correct) nCorrect++; });
-
-                    if (nCorrect === oQuestion.AmountOfTrueAnswers) dotClass += " correct";
-                    else dotClass += " wrong";
-                }
-
-                const dot = new sap.m.Text({ text: "●" }); // Unicode Punkt
-                dot.addStyleClass(dotClass);
-                oFooter.addItem(dot);
-            });
-
-            // --- Prozentanzeige rechts im Footer ergänzen ---
-            const nTotal = this._questionControls ? this._questionControls.length : 0;
-            const nCorrectTotal = this.oGameSettings.getProperty("/correctAnswersCount") || 0;
-
-            let sText = "";
-            if (nTotal > 0) {
-                const percent = Math.round((nCorrectTotal / nTotal) * 100);
-                sText = nCorrectTotal + " / " + nTotal + " (" + percent + "%)";
-            } else {
-                sText = "0 / 0 (0%)";
-            }
-
-            // Spacer + Text ans Toolbar-Ende setzen
-            const oSpacer = new sap.m.ToolbarSpacer();
-            const oPercentText = new sap.m.Text({ text: sText });
-            oPercentText.addStyleClass("footerProgressPercent");
-
-            oFooter.addItem(oSpacer);
-            oFooter.addItem(oPercentText);
-
+        onNavBack: function() {
+            this.getOwnerComponent().getRouter().navTo("RouteStartPage");
         }
 
 

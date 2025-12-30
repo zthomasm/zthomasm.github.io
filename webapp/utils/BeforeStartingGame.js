@@ -10,12 +10,21 @@ sap.ui.define([
      * @param {sap.ui.core.mvc.Controller} oController - Der aufrufende Controller (z. B. StartPage)
      */
 
-    openBeforeStartDialog: function(oController) {
+    openBeforeStartDialog: function(oController, sTopicModelName, sMode) {
       const oView = oController.getView();
-      const oModel = oController.getOwnerComponent().getModel("GameSettings");
+      const oModel = oController.getOwnerComponent().getModel(sTopicModelName);
+
+      oView.setModel(oModel, "topicModel");
+      oModel.setProperty("/sMode", sMode);
+
+      const sDialogId = "beforeStartingDialog";
+
+      if (oController.byId(sDialogId)) {
+        oController.byId(sDialogId).destroy();
+      } 
 
       // Falls der Dialog noch nicht existiert → lazy load
-      if (!oController._pBeforeStartDialog) {
+      // if (!oController._pBeforeStartDialog) {
         oController._pBeforeStartDialog = Fragment.load({
           id: oView.getId(),
           name: "learninggame.fragment.BeforeStartingGame",
@@ -44,18 +53,55 @@ sap.ui.define([
             },
 
             onConfirmDialog: function() {
-              const aSelTopics = oModel.getProperty("/selectedTopics") || [];
-                if (aSelTopics.length === 0) {
-                  MessageToast.show("Bitte mindestens ein Thema auswählen.");
-                  return;
-                }
+              const sMode = oModel.getProperty("/sMode");
+
+              switch (sMode) {
+                // CASE
+                case "showAllQuestions":
+                  const sSingleTopic = oModel.getProperty("/singleTopic")
+                  if (!sSingleTopic) {
+                    MessageToast.show("Bitte ein Thema auswählen.");
+                    return;
+                  }
+                  oModel.setProperty("/selectedSingleTopic", sSingleTopic);
+                  break;
+                
+                case "gameMode":
+                  const aSelTopics = oModel.getProperty("/selectedTopics") || [];
+                  if (aSelTopics.length === 0) {
+                    MessageToast.show("Bitte mindestens ein Thema auswählen.");
+                    return;
+                  }
+                  break;
+                default:
+                  break;
+              }
+
+              // const aSelTopics = oModel.getProperty("/selectedTopics") || [];
+              //   if (aSelTopics.length === 0) {
+              //     MessageToast.show("Bitte mindestens ein Thema auswählen.");
+              //     return;
+              //   }
             
               oView.byId("beforeStartingDialog").close();
-          
-              oModel.setProperty("/settingsAreSet", true);
-
+              
               const oRouter = sap.ui.core.UIComponent.getRouterFor(oController);
-              oRouter.navTo("RouteGameLinear");
+              
+              switch (sMode) {
+                case "showAllQuestions":
+                  console.log("BeforeRouteAllQuestions");
+                  oModel.setProperty("/settingsAreSet", true);
+                  oRouter.navTo("RouteAllQuestions");
+                  break;
+                case "gameMode":
+                  console.log("BeforeRouteGameLinear");
+                  oModel.setProperty("/settingsAreSet", true);
+                  oRouter.navTo("RouteGameLinear");
+                  break;
+              
+                default:
+                  break;
+              }
             },
 
             onDebug: function() {
@@ -72,7 +118,7 @@ sap.ui.define([
           oView.addDependent(oDialog);
           return oDialog;
         });
-      }
+      // }
 
       oController._pBeforeStartDialog.then(function(oDialog) {
         oDialog.open();

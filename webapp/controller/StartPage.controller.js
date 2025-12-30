@@ -12,8 +12,43 @@ sap.ui.define([
         },
 
         onPressBeforeStartGame() {
-            // sap.m.MessageToast.show("onPressBeforeStartGame wird gestartet");
-            BeforeStartingGame.openBeforeStartDialog(this);
+            console.log("onPressBeforeStartGame");
+            const oTopicModel = this.getOwnerComponent().getModel("TopicModel");
+            oTopicModel.setProperty("/activeTopic", "FIORI");
+
+            const sModel = "GameSettings";
+            const sMode = "gameMode"; 
+            BeforeStartingGame.openBeforeStartDialog(this, sModel, sMode);
+        },
+
+        onPressBeforeStartGameABAP() {
+            console.log("onPressBeforeStartGameABAP");
+            const oTopicModel = this.getOwnerComponent().getModel("TopicModel");
+            oTopicModel.setProperty("/activeTopic", "ABAP");
+
+            const sModel = "GameSettingsABAP";
+            const sMode = "gameMode"; 
+            BeforeStartingGame.openBeforeStartDialog(this, sModel, sMode);
+        },
+
+        onPressBeforeStartShowAllQuestions_FIORI() {
+            console.log("onPressBeforeStartShowAllQuestions_FIORI");
+            const oTopicModel = this.getOwnerComponent().getModel("TopicModel");
+            oTopicModel.setProperty("/activeTopic", "FIORI");
+
+            const sModel = "GameSettings";
+            const sMode = "showAllQuestions"; 
+            BeforeStartingGame.openBeforeStartDialog(this, sModel, sMode);
+        },
+
+        onPressBeforeStartShowAllQuestions_ABAP() {
+            console.log("onPressBeforeStartShowAllQuestions_ABAP");
+            const oTopicModel = this.getOwnerComponent().getModel("TopicModel");
+            oTopicModel.setProperty("/activeTopic", "ABAP");
+
+            const sModel = "GameSettingsABAP";
+            const sMode = "showAllQuestions"; 
+            BeforeStartingGame.openBeforeStartDialog(this, sModel, sMode);
         },
 
         onPressAddQuestion() {

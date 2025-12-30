@@ -17,8 +17,14 @@ sap.ui.define([
             // call the base component's init function
             UIComponent.prototype.init.apply(this, arguments);
 
-            const oGameSettingsModel = GameSettings.createSettingsForGameModel();
+            const oTopicModel = GameSettings.createTopicModel();
+            this.setModel(oTopicModel, "TopicModel");
+
+            const oGameSettingsModel = GameSettings.createSettingsForModels();
             this.setModel(oGameSettingsModel, "GameSettings");
+
+            const oGameSettingsModel2 = GameSettings.createSettingsForModelsABAP();
+            this.setModel(oGameSettingsModel2, "GameSettingsABAP");
 
             const oBundleofAIModels = GameSettings.bundleofAIModels();
             this.setModel(oBundleofAIModels, "AIModels");

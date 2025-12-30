@@ -9,9 +9,9 @@
 
         <content>
         
-            <VBox id="Start0010" class="sapUiSmallMargin">
+            <VBox id="Start0010" class="sapUiSmallMargin" visible="{TopicModel>/topics/FIORI/bShowOnStartPage}">
             
-                <Title text="Aktionen" level="H1" id="Title0010"></Title>
+                <Title text="Aktionen - {i18n>FIORI}" level="H1" id="Title0010"></Title>
                     <f:GridContainer class="sapUiSmallMargin">
                         <f:layout>
                             <f:GridContainerSettings
@@ -24,10 +24,10 @@
                         <!-- Tile 1 -->
                         <GenericTile
                             class="tileLayout"
-                            header="Game starten..."
-                            subheader="Fiori Übungen"
+                            header="{i18n>T0010}"
+                            subheader="{i18n>FIORI}"
                             press=".onPressBeforeStartGame">
-                            <TileContent footer="Anwender">
+                            <TileContent footer="{i18n>user}">
                                 <ImageContent src="sap-icon://da-2"></ImageContent>
                             </TileContent>
                         </GenericTile>
@@ -36,10 +36,72 @@
                         <!-- Tile 2 -->
                         <GenericTile
                             class="tileLayout"
-                            header="Fragen hinzufügen..."
-                            subheader="Fiori Fragen"
+                            header="{i18n>T0020}"
+                            subheader="{i18n>FIORI}"
+                            press=".onPressBeforeStartShowAllQuestions_FIORI">
+                            <TileContent footer="{i18n>user}">
+                                <ImageContent src="sap-icon://da-2"></ImageContent>
+                            </TileContent>
+                        </GenericTile>
+
+                        <!-- Tile 3 -->
+                        <GenericTile
+                            class="tileLayout"
+                            header="{i18n>T0030}"
+                            subheader="{i18n>FIORI}"
                             press=".onPressAddQuestion">
-                            <TileContent footer="Admin">
+                            <TileContent footer="{i18n>admin}">
+                                <ImageContent src="sap-icon://da"></ImageContent>
+                            </TileContent>
+                        </GenericTile>
+
+                    </f:GridContainer>
+
+
+            </VBox>
+
+            <VBox id="Start0020" class="sapUiSmallMargin" visible="{TopicModel>/topics/ABAP/bShowOnStartPage}">
+            
+                <Title text="Aktionen - {i18n>ABAP}" level="H1" id="Title0020"></Title>
+                    <f:GridContainer class="sapUiSmallMargin">
+                        <f:layout>
+                            <f:GridContainerSettings
+                                rowSize="11rem"
+                                columnSize="11rem"
+                                gap="1rem" />
+                        </f:layout>
+
+
+                        <!-- Tile 1 -->
+                        <GenericTile
+                            class="tileLayout"
+                            header="{i18n>T0010}"
+                            subheader="{i18n>ABAP}"
+                            press=".onPressBeforeStartGameABAP">
+                            <TileContent footer="{i18n>user}">
+                                <ImageContent src="sap-icon://da-2"></ImageContent>
+                            </TileContent>
+                        </GenericTile>
+
+
+                        <!-- Tile 2 -->
+                        <GenericTile
+                            class="tileLayout"
+                            header="{i18n>T0020}"
+                            subheader="{i18n>ABAP}"
+                            press=".onPressBeforeStartShowAllQuestions_ABAP">
+                            <TileContent footer="{i18n>user}">
+                                <ImageContent src="sap-icon://da-2"></ImageContent>
+                            </TileContent>
+                        </GenericTile>
+
+                        <!-- Tile 3 -->
+                        <GenericTile
+                            class="tileLayout"
+                            header="{i18n>T0030}"
+                            subheader="{i18n>ABAP}"
+                            press=".onPressAddQuestionXX">
+                            <TileContent footer="{i18n>admin}">
                                 <ImageContent src="sap-icon://da"></ImageContent>
                             </TileContent>
                         </GenericTile>
