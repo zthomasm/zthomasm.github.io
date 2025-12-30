@@ -80,3 +80,32 @@
 .footerProgressDot.wrong {
     background-color: #F44336; /* rot */
 }
+
+/* ProgressIndicator komplett übernehmen */
+#scrollProgress,
+#scrollProgress .sapMProgressIndicator {
+    height: 4px !important;
+    border-radius: 2px !important;
+    background: rgba(0, 121, 191, 0.2) !important;
+    overflow: hidden !important;
+}
+
+/* Fill-Bar butterweich */
+#scrollProgress .sapMProgressIndicatorBar {
+    height: 100% !important;
+    background: linear-gradient(90deg, 
+        #0079bf 0%, 
+        #00b0f0 50%, 
+        #0079bf 100%) !important;
+    border-radius: 2px !important;
+    transition: width 0.05s linear !important;  /* ← JEDER PIXEL! */
+    box-shadow: 0 0 8px rgba(0, 121, 191, 0.6) !important;
+}
+
+/* Toolbar transparent */
+#allQuestionsPage .sapMTB {
+    background: transparent !important;
+    border: none !important;
+    height: 4px !important;
+    min-height: 4px !important;
+}

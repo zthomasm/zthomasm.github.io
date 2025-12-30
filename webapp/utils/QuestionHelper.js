@@ -98,7 +98,7 @@ sap.ui.define([
             oVBoxQuestionInfo.addItem(oTextAnswers);
 
             // VBox für Nutzerantworten (Checkboxen)
-            const oVBoxUser = new VBox({ width: "100%" });
+            const oVBoxUser = new VBox({ width: "80%" }); // PanelScollBreite
             oVBoxUser.addStyleClass("sapUiMediumMarginBottom sapUiMediumMarginBeginEnd");
 
             const aAnswerControls = oQuestion.Answers.map(ans => {
