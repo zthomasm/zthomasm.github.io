@@ -26,6 +26,9 @@ sap.ui.define([
             const oGameSettingsModel2 = GameSettings.createSettingsForModelsABAP();
             this.setModel(oGameSettingsModel2, "GameSettingsABAP");
 
+            const oGameSettingsModel3 = GameSettings.createSettingsForModelsISTQBFV4();
+            this.setModel(oGameSettingsModel3, "GameSettingsISTQBFV4");
+
             const oBundleofAIModels = GameSettings.bundleofAIModels();
             this.setModel(oBundleofAIModels, "AIModels");
 

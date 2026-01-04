@@ -48,6 +48,7 @@ sap.ui.define([
                     .map(key => ({
                         key,
                         text: this.sanitizeText(q["Answer"+key]),
+                        description: this.sanitizeText(q["Answer"+key+"_description"] || ""),
                         correct: q["Answer"+key+"_boolean"],
                         selected: false
                     }))
@@ -194,7 +195,21 @@ sap.ui.define([
                     oSolutionCheckBox.addStyleClass("solutionWrong");
                 }
 
+                
                 oVBoxSolution.addItem(oSolutionCheckBox);
+                
+                // Neu
+                if (ans.description) {
+                    const oDescText = new Text({
+                        text: ans.description,
+                        wrapping: true
+                    });
+                    oDescText.addStyleClass("sapUiSmallMarginBeginEnd sapUiSmallMarginBottom answerDescription");
+                    oVBoxSolution.addItem(oDescText);
+                }
+                
+                oSolutionCheckBox.addStyleClass("sapUiTinyMarginBottom");
+
             });
             oVBoxSolution.setVisible(true);
         },
@@ -213,7 +228,13 @@ sap.ui.define([
 
             if (bTCA) { 
                 oQuestion.Answers.forEach(a => {
-                    prompt += `- ${a.text} (${a.correct ? "RICHTIG" : "FALSCH"})\n`;
+                    prompt += `- ${a.text} (${a.correct ? "RICHTIG" : "FALSCH"})`;
+
+                    if (a.description) {
+                        prompt += `\n  Erklärung: ${a.description}`;
+                    }
+
+                    prompt += `\n`;
                 });
             } else {
                 oQuestion.Answers.forEach(a => {

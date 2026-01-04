@@ -15,7 +15,7 @@
         <Slider
             visible="{= ${topicModel>/sMode} === 'gameMode' }"
             min="3"
-            max="30"
+            max="15"
             step="1"
             value="{topicModel>/numberOfQuestions}"
             liveChange=".onSliderChange"
