@@ -46,6 +46,7 @@
 
                         <!-- Tile 3 -->
                         <GenericTile
+                            visible="false"
                             class="tileLayout"
                             header="{i18n>T0030}"
                             subheader="{i18n>FIORI}"
@@ -97,9 +98,62 @@
 
                         <!-- Tile 3 -->
                         <GenericTile
+                            visible="false"
                             class="tileLayout"
                             header="{i18n>T0030}"
                             subheader="{i18n>ABAP}"
+                            press=".onPressAddQuestionXX">
+                            <TileContent footer="{i18n>admin}">
+                                <ImageContent src="sap-icon://da"></ImageContent>
+                            </TileContent>
+                        </GenericTile>
+
+                    </f:GridContainer>
+
+
+            </VBox>
+
+            <VBox id="Start0030" class="sapUiSmallMargin" visible="{TopicModel>/topics/ISTQBFV4/bShowOnStartPage}">
+            
+                <Title text="Aktionen - {i18n>ISTQBFV4}" level="H1" id="Title0030"></Title>
+                    <f:GridContainer class="sapUiSmallMargin">
+                        <f:layout>
+                            <f:GridContainerSettings
+                                rowSize="11rem"
+                                columnSize="11rem"
+                                gap="1rem" />
+                        </f:layout>
+
+
+                        <!-- Tile 1 -->
+                        <GenericTile
+                            class="tileLayout"
+                            header="{i18n>T0010}"
+                            subheader="{i18n>ISTQBFV4}"
+                            press=".onPressBeforeStartGameISTQBFV4">
+                            <TileContent footer="{i18n>user}">
+                                <ImageContent src="sap-icon://da-2"></ImageContent>
+                            </TileContent>
+                        </GenericTile>
+
+
+                        <!-- Tile 2 -->
+                        <GenericTile
+                            class="tileLayout"
+                            header="{i18n>T0020}"
+                            subheader="{i18n>ISTQBFV4}"
+                            press=".onPressBeforeStartShowAllQuestions_ISTQBFV4">
+                            <TileContent footer="{i18n>user}">
+                                <ImageContent src="sap-icon://da-2"></ImageContent>
+                            </TileContent>
+                        </GenericTile>
+
+                        <!-- Tile 3 -->
+                        <GenericTile
+                            visible="false"
+                            class="tileLayout"
+                            header="{i18n>T0030}"
+                            subheader="{i18n>ISTQBFV4}"
                             press=".onPressAddQuestionXX">
                             <TileContent footer="{i18n>admin}">
                                 <ImageContent src="sap-icon://da"></ImageContent>

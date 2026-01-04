@@ -24,14 +24,20 @@ sap.ui.define([
                     FIORI: {
                         key: "FIORI",
                         text: "Fiori",
-                        bShowOnStartPage: true,
+                        bShowOnStartPage: false,
                         jsonPath: "/model/QuestionsFiori.json",
                     },
                     ABAP: {
                         key: "ABAP",
                         text: "ABAP",
-                        bShowOnStartPage: true,
+                        bShowOnStartPage: false,
                         jsonPath: "/model/QuestionsABAP.json",
+                    },
+                    ISTQBFV4: {
+                        key: "ISTQBFV4",
+                        text: "ISTQB Foundation V4.0",
+                        bShowOnStartPage: true,
+                        jsonPath: "/model/QuestionsISTQBFV4.json",
                     }
                 }
             });
@@ -43,7 +49,7 @@ sap.ui.define([
                 sMode: "",
                 settingsAreSet: false,
                 bTCA: true,                 // TellCorrectAnswerToAI
-                numberOfQuestions: 15,
+                numberOfQuestions: 10,
                 singleTopic: "",
                 selectedTopics: [],
                 availableTopics: [
@@ -71,7 +77,7 @@ sap.ui.define([
                 sMode: "",
                 settingsAreSet: false,
                 bTCA: true,                 // TellCorrectAnswerToAI
-                numberOfQuestions: 15,
+                numberOfQuestions: 10,
                 singleTopic: "",
                 selectedTopics: [],
                 availableTopics: [
@@ -83,7 +89,32 @@ sap.ui.define([
                 correctAnswersCount: 0
 
             });
+        },
+
+        createSettingsForModelsISTQBFV4: function() {
+            return new JSONModel({
+                // 
+                sMode: "",
+                settingsAreSet: false,
+                bTCA: true,                 // TellCorrectAnswerToAI
+                numberOfQuestions: 5,
+                singleTopic: "",
+                selectedTopics: [],
+                availableTopics: [
+                    // X
+                    { key: "CTFL40_SET_A_v2_2_de", text: "ISTQB CTFL40 SET A v2.2 (Deutsch)" },         // ab ID 1101   // done
+                    { key: "CTFL40_SET_B_v1_3_3_de", text: "ISTQB CTFL40 SET B v1.3.3 (Deutsch)" },     // ab ID 1201   // done
+                    { key: "CTFL40_SET_C_v2_3_0_de", text: "ISTQB CTFL40 SET C v2.3.0 (Deutsch)" },     // ab ID 1301   // done
+                    { key: "CTFL40_SET_D_v1_5_0_de", text: "ISTQB CTFL40 SET D v1.5.0 (Deutsch)" },     // ab ID 1401   // done
+                    { key: "CTFL40_SET_E_v1_3_de", text: "ISTQB CTFL40 SET E v1.3 (Deutsch)" },         // ab ID 1501   // done
+                    { key: "CTFL_SET_F_v1_2_de", text: "ISTQB CTFL SET F v1.2 (Deutsch)" },             // ab ID 1601
+                    ],
+                correctAnswersCount: 0
+
+            });
         }
+
+
     }
 }
 

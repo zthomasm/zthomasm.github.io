@@ -30,6 +30,10 @@ sap.ui.define([
                 case "ABAP":
                     sGameSettingsModelName = "GameSettingsABAP";
                     break;
+                case "ISTQBFV4":
+                    sGameSettingsModelName = "GameSettingsISTQBFV4";
+                    break;
+                
                 default:
                     console.error("Unbekanntes Topic:", sActiveTopic);
                     this.getOwnerComponent().getRouter().navTo("RouteStartPage");

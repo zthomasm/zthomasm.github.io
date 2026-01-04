@@ -6,6 +6,20 @@
 
 ### Added
 
+- Added Topic ISTQB
+- Added all relevant ISTQB Questions and Topics
+
+### Changed
+
+### Fixed
+
+- Some small bugs
+
+---
+## [v1.1.1] - 30.12.2025
+
+### Added
+
 - Progress Bar in FooterAllQuestions
 
 ### Changed
