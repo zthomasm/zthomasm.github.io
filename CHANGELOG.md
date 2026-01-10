@@ -2,7 +2,21 @@
 
 
 ---
-## [v1.1.1] - 30.12.2025
+## [v1.1.3] - 11.01.2026
+
+### Added
+
+- Added SnowEffect on StartPage
+- Added SnowHelper
+
+### Changed
+
+### Fixed
+
+- Some small bugs
+
+---
+## [v1.1.2] - 04.01.2026
 
 ### Added
 

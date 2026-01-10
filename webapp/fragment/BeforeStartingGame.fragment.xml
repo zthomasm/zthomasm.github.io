@@ -51,7 +51,7 @@
         </HBox>
 
       <!-- HelpOfAI-Auswahl -->
-      <Text text="Helpende KI" class="sapUiMediumMarginTop" />
+      <Text text="Unterstützende KI" class="sapUiMediumMarginTop" />
 
         <VBox>
           <SegmentedButton 
