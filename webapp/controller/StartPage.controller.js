@@ -1,14 +1,35 @@
 sap.ui.define([
     "learninggame/controller/BaseController",
-    "learninggame/utils/BeforeStartingGame"
+    
+    // Utils
+    "learninggame/utils/BeforeStartingGame",
+    "learninggame/utils/SnowHelper",
 
-], function (BaseController, BeforeStartingGame) {
+
+], function (BaseController, BeforeStartingGame, SnowHelper) {
     "use strict";
 
     return BaseController.extend("learninggame.controller.StartPage", {
         onInit() {
             this._oSettingsModel = this.getOwnerComponent().getModel("GameSettings");
 
+
+            const bSnowEffect = true;
+
+            if (bSnowEffect) {
+                
+                // Delegate für beforeHide/ beforeShow auf die View hängen
+                this.getView().addEventDelegate({
+                    onBeforeHide: function () {
+                        SnowHelper.stopSnow(this);
+                    }.bind(this),
+                    onBeforeShow: function () {
+                        // Falls du beim Zurücknavigieren wieder Schnee willst:
+                        SnowHelper.startSnow(this);
+                    }.bind(this)
+                });
+            }
+                
         },
 
         onPressBeforeStartGame() {
