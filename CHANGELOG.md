@@ -2,6 +2,18 @@
 
 
 ---
+## [v1.1.4] - 11.01.2026
+
+### Added
+
+### Changed
+
+### Fixed
+
+- Panel fixes
+- Some small bugs
+
+---
 ## [v1.1.3] - 11.01.2026
 
 ### Added
