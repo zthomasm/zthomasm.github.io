@@ -8,6 +8,9 @@ sap.ui.define([
 ], function(VBox, HBox, CheckBox, Text, Button, Panel) {
     "use strict";
 
+        // Konstanten
+        const bWrapping = true;
+
     return {
 
         // ========== Question-Helper ==========
@@ -85,7 +88,7 @@ sap.ui.define([
             // Zusatz Ende---
 
             // Fragetext
-            const oQuestionText = new Text({ text: oQuestion.QuestionText, wrapping: true });
+            const oQuestionText = new Text({ text: oQuestion.QuestionText, wrapping: bWrapping });
             oQuestionText.addStyleClass("sapUiMediumMarginBottom");
 
             // VBox für Fragetext + Anzahl korrekter Antworten
@@ -93,17 +96,17 @@ sap.ui.define([
             oVBoxQuestionInfo.addItem(oQuestionText);
             const oTextAnswers = new Text({
                 text: `Anzahl korrekter Antworten: ${oQuestion.AmountOfTrueAnswers}`,
-                wrapping: true
+                wrapping: bWrapping
             });
             oTextAnswers.addStyleClass("sapUiSmallMarginTop sapUiEmphasizedText");
             oVBoxQuestionInfo.addItem(oTextAnswers);
 
             // VBox für Nutzerantworten (Checkboxen)
-            const oVBoxUser = new VBox({ width: "80%" }); // PanelScollBreite
-            oVBoxUser.addStyleClass("sapUiMediumMarginBottom sapUiMediumMarginBeginEnd");
+            const oVBoxUser = new VBox({ width: "100%" }); // PanelScollBreite
+            oVBoxUser.addStyleClass("sapUiMediumMarginBottom sapUiTinyMarginBeginEnd");
 
             const aAnswerControls = oQuestion.Answers.map(ans => {
-                const cb = new CheckBox({ text: ans.text, selected: ans.selected, enabled: true });
+                const cb = new CheckBox({ text: ans.text, selected: ans.selected, enabled: true, wrapping: bWrapping });
                 cb.addStyleClass("sapUiTinyMarginBottom");
                 return cb;
             });
@@ -114,18 +117,18 @@ sap.ui.define([
                 text: "Bestätigen",
                 type: "Emphasized"
             });
-            oBtnConfirm.addStyleClass("sapUiSmallMarginBottom sapUiMediumMarginBegin");
+            oBtnConfirm.addStyleClass("sapUiSmallMarginBottom sapUiTinyMarginBegin");
 
             const oBtnAskGPT = new Button({
                 text: "Bei Perplexity nachfragen",
                 icon: "sap-icon://message-information"
             });
-            oBtnAskGPT.addStyleClass("sapUiSmallMarginBottom sapUiMediumMarginBegin");
+            oBtnAskGPT.addStyleClass("sapUiSmallMarginBottom sapUiTinyMarginBegin");
 
             // VBox für Lösungsvorschau
-            const oVBoxSolution = new VBox();
+            const oVBoxSolution = new VBox({ width: "100%" });
             oVBoxSolution.setVisible(false);
-            oVBoxSolution.addStyleClass("sapUiSmallMarginTop sapUiMediumMarginBeginEnd");
+            oVBoxSolution.addStyleClass("sapUiSmallMarginTop sapUiTinyMarginBeginEnd");
 
             // Neue Panel
             const oPanel = new Panel({
@@ -185,7 +188,8 @@ sap.ui.define([
                 const oSolutionCheckBox = new CheckBox({
                     text: ans.text,
                     selected: ans.correct,
-                    enabled: false
+                    enabled: false,
+                    wrapping: bWrapping
                 });
 
                 // Gleiche Logik für die Lösungsvorschau
@@ -202,7 +206,7 @@ sap.ui.define([
                 if (ans.description) {
                     const oDescText = new Text({
                         text: ans.description,
-                        wrapping: true
+                        wrapping: bWrapping
                     });
                     oDescText.addStyleClass("sapUiSmallMarginBeginEnd sapUiSmallMarginBottom answerDescription");
                     oVBoxSolution.addItem(oDescText);
