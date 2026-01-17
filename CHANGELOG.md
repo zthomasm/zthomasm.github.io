@@ -1,6 +1,21 @@
 # Changelog
 
 
+
+---
+## [v1.1.5] - 17.01.2026
+
+### Added
+
+- Possibility to add a Picture to the Panel
+- Pictures to the ISTQB Questions
+
+### Changed
+
+### Fixed
+
+- Some small bugs
+
 ---
 ## [v1.1.4] - 11.01.2026
 

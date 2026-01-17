@@ -269,7 +269,7 @@
     },
     {
         "QuestionID": 1113,
-        "QuestionText": "Welche Arten von Fehlerzuständen (1-4) werden in welchen Teststufen (A-D) AM EHESTEN gefunden?\n1. Fehlerzustände, wenn das Systemverhalten von den geschäftlichen Anforderungen abweicht\n2. Fehlerzustände in der Kommunikation zwischen Komponenten\n3. Fehlerzustände in einer isolierten Komponente\n4. Fehlerzustände in einer nicht korrekt implementierten User-Story\nA. Komponententest\nB. Komponentenintegrationstest\nC. Systemtest\nD. Abnahmetests\nWählen Sie EINE Option!",
+        "QuestionText": "Welche Arten von Fehlerzuständen (1-4) werden in welchen Teststufen (A-D) AM EHESTEN gefunden?\n\n1. Fehlerzustände, wenn das Systemverhalten von den geschäftlichen Anforderungen abweicht\n2. Fehlerzustände in der Kommunikation zwischen Komponenten\n3. Fehlerzustände in einer isolierten Komponente\n4. Fehlerzustände in einer nicht korrekt implementierten User-Story\n\nA. Komponententest\nB. Komponentenintegrationstest\nC. Systemtest\nD. Abnahmetests\n\nWählen Sie EINE Option!",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_A_v2_2_de",
         "AnswerA": "1D, 2B, 3A, 4C",
@@ -431,7 +431,8 @@
     },
     {
         "QuestionID": 1122,
-        "QuestionText": "Neu eingestellte Mitarbeitende einer Firma können individuelle Ziele mit ihren Vorgesetzten vereinbaren, an deren Erreichung die Auszahlung einer Prämie gekoppelt ist. Diese Prämie wird ihnen aber erst ausgezahlt, wenn sie länger als ein Jahr im Unternehmen beschäftigt sind.\nDieser Sachverhalt lässt sich in einer Entscheidungstabelle darstellen:\n\n(Tabelle: Zeilen Bedingung1-3 und Aktion. Spalten T1-T5)\n\nWelcher der folgenden Testfälle beschreibt eine in der Praxis gültige, durchführbare Situation und fehlt in der oben aufgeführten Entscheidungstabelle?",
+        "QuestionText": "Neu eingestellte Mitarbeitende einer Firma können individuelle Ziele mit ihren Vorgesetzten vereinbaren, an deren Erreichung die Auszahlung einer Prämie gekoppelt ist. Diese Prämie wird ihnen aber erst ausgezahlt, wenn sie länger als ein Jahr im Unternehmen beschäftigt sind.\nDieser Sachverhalt lässt sich in einer Entscheidungstabelle darstellen:\n\nWelcher der folgenden Testfälle beschreibt eine in der Praxis gültige, durchführbare Situation und fehlt in der oben aufgeführten Entscheidungstabelle?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_a_id1122_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_A_v2_2_de",
         "AnswerA": "Bedingung1 = „J“, Bedingung2 = „N“, Bedingung3 = „J“, Aktion = „N“",
@@ -449,7 +450,8 @@
     },
     {
         "QuestionID": 1123,
-        "QuestionText": "Welche der folgenden Aussagen zum Zustandsübergangsdiagramm und der dargestellten Tabelle von Testfällen ist WAHR?\n\n(Tabelle: Testfall 1-5, Startzustand, Eingabe, Endzustand)\n\nWählen Sie EINE Option!",
+        "QuestionText": "Welche der folgenden Aussagen zum Zustandsübergangsdiagramm und der dargestellten Tabelle von Testfällen ist WAHR?\n\nWählen Sie EINE Option!",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_a_id1123_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_A_v2_2_de",
         "AnswerA": "Die Testfälle führen alle Übergänge im Zustandsübergangsdiagramm aus, damit wird 100% Überdeckung aller Übergänge erreicht.",
@@ -611,7 +613,7 @@
     },
     {
         "QuestionID": 1132,
-        "QuestionText": "Ihr Team verwendet das Drei-Punkt-Schätzungsverfahren, um den Testaufwand für eine neue, risikoreiche Funktion zu schätzen. Es wurden die folgenden Schätzungen vorgenommen:\n· optimistischste Schätzung: 2 Personenstunden\n· wahrscheinlichste Schätzung: 11 Personenstunden\n· pessimistischste Schätzung: 14 Personenstunden\n\nWie lautet die endgültige Schätzung?",
+        "QuestionText": "Ihr Team verwendet das Drei-Punkt-Schätzungsverfahren, um den Testaufwand für eine neue, risikoreiche Funktion zu schätzen. Es wurden die folgenden Schätzungen vorgenommen:\n\n· optimistischste Schätzung: 2 Personenstunden\n· wahrscheinlichste Schätzung: 11 Personenstunden\n· pessimistischste Schätzung: 14 Personenstunden\n\nWie lautet die endgültige Schätzung?",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_A_v2_2_de",
         "AnswerA": "9 Personenstunden",
@@ -629,7 +631,8 @@
     },
     {
         "QuestionID": 1133,
-        "QuestionText": "Sie testen eine mobile Applikation, die es Benutzern ermöglicht, ein nahegelegenes Restaurant zu finden, das die gewünschte Art des Essens anbietet. Gegeben ist die folgende Liste von Testfällen, Prioritäten (eine kleinere Zahl bedeutet eine höhere Priorität) und Abhängigkeiten:\n\n(Tabelle: TF 001 Priorität 3, TF 002 Priorität 2 abhängig von TF 001, TF 003 Priorität 1 abhängig von TF 002, TF 004 Priorität 2 abhängig von TF 002, TF 005 Priorität 3 abhängig von TF 002)\n\nWelcher der folgenden Testfälle soll als dritter ausgeführt werden?",
+        "QuestionText": "Sie testen eine mobile Applikation, die es Benutzern ermöglicht, ein nahegelegenes Restaurant zu finden, das die gewünschte Art des Essens anbietet. Gegeben ist die folgende Liste von Testfällen, Prioritäten (eine kleinere Zahl bedeutet eine höhere Priorität) und Abhängigkeiten:\n\nWelcher der folgenden Testfälle soll als dritter ausgeführt werden?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_a_id1133_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_A_v2_2_de",
         "AnswerA": "TF 003",
@@ -665,7 +668,7 @@
     },
     {
         "QuestionID": 1135,
-        "QuestionText": "Im Rahmen einer Risikoanalyse wurde das folgende Risiko ermittelt und bewertet:\n· Risiko: Zu lange Antwortzeit bei der Bereitstellung eines Suchergebnisses\n· Eintrittswahrscheinlichkeit: mittel; Schadensausmaß: hoch\n· Reaktion auf das Risiko:\no Ein unabhängiges Testteam führt während der Systemtests einen Performanztest durch.\no Eine ausgewählte Stichprobe von Endnutzern führt vor der Freigabe Alpha- und Beta-Tests durch.\n\nWelche Art von Maßnahmen wurde oben vorgeschlagen, um auf das ermittelte Risiko zu reagieren?",
+        "QuestionText": "Im Rahmen einer Risikoanalyse wurde das folgende Risiko ermittelt und bewertet:\n\n· Risiko: Zu lange Antwortzeit bei der Bereitstellung eines Suchergebnisses\n· Eintrittswahrscheinlichkeit: mittel; Schadensausmaß: hoch\n· Reaktion auf das Risiko:\no Ein unabhängiges Testteam führt während der Systemtests einen Performanztest durch.\no Eine ausgewählte Stichprobe von Endnutzern führt vor der Freigabe Alpha- und Beta-Tests durch.\n\nWelche Art von Maßnahmen wurde oben vorgeschlagen, um auf das ermittelte Risiko zu reagieren?",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_A_v2_2_de",
         "AnswerA": "Risikoakzeptanz",
@@ -833,7 +836,8 @@
     },
     {
         "QuestionID": 1204,
-        "QuestionText": "Betrachten Sie das folgende Testmittel:\n\nTest-Charta #04.018 Sitzungsdauer: 1h\nErforsche die Registrierungsseite\nMit verschiedenen fehlerhaften Eingabesätzen\nZu entdecken Fehler beim Registrierungsvorgang bei fehlerhaften Eingaben\n\nIn welcher Testaktivität wird dieses Testmittel erstellt?",
+        "QuestionText": "Betrachten Sie das folgende Testmittel:\n\nIn welcher Testaktivität wird dieses Testmittel erstellt?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_b_id1204_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_B_v1_3_3_de",
         "AnswerA": "Testplanung",
@@ -1139,7 +1143,7 @@
     },
 {
         "QuestionID": 1221,
-        "QuestionText": "Ein Weinlagerungssystem verwendet ein Kontrollgerät, das die Temperatur (T) des Weinlagers (gemessen in °C, gerundet auf das nächste Grad) misst und den Benutzer alarmiert, wenn die optimale Temperatur über- oder unterschritten wird:\n• Wenn 11 <= T <= 13, meldet das System: 'Optimale Temperatur'\n• Wenn T < 11 ist, meldet das System: 'Die Temperatur ist zu niedrig!'\n• Wenn T > 13 ist, meldet das System: 'Die Temperatur ist zu hoch!'\nSie verwenden die 3-Wert-Grenzwertanalyse, um das erwartete Verhalten des Reglers zu überprüfen. Die Testeingabe ist eine vom Gerät gelieferte Temperatur in °C.\nWelche Testeingaben ergeben eine 100 %ige Überdeckung?",
+        "QuestionText": "Ein Weinlagerungssystem verwendet ein Kontrollgerät, das die Temperatur (T) des Weinlagers (gemessen in °C, gerundet auf das nächste Grad) misst und den Benutzer alarmiert, wenn die optimale Temperatur über- oder unterschritten wird:\n\n• Wenn 11 <= T <= 13, meldet das System: 'Optimale Temperatur'\n• Wenn T < 11 ist, meldet das System: 'Die Temperatur ist zu niedrig!'\n• Wenn T > 13 ist, meldet das System: 'Die Temperatur ist zu hoch!'\n\nSie verwenden die 3-Wert-Grenzwertanalyse, um das erwartete Verhalten des Reglers zu überprüfen. Die Testeingabe ist eine vom Gerät gelieferte Temperatur in °C.\nWelche Testeingaben ergeben eine 100 %ige Überdeckung?",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_B_v1_3_3_de",
         "AnswerA": "11, 12, 13",
@@ -1157,7 +1161,8 @@
     },
     {
         "QuestionID": 1222,
-        "QuestionText": "Die folgende Entscheidungstabelle enthält die Regeln zur Bestimmung des Risikos für Arteriosklerose (Arterienverkalkung) auf der Grundlage der Cholesterin- und Blutdruckwerte des Patienten.\n\n(Tabelle)\n\nSie haben die Testfälle mit den folgenden Testdaten entworfen:\nTC1: Cholesterin = 125 mg/dl – Blutdruck = 141 mm Hg\nTC2: Cholesterin = 200 mg/dl – Blutdruck = 201 mm Hg\nTC3: Cholesterin = 124 mg/dl – Blutdruck = 201 mm Hg\nTC4: Cholesterin = 109 mg/dl – Blutdruck = 200 mm Hg\nTC5: Cholesterin = 201 mg/dl – Blutdruck = 140 mm Hg\n\nWelche Überdeckung der Entscheidungstabelle wird durch diese Testfälle erreicht?",
+        "QuestionText": "Die folgende Entscheidungstabelle enthält die Regeln zur Bestimmung des Risikos für Arteriosklerose (Arterienverkalkung) auf der Grundlage der Cholesterin- und Blutdruckwerte des Patienten.\n\nSie haben die Testfälle mit den folgenden Testdaten entworfen:\nTC1: Cholesterin = 125 mg/dl – Blutdruck = 141 mm Hg\nTC2: Cholesterin = 200 mg/dl – Blutdruck = 201 mm Hg\nTC3: Cholesterin = 124 mg/dl – Blutdruck = 201 mm Hg\nTC4: Cholesterin = 109 mg/dl – Blutdruck = 200 mm Hg\nTC5: Cholesterin = 201 mg/dl – Blutdruck = 140 mm Hg\n\nWelche Überdeckung der Entscheidungstabelle wird durch diese Testfälle erreicht?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_b_id1222_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_B_v1_3_3_de",
         "AnswerA": "40 %",
@@ -1175,7 +1180,8 @@
     },
     {
         "QuestionID": 1223,
-        "QuestionText": "Gegeben sei folgendes Zustandsdiagramm für die Software eines Batterieladegerätes:\n\n(Diagramm: Start -> Warten -> (Erhaltungsladen <-> Laden, Laden <-> Hoch, Laden <-> Niedrig, Warten -> Aus))\n\nWelcher der folgenden Testfälle enthält sowohl gültige als auch ungültige Übergänge?",
+        "QuestionText": "Gegeben sei folgendes Zustandsdiagramm für die Software eines Batterieladegerätes:\n\nWelcher der folgenden Testfälle enthält sowohl gültige als auch ungültige Übergänge?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_b_id1223_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_B_v1_3_3_de",
         "AnswerA": "Start -> Warten -> Aus -> Warten -> Erhaltungsladen -> Warten",
@@ -1319,7 +1325,8 @@
     },
 {
         "QuestionID": 1231,
-        "QuestionText": "Sie möchten den Testaufwand für ein neues Projekt mit Hilfe einer auf Kennzahlen basierenden Schätzung abschätzen. Sie berechnen das Verhältnis von Testaufwand zu Entwicklungsaufwand, indem Sie die Durchschnittsdaten sowohl für den Entwicklungs- als auch für den Testaufwand aus vier historischen Projekten verwenden, die dem neuen Projekt ähnlich sind.\n\n(Tabelle: P1 bis P4 mit Entwicklungs- und Testkosten)\n\nDer geschätzte Entwicklungsaufwand für das neue Projekt beträgt 800.000 €.\nWie hoch schätzen Sie den Testaufwand in diesem Projekt ein?",
+        "QuestionText": "Sie möchten den Testaufwand für ein neues Projekt mit Hilfe einer auf Kennzahlen basierenden Schätzung abschätzen. Sie berechnen das Verhältnis von Testaufwand zu Entwicklungsaufwand, indem Sie die Durchschnittsdaten sowohl für den Entwicklungs- als auch für den Testaufwand aus vier historischen Projekten verwenden, die dem neuen Projekt ähnlich sind.\n\nDer geschätzte Entwicklungsaufwand für das neue Projekt beträgt 800.000 €.\nWie hoch schätzen Sie den Testaufwand in diesem Projekt ein?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_b_id1231_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_B_v1_3_3_de",
         "AnswerA": "40.000 €",
@@ -1337,7 +1344,8 @@
     },
     {
         "QuestionID": 1232,
-        "QuestionText": "Sie wurden gebeten, eine optimale, risikobasierte Ausführungsreihenfolge der folgenden Testfälle festzulegen, die bereits priorisiert und auf mögliche Abhängigkeiten hin untersucht wurden:\n\n(Tabelle mit Testfällen T1-T6, Prioritäten und Abhängigkeiten)\nPriorität 1 ist dringlicher als Priorität 2 usw.\n\nWelche der folgenden Testabläufe berücksichtigt die oben genannten Abhängigkeiten und Prioritäten?",
+        "QuestionText": "Sie wurden gebeten, eine optimale, risikobasierte Ausführungsreihenfolge der folgenden Testfälle festzulegen, die bereits priorisiert und auf mögliche Abhängigkeiten hin untersucht wurden:\n\nPriorität 1 ist dringlicher als Priorität 2 usw.\n\nWelche der folgenden Testabläufe berücksichtigt die oben genannten Abhängigkeiten und Prioritäten?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_b_id1232_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_B_v1_3_3_de",
         "AnswerA": "T1 -> T2 -> T4 -> T5 -> T3 -> T6",
@@ -1445,7 +1453,8 @@
     },
     {
         "QuestionID": 1238,
-        "QuestionText": "Sie testen eine Sortierfunktion, die eine Reihe von Zahlen als Eingabe erhält und dieselben Zahlen in aufsteigender Reihenfolge sortiert zurückgibt.\nDas Protokoll der Testausführung sieht wie folgt aus:\nTC1: Input: 3 -> Output: 3 (passed)\nTC2: Input: 3, 11, 6, 5 -> Output: 3, 5, 6, 11 (passed)\nTC3: Input: 8, 7, 3, 7, 1 -> Output: 1, 3, 7, 8 (failed)\nTC4: Input: -2 -2 -2 -3 -3 -> Output: -3, -2 (failed)\nTC5: Input: 0, -2, 0, 3, 4, 4 -> Output: -2, 0, 3, 4 (failed)\n\nWelche der folgenden Beschreibungen ist die BESTE Fehlerbeschreibung, die in einem Fehlerbericht verwendet werden kann?",
+        "QuestionText": "Sie testen eine Sortierfunktion, die eine Reihe von Zahlen als Eingabe erhält und dieselben Zahlen in aufsteigender Reihenfolge sortiert zurückgibt.\nDas Protokoll der Testausführung sieht wie folgt aus: (siehe Diagramm)\n\nWelche der folgenden Beschreibungen ist die BESTE Fehlerbeschreibung, die in einem Fehlerbericht verwendet werden kann?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_b_id1238_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_B_v1_3_3_de",
         "AnswerA": "Das System kann mehrere Zahlensätze nicht sortieren. Referenz: TC3, TC4, TC5.",
@@ -1539,7 +1548,7 @@
     },
     {
         "QuestionID": 1303,
-        "QuestionText": "Ein Grundsatz des Testens lautet: „Der Trugschluss, dass ein fehlerfreies System auch automatisch brauchbar ist, muss vermieden werden.“\nWelches der folgenden Beispiele zeigt, wie dieser Grundsatz in der Praxis berücksichtigt wird?",
+        "QuestionText": "Ein Grundsatz des Testens lautet:\n „Der Trugschluss, dass ein fehlerfreies System auch automatisch brauchbar ist, muss vermieden werden.“\n\nWelches der folgenden Beispiele zeigt, wie dieser Grundsatz in der Praxis berücksichtigt wird?",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_C_v2_3_0_de",
         "AnswerA": "Darauf hinweisen, das Testen niemals die die Abwesenheit von Fehlern beweisen kann.",
@@ -1869,7 +1878,8 @@
     },
 {
         "QuestionID": 1321,
-        "QuestionText": "Gegeben ist die folgende Geschäftsregel:\n\n(Tabelle)\n\nSie möchten Testfälle mit Hilfe einer Grenzwertanalyse mit jeweils zwei Werten pro Grenze entwerfen.\nWelcher der folgenden Mengen von Testwerten deckt die relevanten Grenzwerte AM BESTEN ab?",
+        "QuestionText": "Gegeben ist die folgende Geschäftsregel:\n\nSie möchten Testfälle mit Hilfe einer Grenzwertanalyse mit jeweils zwei Werten pro Grenze entwerfen.\nWelcher der folgenden Mengen von Testwerten deckt die relevanten Grenzwerte AM BESTEN ab?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_c_id1321_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_C_v2_3_0_de",
         "AnswerA": "100, 150, 200, 201",
@@ -1887,7 +1897,8 @@
     },
     {
         "QuestionID": 1322,
-        "QuestionText": "Gegeben ist ein System zur Analyse von Fahrprüfungsergebnissen. Die folgenden Regeln wurden in einer Entscheidungstabelle formuliert:\n\n(Tabelle: R1, R2, R3)\nC1: Erster Prüfungsversuch? (-,-,F)\nC2: Theoretische Prüfung bestanden? (T,F,-)\nC3: Praktische Prüfung bestanden? (T,-,F)\nFührerschein ausstellen? (X,-,-)\nZusätzliche Fahrstunden anfordern? (-,-,X)\nAntrag auf Wiederholung der Prüfung? (-,X,-)\n\nWelche Kombination von Eingabedaten zeigt, dass die Entscheidungstabelle widersprüchliche Regeln enthält?",
+        "QuestionText": "Gegeben ist ein System zur Analyse von Fahrprüfungsergebnissen. Die folgenden Regeln wurden in einer Entscheidungstabelle formuliert: (siehe Diagramm) \n\nWelche Kombination von Eingabedaten zeigt, dass die Entscheidungstabelle widersprüchliche Regeln enthält?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_c_id1322_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_C_v2_3_0_de",
         "AnswerA": "C1 = T, C2 = T, C3 = F",
@@ -1905,7 +1916,8 @@
     },
     {
         "QuestionID": 1323,
-        "QuestionText": "Sie entwerfen Testfälle auf der Grundlage des folgenden Zustandsübergangsdiagramm:\n\n(Diagramm: START -> ANFRAGE, ANFRAGE -> BESTÄTIGT, ANFRAGE -> WARTELISTE, WARTELISTE -> BESTÄTIGT, WARTELISTE -> END, BESTÄTIGT -> END)\n\nWie viele Testfälle sind MINDESTENS erforderlich, um eine vollständige Überdeckung aller gültiger Übergänge zu erreichen?",
+        "QuestionText": "Sie entwerfen Testfälle auf der Grundlage des folgenden Zustandsübergangsdiagramm:\n\nWie viele Testfälle sind MINDESTENS erforderlich, um eine vollständige Überdeckung aller gültiger Übergänge zu erreichen?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_c_id1323_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_C_v2_3_0_de",
         "AnswerA": "3",
@@ -1923,7 +1935,8 @@
     },
     {
         "QuestionID": 1324,
-        "QuestionText": "Sie sollen einen Verzweigungstest für den folgenden Programmcode durchführen, dessen Ablauf im Kontrollflussdiagramm dargestellt ist.\n\n(Diagramm: 8 Kanten)\n\nWie viele Entscheidungen bzw. Zweige müssen getestet werden, um vollständige Verzweigungsüberdeckung zu erreichen?",
+        "QuestionText": "Sie sollen einen Verzweigungstest für den folgenden Programmcode durchführen, dessen Ablauf im Kontrollflussdiagramm dargestellt ist.\n\nWie viele Entscheidungen bzw. Zweige müssen getestet werden, um vollständige Verzweigungsüberdeckung zu erreichen?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_c_id1324_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_C_v2_3_0_de",
         "AnswerA": "2",
@@ -1959,7 +1972,7 @@
     },
 {
         "QuestionID": 1326,
-        "QuestionText": "Ein Tester verwendet beim Testen die folgende Liste möglicher Fehlerzustände:\n· Korrekte Eingaben werden nicht akzeptiert\n• Ungültige Eingaben werden akzeptiert\n• Falsches Ausgabeformat\n• Division durch null\nWelches Testverfahren wird dabei am WAHRSCHEINLICHSTEN eingesetzt?",
+        "QuestionText": "Ein Tester verwendet beim Testen die folgende Liste möglicher Fehlerzustände:\n\n· Korrekte Eingaben werden nicht akzeptiert\n· Ungültige Eingaben werden akzeptiert\n· Falsches Ausgabeformat\n· Division durch null\n\nWelches Testverfahren wird dabei am WAHRSCHEINLICHSTEN eingesetzt?",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_C_v2_3_0_de",
         "AnswerA": "Exploratives Testen",
@@ -2013,7 +2026,7 @@
     },
     {
         "QuestionID": 1329,
-        "QuestionText": "Sie arbeiten mit abnahmetestgetriebener Entwicklung und entwerfen Testfälle auf Grundlage der folgenden User-Story:\nAls regulärer oder spezieller Benutzer möchte ich meine elektronische Etagenkarte nutzen können, um Zugang zu bestimmten Etagen zu erhalten.\nAkzeptanzkriterien:\nAC1: Reguläre Benutzer haben Zugang zu den Etagen 1 bis 3.\nAC2: Etage 4 ist ausschließlich für spezielle Benutzer zugänglich.\nAC3: Spezielle Benutzer verfügen über alle Zugriffsrechte regulärer Benutzer.\n\nWelcher Testfall eignet sich AM BESTEN, um das Akzeptanzkriterium AC3 zu testen?",
+        "QuestionText": "Sie arbeiten mit abnahmetestgetriebener Entwicklung und entwerfen Testfälle auf Grundlage der folgenden User-Story:\nAls regulärer oder spezieller Benutzer möchte ich meine elektronische Etagenkarte nutzen können, um Zugang zu bestimmten Etagen zu erhalten.\n\nAkzeptanzkriterien:\nAC1: Reguläre Benutzer haben Zugang zu den Etagen 1 bis 3.\nAC2: Etage 4 ist ausschließlich für spezielle Benutzer zugänglich.\nAC3: Spezielle Benutzer verfügen über alle Zugriffsrechte regulärer Benutzer.\n\nWelcher Testfall eignet sich AM BESTEN, um das Akzeptanzkriterium AC3 zu testen?",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_C_v2_3_0_de",
         "AnswerA": "Ein regulärer Benutzer erhält Zugang zu den Etagen 1 und 3.",
@@ -2049,7 +2062,8 @@
     },
 {
         "QuestionID": 1331,
-        "QuestionText": "Zu Beginn jeder Iteration schätzt das Team den Arbeitsaufwand (in Personentagen), den es während dieser Iteration leisten wird.\n\nBezeichnet sei E(n) als der geschätzte und A(n) als der tatsächlich geleistete Aufwand in Iteration n.\n\nAb der dritten Iteration verwendet das Team folgendes Extrapolationsmodell zur Aufwandsschätzung:\nE(n) = (3 * A(n-1) + A(n-2)) / 4\n\nEine Grafik zeigt die geschätzten und tatsächlichen Werte für die ersten vier Iterationen.\nIteration #1: Geschätzt 3, Aktuell 5\nIteration #2: Geschätzt 5, Aktuell 6\nIteration #3: Geschätzt 7, Aktuell 8\nIteration #4: Geschätzt 10, Aktuell 6\n\nWie hoch ist der geschätzte Arbeitsaufwand für Iteration Nr. 5?",
+        "QuestionText": "Zu Beginn jeder Iteration schätzt das Team den Arbeitsaufwand (in Personentagen), den es während dieser Iteration leisten wird.\n\nBezeichnet sei E(n) als der geschätzte und A(n) als der tatsächlich geleistete Aufwand in Iteration n.\n\nAb der dritten Iteration verwendet das Team folgendes Extrapolationsmodell zur Aufwandsschätzung:\nE(n) = (3 * A(n-1) + A(n-2)) / 4\n\nEine Grafik zeigt die geschätzten und tatsächlichen Werte für die ersten vier Iterationen. (siehe Grafik) \n\nWie hoch ist der geschätzte Arbeitsaufwand für Iteration Nr. 5?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_c_id1331_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_C_v2_3_0_de",
         "AnswerA": "10,5 Personentage",
@@ -2067,7 +2081,8 @@
     },
     {
         "QuestionID": 1332,
-        "QuestionText": "Sie erstellen einen Testausführungsplan für sieben Testfälle ( TC 1 bis TC 7 ).\nEine Abbildung zeigt:\n– Die Priorität jedes Testfalls (1 = höchste, 3 = niedrigste)\n– Abhängigkeiten zwischen den Testfällen in Form gerichteter Pfeile.\n\n(TC 1, Prio 2) -> (TC 2, Prio 3) -> (TC 5, Prio 1)\n(TC 4, Prio 2) -> (TC 5, Prio 1)\n(TC 4, Prio 2) -> (TC 7, Prio 1)\n(TC 3, Prio 2)\n(TC 6, Prio 3)\n\nEin Testfall darf nur ausgeführt werden, wenn alle vorgelagerten (abhängigen) Testfälle bereits ausgeführt wurden.\nWelcher Testfall sollte gemäß diesen Vorgabe als sechster ausgeführt werden?",
+        "QuestionText": "Sie erstellen einen Testausführungsplan für sieben Testfälle ( TC 1 bis TC 7 ).\nEine Abbildung zeigt:\n– Die Priorität jedes Testfalls (1 = höchste, 3 = niedrigste)\n– Abhängigkeiten zwischen den Testfällen in Form gerichteter Pfeile.\n\nEin Testfall darf nur ausgeführt werden, wenn alle vorgelagerten (abhängigen) Testfälle bereits ausgeführt wurden.\nWelcher Testfall sollte gemäß diesen Vorgabe als sechster ausgeführt werden?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_c_id1332_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_C_v2_3_0_de",
         "AnswerA": "TC 3",
@@ -2175,7 +2190,8 @@
     },
     {
         "QuestionID": 1338,
-        "QuestionText": "Betrachten Sie den folgenden Fehlerbericht für eine webbasierte Einkaufsanwendung:\n\n(Bericht: WebShop v0.99, Login-Button funktioniert nicht, Schritte, Erwartetes/Tatsächliches Ergebnis, Schweregrad Hoch, Priorität Dringend)\n\nWelche wichtigen Informationen fehlen in diesem Bericht?",
+        "QuestionText": "Betrachten Sie den folgenden Fehlerbericht für eine webbasierte Einkaufsanwendung: (siehe Grafik) \n\nWelche wichtigen Informationen fehlen in diesem Bericht?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_c_id1338_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_C_v2_3_0_de",
         "AnswerA": "Name des Testers und Datum des Berichts.",
@@ -2578,7 +2594,8 @@
     },
     {
         "QuestionID": 1520,
-        "QuestionText": "Ein Gerät zur Messung des täglichen Strahlungseinfalls für Pflanzen ermittelt einen Einstrahlungswert für Sonnenschein. Dieser ergibt sich aus der Kombination der Anzahl der Stunden (unter 3, 3-6, über 6) und der Intensität (sehr niedrig, niedrig, mittel, hoch).\nDie folgenden Testfälle existieren bereits:\nT1: 1,5h / sehr niedrig\nT2: 7,0h / mittel\nT3: 0,5h / sehr niedrig\n\nWie viele Testfälle müssen mindestens noch erzeugt werden, um eine vollständige Überdeckung ALLER GÜLTIGEN Eingabe-Äquivalenzklassen zu gewährleisten?",
+        "QuestionText": "Ein Gerät zur Messung des täglichen Strahlungseinfalls für Pflanzen ermittelt einen Einstrahlungswert für Sonnenschein. Dieser ergibt sich aus der Kombination der Anzahl der Stunden, in denen eine Pflanze der Sonne ausgesetzt ist (unter 3 Stunden, 3 bis 6 Stunden, über 6 Stunden), und der durchschnittlichen Intensität des Sonnenscheins (sehr niedrig, niedrig, mittel, hoch). \nDie folgenden Testfälle existieren bereits: (siehe Grafik) \n\nWie viele Testfälle müssen mindestens noch erzeugt werden, um eine vollständige Überdeckung ALLER GÜLTIGEN Eingabe-Äquivalenzklassen zu gewährleisten?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_e_id1520_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_E_v1_3_de",
         "AnswerA": "1",
@@ -2596,7 +2613,7 @@
     },
 {
         "QuestionID": 1521,
-        "QuestionText": "Eine Smart-Home-App misst die durchschnittliche Temperatur im Haus während der vergangenen Woche und gibt den Bewohnern basierend auf diesem Wert Informationen zur Umweltfreundlichkeit ihres Verhaltens. Das Feedback für die verschiedenen Durchschnittstemperaturbereiche (gerundet auf die nächsten ganzen °C) soll lauten:\nBis zu 10°C Eiskalt!\n11°C bis 15°C Ganz schön schattig!\n16°C bis 19°C Cool!\n20°C bis 22°C Zu warm!\nÜber 22°C Sauna!\nWelches der folgenden Testsets liefert die HÖCHSTE Überdeckung von Grenzwerten, wenn die 2-Wert-Grenzwertanalyse verwendet wird?",
+        "QuestionText": "Eine Smart-Home-App misst die durchschnittliche Temperatur im Haus während der vergangenen Woche und gibt den Bewohnern basierend auf diesem Wert Informationen zur Umweltfreundlichkeit ihres Verhaltens. Das Feedback für die verschiedenen Durchschnittstemperaturbereiche (gerundet auf die nächsten ganzen °C) soll lauten:\n\nBis zu 10°C -> Eiskalt!\n11°C bis 15°C -> Ganz schön schattig!\n16°C bis 19°C -> Cool!\n20°C bis 22°C -> Zu warm!\nÜber 22°C -> Sauna!\n\nWelches der folgenden Testsets liefert die HÖCHSTE Überdeckung von Grenzwerten, wenn die 2-Wert-Grenzwertanalyse verwendet wird?",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_E_v1_3_de",
         "AnswerA": "0°C, 11°C, 20°C, 22°C, 23°C",
@@ -2614,7 +2631,8 @@
     },
     {
         "QuestionID": 1522,
-        "QuestionText": "Ein System zur Berechnung der Strafe für Geschwindigkeitsübertretungen im Straßenverkehr wird mit folgender Entscheidungstabelle spezifiziert:\n(R1: >50 Nein / Nein)\n(R2: >50 Ja / Ja)\n(R3: <=50 Ja / Nein)\n(R4: <=50 Nein / Nein)\n(Hinweis: Die Tabelle in der Frage ist nicht vollständig abgebildet, aber aus der Logik der Antwortmöglichkeiten und Testfälle ableitbar. R1: >50, Schulzone Nein; R2: >50, Schulzone Ja; R3: <=50, Schulzone Ja; R4: <=50, Schulzone Nein).\nIhnen liegen bereits die folgenden Testfälle vor:\nTF1: 65, Ja (entspricht R2)\nTF2: 45, Ja (entspricht R3)\nTF3: 50, Nein (entspricht R4)\nTF4: 49, Nein (entspricht R4)\nWelche der Regeln der Entscheidungstabelle ist (noch) NICHT durch einen Testfall überdeckt? (Korrektur: Die Fragebeschreibung und Begründung widersprechen sich leicht bzgl. R1 und R2 Zuordnung. Laut Begründung: TF1 deckt R1 ab (65/Ja -> R1 ist >50/Ja? Nein, R2 ist >50/Ja in Begründung). Begründung sagt 'Regel 2 ist nicht überdeckt, da es keinen Testfall für die Eingaben Geschwindigkeit > 50 = Ja und Schulzone = Nein gibt'. Das bedeutet R2 ist >50/Nein. R1 wäre dann >50/Ja (TF1). R3 <=50/Ja (TF2). R4 <=50/Nein (TF3, TF4). Also fehlt R2 (>50/Nein).)",
+        "QuestionText": "Ein System zur Berechnung der Strafe für Geschwindigkeitsübertretungen im Straßenverkehr wird mit folgender Entscheidungstabelle spezifiziert: (siehe Grafik) \n\nIhnen liegen bereits die folgenden Testfälle vor:\nTF1: 65, Ja (entspricht R2)\nTF2: 45, Ja (entspricht R3)\nTF3: 50, Nein (entspricht R4)\nTF4: 49, Nein (entspricht R4)\n\nWelche der Regeln der Entscheidungstabelle ist (noch) NICHT durch einen Testfall überdeckt?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_e_id1522_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_E_v1_3_de",
         "AnswerA": "Regel 4",
@@ -2632,7 +2650,8 @@
     },
     {
         "QuestionID": 1523,
-        "QuestionText": "Betrachten Sie das folgende Zustandsdiagramm für eine Zapfsäule... Nehmen Sie an, dass Sie eine minimale Anzahl von Tests entwickeln möchten, um jeden Übergang im Zustandsdiagramm abzudecken... Wie viele Tests benötigen Sie?",
+        "QuestionText": "Betrachten Sie das folgende Zustandsdiagramm für eine Zapfsäule, die nur mit einer Kreditkarte bedient wird: (siehe Grafik) \n\nNehmen Sie an, dass Sie eine minimale Anzahl von Tests entwickeln möchten, um jeden Übergang im Zustandsdiagramm abzudecken. Nehmen Sie weiter an, dass jeder Test im Anfangszustand beginnen muss, also beim Warten auf den Kunden, und jeder Test endet, wenn ein Übergang im Anfangszustand ankommt. \n\nWie viele Tests benötigen Sie?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_e_id1523_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_E_v1_3_de",
         "AnswerA": "4",
@@ -2779,7 +2798,7 @@
     },
 {
         "QuestionID": 1531,
-        "QuestionText": "Gegeben seien die folgenden Beispiele für Eingangs- und Endekriterien für einen Systemtest:\n1. Das geplante Testbudget von 400 Aufwandsstunden für den Systemtest ist aufgebraucht.\n2. Mehr als 95 % der geplanten Testfälle sind vollständig durchgeführt.\n3. Die Testumgebung für den Performanztest ist entworfen, eingerichtet und verifiziert.\n4. Es sind keine Prio-1-Fehlerzustände und maximal 4 Prio-2- Fehlerzustände offen.\n5. Die Designspezifikation ist durch ein technisches Review geprüft und freigegeben.\n6. Der Unittest für die Komponenten 'Steuersatz' und 'Gesamtpreis' ist abgeschlossen und freigegeben.\nWelche der folgenden Kombinationen ordnet die Beispiele am BESTEN als Eingangs- und Endekriterien ein?",
+        "QuestionText": "Gegeben seien die folgenden Beispiele für Eingangs- und Endekriterien für einen Systemtest:\n\n1. Das geplante Testbudget von 400 Aufwandsstunden für den Systemtest ist aufgebraucht.\n2. Mehr als 95 % der geplanten Testfälle sind vollständig durchgeführt.\n3. Die Testumgebung für den Performanztest ist entworfen, eingerichtet und verifiziert.\n4. Es sind keine Prio-1-Fehlerzustände und maximal 4 Prio-2- Fehlerzustände offen.\n5. Die Designspezifikation ist durch ein technisches Review geprüft und freigegeben.\n6. Der Unittest für die Komponenten 'Steuersatz' und 'Gesamtpreis' ist abgeschlossen und freigegeben.\n\nWelche der folgenden Kombinationen ordnet die Beispiele am BESTEN als Eingangs- und Endekriterien ein?",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_E_v1_3_de",
         "AnswerA": "Eingangskriterien: 5, 6; Endekriterien: 1, 2, 3, 4",
@@ -2797,7 +2816,7 @@
     },
     {
         "QuestionID": 1532,
-        "QuestionText": "Sie möchten den Testaufwand für ein neues Projekt mit Hilfe einer Drei-Punkt-Schätzung abschätzen... Optimistisch (a)=300, Wahrscheinlich (m)=400, Pessimistisch (b)=500. Wie hoch schätzen Sie den Testaufwand auf Basis der Drei-Punkt-Schätzung für dieses Projekt ein?",
+        "QuestionText": "Sie möchten den Testaufwand für ein neues Projekt mit Hilfe einer Drei-Punkt-Schätzung abschätzen. Sie haben die folgenden Schätzungen von den Experten erhalten: \nDie optimistischste Schätzung (a) ist 300 Personentage, die wahrscheinlichste Schätzung (m) ist 400 Personentage und die pessimistischste Schätzung (b) ist 500 Personentage. \n\nWie hoch schätzen Sie den Testaufwand auf Basis der Drei-Punkt-Schätzung für dieses Projekt ein?",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_E_v1_3_de",
         "AnswerA": "350 Personentage",
@@ -2815,7 +2834,8 @@
     },
     {
         "QuestionID": 1533,
-        "QuestionText": "Sie wurden gebeten, eine optimale, risikobasierte Ausführungsreihenfolge nachfolgender Testfälle festzulegen... T7(2), T8(1, von T7), T9(3, von T8), T10(3, von T8), T11(1, von T9), T12(2, von T10)... Welche der folgenden Testabläufe berücksichtigt die oben genannten Abhängigkeiten und Prioritäten?",
+        "QuestionText": "Sie wurden gebeten, eine optimale, risikobasierte Ausführungsreihenfolge nachfolgender Testfälle festzulegen, die bereits priorisiert und auf etwaige Abhängigkeiten hin untersucht wurden: (siehe Grafik) \nPriorität 1 ist dringlicher als Priorität 2 usw.\n Welche der folgenden Testabläufe berücksichtigt die oben genannten Abhängigkeiten und Prioritäten?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_e_id1533_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_E_v1_3_de",
         "AnswerA": "T7 -> T8 -> T10 -> T11 -> T9 -> T12",
@@ -2905,7 +2925,7 @@
     },
     {
         "QuestionID": 1538,
-        "QuestionText": "Sie testen eine neue Version der Software für eine Kaffeemaschine... Sie schreiben einen Fehlerbericht mit den folgenden Informationen: Titel, Zusammenfassung, Erwartetes Ergebnis, Grad der Auswirkung, Priorität. Welche relevanten Informationen haben Sie im obigen Fehlerbericht vergessen?",
+        "QuestionText": "Sie testen eine neue Version der Software für eine Kaffeemaschine. Mit dieser Software kann die Maschine verschiedene Kaffeevarianten zubereiten, die in vier Kategorien eingeteilt sind: Kaffeemenge, Zucker, Milch und Kaffeegeschmack.\n\nDie Kategorien sind wie folgt:\n· Kaffeemenge (klein, mittel, groß)\n· Zucker (keiner, 1 Einheit, 2 Einheiten, 3 Einheiten, 4 Einheiten)\n· Milch (ja oder nein)\n· Kaffeegeschmack (kein Sirup, Karamell, Haselnuss, Vanille)\n\nSie schreiben einen Fehlerbericht mit den folgenden Informationen:\nTitel: Niedrige Kaffeetemperatur.\nKurze Zusammenfassung: Bei der Auswahl von Kaffee mit Milch, ist die Temperatur des Getränks zu niedrig (unter 40 ºC).\nErwartetes Ergebnis: Die Temperatur des Kaffees sollte dem Standard entsprechen (ca. 75 ºC).\nGrad der Auswirkung: Mittel\nPriorität: Normal\n\nWelche relevanten Informationen haben Sie im obigen Fehlerbericht vergessen?",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_E_v1_3_de",
         "AnswerA": "Tatsächliches Testergebnis.",
@@ -2923,7 +2943,7 @@
     },
     {
         "QuestionID": 1539,
-        "QuestionText": "Gegeben seien folgende Testaktivitäten: 1. Performanzmessung..., 2. Testautomatisierung, 3. Management der Testaktivitäten, 4. Testentwurf... und Testwerkzeuge A-D. Welche Zuordnung trifft am BESTEN zu?",
+        "QuestionText": "Gegeben seien folgende Testaktivitäten:\n1. Performanzmessung und IT-Sicherheitsprüfungen\n2. Testautomatisierung\n3. Management der Testaktivitäten\n4. Testentwurf und Testrealisierung\n\nund Testwerkzeuge:\nA. Werkzeuge zur Testdurchführung\nB. Testwerkzeuge für nicht-funktionale Tests\nC. Werkzeuge zur Vorbereitung von Testfällen und Testdaten\nD. Fehlermanagementwerkzeuge\n\nWelche Zuordnung der Werkzeuge zu den Aktivitäten trifft am BESTEN zu?",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_E_v1_3_de",
         "AnswerA": "1 – D, 2 – C, 3 – B, 4 – A",
@@ -3351,7 +3371,8 @@
     },
     {
         "QuestionID": 1422,
-        "QuestionText": "Sie entwerfen Testfälle basierend auf der folgenden Entscheidungstabelle.\n\n(Bild: Entscheidungstabelle R1-R7 mit Bedingungen Alter, Erfahrung, Registriert und Aktionen Kategorie)\n\nBisher haben Sie die folgenden Testfälle entworfen:\n· TC1: 19-jähriger, nicht registrierter Mann ohne Erfahrung; erwartetes Ergebnis: Kategorie A\n· TC2: 65-jährige, nicht registrierte Frau mit 5 Jahren Erfahrung; erwartetes Ergebnis: Kategorie B\n· TC3: 66-jähriger, registrierter Mann ohne Erfahrung; erwartetes Ergebnis: Kategorie C\n· TC4: 65-jährige, registrierte Frau mit 4 Jahren Erfahrung; erwartetes Ergebnis: Kategorie D\n\nWelcher der folgenden Testfälle erhöht die Überdeckung der Entscheidungstabelle, wenn er zu den bestehenden Testfällen hinzugefügt wird?",
+        "QuestionText": "Sie entwerfen Testfälle basierend auf der folgenden Entscheidungstabelle. (siehe Grafik) \n\nBisher haben Sie die folgenden Testfälle entworfen:\n· TC1: 19-jähriger, nicht registrierter Mann ohne Erfahrung; erwartetes Ergebnis: Kategorie A\n· TC2: 65-jährige, nicht registrierte Frau mit 5 Jahren Erfahrung; erwartetes Ergebnis: Kategorie B\n· TC3: 66-jähriger, registrierter Mann ohne Erfahrung; erwartetes Ergebnis: Kategorie C\n· TC4: 65-jährige, registrierte Frau mit 4 Jahren Erfahrung; erwartetes Ergebnis: Kategorie D\n\nWelcher der folgenden Testfälle erhöht die Überdeckung der Entscheidungstabelle, wenn er zu den bestehenden Testfällen hinzugefügt wird?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_d_id1422_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_D_v1_5_0_de",
         "AnswerA": "66-jähriger, nicht registrierter Mann ohne Erfahrung; erwartetes Ergebnis: Kategorie B.",
@@ -3369,7 +3390,8 @@
     },
     {
         "QuestionID": 1423,
-        "QuestionText": "Sie wenden den Zustandsübergangstest auf das Zimmerreservierungssystem an, das durch die folgende Zustandsübergangstabelle mit vier Zuständen und fünf Ereignissen modelliert wird.\n\n(Bild: Zustandsübergangstabelle mit Zuständen S1-S4 und Ereignissen Verfügbar, Nicht verfügbar, Zimmer wechseln, Stornieren, Bezahlen)\n\nAngenommen, alle Testfälle beginnen im Zustand „Anfordern“.\nWelcher der folgenden Testfälle (Abfolge von Ereignissen), erreicht die GRÖßTMÖGLICHE ÜBERDECKUNG GÜLTIGER ÜBERGÄNGE?",
+        "QuestionText": "Sie wenden den Zustandsübergangstest auf das Zimmerreservierungssystem an, das durch die folgende Zustandsübergangstabelle mit vier Zuständen und fünf Ereignissen modelliert wird.\n\nAngenommen, alle Testfälle beginnen im Zustand „Anfordern“.\nWelcher der folgenden Testfälle (Abfolge von Ereignissen), erreicht die GRÖßTMÖGLICHE ÜBERDECKUNG GÜLTIGER ÜBERGÄNGE?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_d_id1423_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_D_v1_5_0_de",
         "AnswerA": "Nicht verfügbar, Verfügbar, Zimmer wechseln, Nicht verfügbar, Stornieren",
@@ -3534,7 +3556,8 @@
     },
     {
         "QuestionID": 1432,
-        "QuestionText": "Die Tabelle zeigt die Nachverfolgbarkeitsmatrix zwischen Testfällen und Anforderungen. Ein „X“ bedeutet, dass ein Testfall die Anforderung überdeckt.\n\n(Tabelle: Zeilen TC1-TC4, Spalten Req1-Req7. TC1 deckt Req1, 3, 4, 7. TC2 deckt Req1, 5, 7. TC3 deckt Req5, 6. TC4 deckt Req2.)\n\nDie Testfälle sollen mithilfe des Verfahrens der zusätzlichen Überdeckung priorisiert und anschließend alle ausgeführt werden.\n\nWelcher Testfall sollte gemäß diesem Verfahren ALS LETZTER ausgeführt werden?",
+        "QuestionText": "Die Tabelle zeigt die Nachverfolgbarkeitsmatrix zwischen Testfällen und Anforderungen. Ein „X“ bedeutet, dass ein Testfall die Anforderung überdeckt.\n\nDie Testfälle sollen mithilfe des Verfahrens der zusätzlichen Überdeckung priorisiert und anschließend alle ausgeführt werden.\n\nWelcher Testfall sollte gemäß diesem Verfahren ALS LETZTER ausgeführt werden?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_d_id1432_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_D_v1_5_0_de",
         "AnswerA": "TC1",
@@ -3645,7 +3668,7 @@
     },
     {
         "QuestionID": 1438,
-        "QuestionText": "Betrachten Sie den folgenden Fehlerbericht für ein Buchausleihsystem.\n\nFehler-ID: 001\nTitel: Rückgabe eines Buches wird nicht registriert.\nSchweregrad: Hoch Priorität: nicht angegeben\nUmgebung: Windows 11, Google Chrome\nBeschreibung: Beim Versuch, ein Buch mit der Funktion „Buch zurückgeben“ zurückzugeben, registriert das System die Rückgabe nicht. Das Buch bleibt weiterhin dem Benutzer zugewiesen.\nSchritte zur Reproduktion:\nMelden Sie sich als Benutzer mit einem ausgeliehen Buch im Buchausleihsystem an.\nKlicken Sie auf die Schaltfläche „Buch zurückgeben“ für das ausgeliehene Buch.\nDas System registriert die Rückgabe nicht und das Buch wird weiterhin als ausgeliehen angezeigt.\nErwartetes Ergebnis: Das Buch sollte als zurückgegeben registriert und dem Benutzer nicht mehr zugewiesen sein.\nTatsächliches Ergebnis: Das Buch bleibt dem Benutzer zugewiesen. Anhänge: [leere Liste]\n\nWelche der folgenden Optionen hilft dem Entwickler AM EHESTEN, den Fehler schnell zu reproduzieren?",
+        "QuestionText": "Betrachten Sie den folgenden Fehlerbericht für ein Buchausleihsystem.\n\nFehler-ID: 001\nTitel: Rückgabe eines Buches wird nicht registriert.\nSchweregrad: Hoch Priorität: nicht angegeben\nUmgebung: Windows 11, Google Chrome\nBeschreibung: Beim Versuch, ein Buch mit der Funktion „Buch zurückgeben“ zurückzugeben, registriert das System die Rückgabe nicht. Das Buch bleibt weiterhin dem Benutzer zugewiesen.\nSchritte zur Reproduktion:\nMelden Sie sich als Benutzer mit einem ausgeliehen Buch im Buchausleihsystem an.\nKlicken Sie auf die Schaltfläche „Buch zurückgeben“ für das ausgeliehene Buch.\nDas System registriert die Rückgabe nicht und das Buch wird weiterhin als ausgeliehen angezeigt.\nErwartetes Ergebnis: Das Buch sollte als zurückgegeben registriert und dem Benutzer nicht mehr zugewiesen sein.\nTatsächliches Ergebnis: Das Buch bleibt dem Benutzer zugewiesen. \nAnhänge: [leere Liste]\n\nWelche der folgenden Optionen hilft dem Entwickler AM EHESTEN, den Fehler schnell zu reproduzieren?",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_D_v1_5_0_de",
         "AnswerA": "Hinzufügen spezifischer Informationen zu den betroffenen Benutzern und Büchern im Abschnitt „Beschreibung“.",
@@ -3725,7 +3748,7 @@
     },
     {
         "QuestionID": 1602,
-        "QuestionText": "Ein im Büro klingelndes Telefon lenkt einen Softwareentwickler ab, was dazu führt, dass er die Logik zur Prüfung der Einhaltung der Obergrenze einer Eingabevariablen falsch programmiert. Später, während des Systemtests, stellt ein Tester fest, dass dieses Eingabefeld ungültige Eingabewerte akzeptiert. Welcher der folgenden Begriffe beschreibt die fehlerhaft programmierte Logik zur Prüfung der Einhaltung der Obergrenze als Fehler im Code in diesem Szenario zutreffend?",
+        "QuestionText": "Ein im Büro klingelndes Telefon lenkt einen Softwareentwickler ab, was dazu führt, dass er die Logik zur Prüfung der Einhaltung der Obergrenze einer Eingabevariablen falsch programmiert. Später, während des Systemtests, stellt ein Tester fest, dass dieses Eingabefeld ungültige Eingabewerte akzeptiert. \nWelcher der folgenden Begriffe beschreibt die fehlerhaft programmierte Logik zur Prüfung der Einhaltung der Obergrenze als Fehler im Code in diesem Szenario zutreffend?",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL_SET_F_v1_2_de",
         "AnswerA": "Grundursache",
@@ -3797,7 +3820,7 @@
     },
 {
         "QuestionID": 1606,
-        "QuestionText": "Ordnen Sie die richtige Beschreibung von A bis D den Begriffen 1 bis 4 zu: 1. Testsuite, 2. Testfall, 3. Testskript, 4. Test-Charta. A. Eine Menge von Testfällen oder Testskripten... B. Eine Abfolge von Anweisungen... C. Enthält die erwarteten Ergebnisse... D. Die Dokumentation eines Ziels und der Agenda...",
+        "QuestionText": "Ordnen Sie die richtige Beschreibung von A bis D:\nA. Eine Menge von Testfällen oder Testskripten, die in einem bestimmten Testzyklus ausgeführt werden sollen\nB. Eine Abfolge von Anweisungen für die Durchführung eines Tests\nC. Enthält die erwarteten Ergebnisse\nD. Die Dokumentation eines Ziels und der Agenda einer Testsitzung \n\nzu seiner entsprechenden Testressource (Testarbeitsergebnisse) 1 bis 4:\n1. Testsuite\n2. Testfall\n3. Testskript\n4. Test-Charta\n\nWählen Sie EINE Option!",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL_SET_F_v1_2_de",
         "AnswerA": "1A, 2C, 3B, 4D",
@@ -3923,7 +3946,7 @@
     },
     {
         "QuestionID": 1613,
-        "QuestionText": "Sie arbeiten als Tester in einem Projekt an einer mobilen Anwendung für Essensbestellungen. Eine Kundenanforderung mit hoher Priorität in diesem Projekt lautet: \"In 95 % der Fälle muss die Bestellung in weniger als 10 Sekunden bearbeitet werden.“ Sie haben eine Reihe von Testfällen erstellt, in denen Sie eine zufällige Anzahl von Bestellungen ausgeführt, die Bearbeitungszeit gemessen und die Testergebnisse mit den Anforderungen verglichen haben. Welche Art von Test haben Sie durchgeführt?",
+        "QuestionText": "Sie arbeiten als Tester in einem Projekt an einer mobilen Anwendung für Essensbestellungen. Eine Kundenanforderung mit hoher Priorität in diesem Projekt lautet: \n\"In 95 % der Fälle muss die Bestellung in weniger als 10 Sekunden bearbeitet werden.“ \nSie haben eine Reihe von Testfällen erstellt, in denen Sie eine zufällige Anzahl von Bestellungen ausgeführt, die Bearbeitungszeit gemessen und die Testergebnisse mit den Anforderungen verglichen haben. \n\nWelche Art von Test haben Sie durchgeführt?",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL_SET_F_v1_2_de",
         "AnswerA": "Funktional, da die Testfälle die geschäftlichen Anforderungen des Kunden an das System abdecken.",
@@ -4049,7 +4072,7 @@
     },
     {
         "QuestionID": 1620,
-        "QuestionText": "Eine Fitness-App misst die Anzahl der täglich zurückgelegten Schritte... Bis 1000 (Couch Potato), 1001-2000 (Komm in die Puschen), 2001-4000 (Die Richtung stimmt), 4001-6000 (Gut gemacht), Über 6000 (Super!). Welche der folgenden Gruppen von Testeingabewerten würde für DIE HÖCHSTE Überdeckung von Äquivalenzklassen sorgen?",
+        "QuestionText": "Eine Fitness-App misst die Anzahl der täglich zurückgelegten Schritte und gibt dazu Feedback, um den Anwender zu motivieren, fit zu bleiben.\n\nDas Feedback zu den verschiedenen Schrittzahlen soll sein:\n· Bis einschließlich 1000: Couch Potato („Sofahocker“)!\n· Über 1000 bis einschließlich 2000: Komm in die Puschen („sich bewegen“)!\n· Über 2000 bis einschließlich 4000: Die Richtung stimmt!\n· Über 4000 bis einschließlich 6000: Gut gemacht („ausgezeichnet“)!\n· Über 6000: Super!\n\nWelche der folgenden Gruppen von Testeingabewerten würde für DIE HÖCHSTE Überdeckung von Äquivalenzklassen sorgen?",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL_SET_F_v1_2_de",
         "AnswerA": "0, 1000, 2000, 3000, 4000",
@@ -4067,7 +4090,8 @@
     },
 {
         "QuestionID": 1621,
-        "QuestionText": "Sie testen ein System, das die Endnote für die Kursteilnehmer berechnet... 0-50 nicht bestanden, 51-70 ausreichend, 71-90 gut, 91-100 sehr gut. Grenzwerte sind: 0, 50, 51, 70, 71, 90, 91, 100. Überdeckungselemente (2-Wert-GA): -1, 0 (min), 50, 51, 70, 71, 90, 91, 100 (max), 101. (Korrektur Begründung ISTQB: 'die nächsten Nachbarn (-1, 51, 71, 91, 101) sind bis auf -1 und 101 darin enthalten'). Es gibt 8 innere Grenzwerte + min/max = 10 Werte zu testen (0, 50, 51, 70, 71, 90, 91, 100, plus die ungültigen Nachbarn -1, 101 - aber hier wird meist nach gültigen gefragt oder die Gesamtzahl der Elemente wird diskutiert. In der offiziellen Begründung werden 10 *gültige* Überdeckungselemente als Basis genommen? Nein, Begründung sagt '10 Grenzwerte' als Basis für die 60%. Die Testfälle decken ab: 91 (GW), 50 (GW), 70 (GW), 100 (GW), 90 (GW), 0 (GW). Das sind 6 von 10 Grenzwerten. 6/10 = 60%.)",
+        "QuestionText": "Sie testen ein System, das die Endnote für die Kursteilnehmer berechnet.\n\nDie Endnote wird auf der Grundlage der Gesamtpunktzahl zwischen 0 und 100 nach den folgenden Regeln ermittelt:\n· 0 - 50 Punkte: nicht bestanden\n· 51 - 70 Punkte: ausreichend\n· 71 - 90 Punkte: gut\n· 91 - 100 Punkte: sehr gut\n\nSie haben die folgenden Testfälle vorbereitet: (siehe Tabelle) \n\nWie hoch ist die Überdeckung der 2-Wert-Grenzwertanalyse, die mit den vorhanden Testfällen erreicht wird?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_f_id1621_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL_SET_F_v1_2_de",
         "AnswerA": "60 %",
@@ -4085,7 +4109,8 @@
     },
     {
         "QuestionID": 1622,
-        "QuestionText": "Sie testen ein neues Customer-Relationship-Management-System für einen Fahrrad-Tagesverleih... Welche Regel (Kombination von Bedingungen und Aktionen) entspricht NICHT den oben angegebenen Anforderungen?",
+        "QuestionText": "Sie testen ein neues Customer-Relationship-Management-System für einen Fahrrad-Tagesverleih. Die Anforderungen an das System lauten wie folgt: \n- Jeder kann ein Fahrrad ausleihen, aber nur Mitglieder erhalten einen Rabatt von 20 %. \n- Wird die Rückgabefrist jedoch versäumt, kann der Rabatt nicht mehr in Anspruch genommen werden. \n- Nach 15 Ausleihen erhalten die Mitglieder ein T-Shirt geschenkt. \n\nEin Tester hat die folgende Entscheidungstabelle entworfen, um die implementierten Funktionen zu testen (J=Wahr, N=Falsch, X=Aktion ausführen): (siehe Tabelle) \n\nWelche Regel (Kombination von Bedingungen und Aktionen) entspricht NICHT den oben angegebenen Anforderungen?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_f_id1622_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL_SET_F_v1_2_de",
         "AnswerA": "R4",
@@ -4106,7 +4131,8 @@
     },
     {
         "QuestionID": 1623,
-        "QuestionText": "Sie testen ein System, dessen Lebenszyklus durch das nachstehende Zustandsübergangsdiagramm modelliert wird. Das System startet im INIT-Zustand und beendet seinen Betrieb im OFF-Zustand. (INIT -> [test] -> READY, INIT -> [run] -> RUNNING. READY -> [done] -> OFF. RUNNING -> [error] -> OFF, RUNNING -> [pause] -> PAUSED -> [resume] -> RUNNING). Was ist die MINDESTZAHL von Testfällen, um eine Überdeckung der gültigen Übergänge von 100 % zu erreichen (0-Switch-Überdeckung)?",
+        "QuestionText": "Sie testen ein System, dessen Lebenszyklus durch das nachstehende Zustandsübergangsdiagramm modelliert wird. Das System startet im INIT-Zustand und beendet seinen Betrieb im OFF-Zustand. \nWas ist die MINDESTZAHL von Testfällen, um eine Überdeckung der gültigen Übergänge von 100 % zu erreichen (0-Switch-Überdeckung)?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_f_id1623_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL_SET_F_v1_2_de",
         "AnswerA": "2",
@@ -4214,7 +4240,7 @@
     },
     {
         "QuestionID": 1629,
-        "QuestionText": "Sie verwenden eine abnahmetestgesteuerte Entwicklung und entwerfen Testfälle basierend auf der folgenden User-Story... AC3: Spezielle Benutzer haben alle Zugriffsrechte von regulären Benutzern. Welcher Testfall ist DER SINNVOLLSTE, um AC3 zu testen?",
+        "QuestionText": "Sie verwenden eine abnahmetestgesteuerte Entwicklung und entwerfen Testfälle basierend auf der folgenden User-Story:\n„Als regulärer oder spezieller Benutzer möchte ich meine elektronische Etagenkarte für den Zutritt zu bestimmten Etagen nutzen können.“\n\nAkzeptanzkriterium:\nAC1: Normale Benutzer haben Zugang zu den Etagen 1 bis 3.\nAC2: Etage 4 ist nur für spezielle Benutzer zugänglich.\nAC3: Spezielle Benutzer haben alle Zugriffsrechte von regulären Benutzern.\n\nWelcher Testfall ist DER SINNVOLLSTE, um AC3 zu testen?",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL_SET_F_v1_2_de",
         "AnswerA": "Überprüfen Sie, ob ein regulärer Benutzer Zugang zu den Etagen 1 und 3 hat.",
@@ -4250,7 +4276,7 @@
     },
 {
         "QuestionID": 1631,
-        "QuestionText": "Folgende User-Story wurde vorgegeben: „Als Vorsitzender möchte ich, dass auf alle Daten, die ich hochlade, von keinem anderen Benutzer des Systems zugegriffen werden kann...“ In der ersten Runde des Planungspokers wurden folgende Aufwandsschätzungen auf Basis von Risiko, Aufwand und notwendigen Tests vergeben: Kunden: 5, Entwickler: 5, Tester: 20. Was ist DER BESTE nächste Schritt in dieser Planungsrunde?",
+        "QuestionText": "Folgende User-Story wurde vorgegeben:\n„Als Vorsitzender möchte ich, dass auf alle Daten, die ich hochlade, von keinem anderen Benutzer des Systems zugegriffen werden kann, damit keine vertraulichen Informationen eingesehen werden können.“\n\nIn der ersten Runde des Planungspokers wurden folgende Aufwandsschätzungen auf Basis von Risiko, Aufwand und notwendigen Tests vergeben:\nKunden: 5\nEntwickler: 5\nTester: 20\n\nWas ist DER BESTE nächste Schritt in dieser Planungsrunde?",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL_SET_F_v1_2_de",
         "AnswerA": "Da die Schätzungen der Kunden und der Entwickler übereinstimmen, kann das Team davon ausgehen, dass sie gut sind. Der Planungspoker für diese User-Story wird beendet.",
@@ -4286,7 +4312,8 @@
     },
     {
         "QuestionID": 1633,
-        "QuestionText": "Folgende Prioritäten und Abhängigkeiten der Testfälle sind gegeben: TF1 (Hoch, hängt von TF4 ab), TF2 (Niedrig), TF3 (Hoch, hängt von TF4 ab), TF4 (Mittel), TF5 (Niedrig, hängt von TF2 ab), TF6 (Mittel, hängt von TF5 ab). Welcher der folgenden Testausführungspläne berücksichtigt AM BESTEN die Prioritäten sowie die technischen und logischen Abhängigkeiten?",
+        "QuestionText": "Folgende Prioritäten und Abhängigkeiten der Testfälle sind gegeben: (siehe Tabelle) \n\nWelcher der folgenden Testausführungspläne berücksichtigt AM BESTEN die Prioritäten sowie die technischen und logischen Abhängigkeiten?",
+        "Picture": "./model/images/QuestionsISTQBFV4/set_f_id1633_img.png",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL_SET_F_v1_2_de",
         "AnswerA": "TF1 – TF3 – TF4 – TF6 – TF2 – TF5",
@@ -4343,7 +4370,7 @@
     },
     {
         "QuestionID": 1636,
-        "QuestionText": "Sie arbeiten als Projektleiter an einem bankinternen Softwareprojekt. Um Nacharbeit und übermäßige „Fehlerfindungs-/Fehlerbehebungs-/ Fehlernachtestzyklen“ (Find/Fix/Retest) zu vermeiden, wurde ein Prozess eingeführt... Trotzdem fällt eine große Anzahl von Fehlerzuständen, die die Tester in der Entwicklungsumgebung (in Schritt 3) als behoben bestätigt haben, bei den Fehlernachtests in der Testumgebung durch... Welcher der folgenden Punkte ist der wahrscheinlichste Teil des Prozesses, der als Nächstes überprüft werden sollte?",
+        "QuestionText": "Sie arbeiten als Projektleiter an einem bankinternen Softwareprojekt. Um Nacharbeit und übermäßige „Fehlerfindungs-/Fehlerbehebungs-/ Fehlernachtestzyklen“ (Find/Fix/Retest) zu vermeiden, wurde der folgende Prozess zur Behebung eines Fehlers eingeführt, sobald dieser im Testlabor gefunden wurde:\n\n1. Der zugewiesene Entwickler findet und behebt den Fehler und erstellt dann einen experimentellen Build.\n2. Ein Peer-Entwickler überprüft, testet und bestätigt die Fehlerbehebung.\n3. Ein Tester – in der Regel derjenige, der den Fehler gefunden hat – bestätigt die Fehlerbehebung durch einen Test in der Entwicklungsumgebung.\n4. Einmal am Tag wird ein neues Release mit allen bestätigten Fehlerkorrekturen in der Testumgebung installiert.\n5. Derselbe Tester aus Schritt 3 testet die Fehlerbehebung in der Testumgebung.\n\nTrotzdem fällt eine große Anzahl von Fehlerzuständen, die die Tester in der Entwicklungsumgebung (in Schritt 3) als behoben bestätigt haben, bei den Fehlernachtests in der Testumgebung durch, mit den daraus resultierenden Nacharbeiten und Auswirkungen auf die Zykluszeiten. Sie haben höchstes Vertrauen in Ihre Tester und haben Fehler oder Auslassungen in Schritt 3 ausgeschlossen.\n\nWelcher der folgenden Punkte ist der wahrscheinlichste Teil des Prozesses, der als Nächstes überprüft werden sollte?",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL_SET_F_v1_2_de",
         "AnswerA": "Die Aktivität von Entwicklern, die in Schritt 2 möglicherweise nicht ausreichend getestet wurde.",
@@ -4379,7 +4406,7 @@
     },
     {
         "QuestionID": 1638,
-        "QuestionText": "Nach Durchführung einiger Testfälle hat eine Kollegin den folgenden Fehlerbericht erstellt und Sie um ein Review gebeten... (Fehlt: Datum). Welchen der folgenden Verbesserungsvorschläge wollen Sie Ihrer Kollegin am EHESTEN geben?",
+        "QuestionText": "Nach Durchführung einiger Testfälle hat eine Kollegin den folgenden Fehlerbericht erstellt und Sie um ein Review gebeten.\n\nFehlerbericht:\n- ID: br00_23_12\n- Titel: Fehlermeldung beim Login mit leerem Namen nicht korrekt\n- Autor: Lisa van der Vaart (Test Engineer)\n- Testobjekt: build v00812\n- Testumgebung: cfg_full_02\n- Aufdeckender Testfall: sys_128\n- Beschreibung: Nach einem Login-Versuch mit leerem Namen gibt das System die Fehlermeldung „falsches Passwort“ zurück. Stattdessen hätte „Name darf nicht leer sein“ erscheinen müssen.\n- Schweregrad der Fehlerwirkung: niedrig\n- Priorität für Behebung: mittel\n- Fehlerstatus: neu\n\nWelchen der folgenden Verbesserungsvorschläge wollen Sie Ihrer Kollegin am EHESTEN geben?",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL_SET_F_v1_2_de",
         "AnswerA": "Der Titel beschreibt den Inhalt nicht korrekt.",

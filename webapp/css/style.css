@@ -121,3 +121,25 @@
     border-left: 2px solid var(--color-border);
     margin-bottom: 15px !important;
 }
+
+
+.questionImage {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Auf Desktop (> 691px) → 50% */
+@media (min-width: 691px) {
+    .questionImage {
+        max-width: 500px;
+        margin: 0 auto;  /* zentrieren */
+    }
+}
+
+/* Auf Mobile (< 690px) → 100% */
+@media (max-width: 690px) {
+    .questionImage {
+        max-width: 100%;
+    }
+}

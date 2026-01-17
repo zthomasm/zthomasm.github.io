@@ -4,8 +4,9 @@ sap.ui.define([
     "sap/m/CheckBox",
     "sap/m/Text",
     "sap/m/Button",
-    "sap/m/Panel"
-], function(VBox, HBox, CheckBox, Text, Button, Panel) {
+    "sap/m/Panel",
+    "sap/m/Image",
+], function(VBox, HBox, CheckBox, Text, Button, Panel, Image) {
     "use strict";
 
         // Konstanten
@@ -45,6 +46,7 @@ sap.ui.define([
             return aQuestions.map(q => ({
                 QuestionID: q.QuestionID,
                 QuestionText: this.sanitizeText(q.QuestionText),
+                Picture: q.Picture, // wenn vorhanden
                 AmountOfTrueAnswers: q.AmountOfTrueAnswers,
                 QuestionTopicArea: q.QuestionTopicArea,
                 Answers: ["A","B","C","D","E","F"]
@@ -94,6 +96,30 @@ sap.ui.define([
             // VBox für Fragetext + Anzahl korrekter Antworten
             const oVBoxQuestionInfo = new VBox({ width: "100%" });
             oVBoxQuestionInfo.addItem(oQuestionText);
+
+            // Wenn Picture vorhanden, hinzufügen
+            if (oQuestion.Picture && oQuestion.Picture.trim()) {
+                // console.log("Bild gefunden:", oQuestion.Picture);
+                const oQuestionImage = new Image({
+                    // src: oQuestion.Picture,
+                    src: sap.ui.require.toUrl("learninggame") + "/" + oQuestion.Picture,
+                    height: "auto",
+                    decorative: false
+                });
+                // console.log("🖼️ Image Control erstellt:", oQuestionImage);
+                oQuestionImage.addStyleClass("sapUiMediumMarginBottom questionImage");
+                oVBoxQuestionInfo.addItem(oQuestionImage);
+                // console.log("✅ Bild zu VBox hinzugefügt");
+            } else {
+                // console.log("❌ KEIN BILD:", { 
+                //     hasPicture: !!oQuestion.Picture,
+                //     pictureValue: oQuestion.Picture,
+                //     trimmed: oQuestion.Picture?.trim()
+                // });
+
+            }
+
+
             const oTextAnswers = new Text({
                 text: `Anzahl korrekter Antworten: ${oQuestion.AmountOfTrueAnswers}`,
                 wrapping: bWrapping
