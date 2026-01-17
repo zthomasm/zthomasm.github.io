@@ -101,8 +101,8 @@ sap.ui.define([
             if (oQuestion.Picture && oQuestion.Picture.trim()) {
                 // console.log("Bild gefunden:", oQuestion.Picture);
                 const oQuestionImage = new Image({
-                    // src: oQuestion.Picture,
-                    src: sap.ui.require.toUrl("learninggame") + "/" + oQuestion.Picture,
+                    src: "/" + oQuestion.Picture,
+                    // src: sap.ui.require.toUrl("learninggame") + "/" + oQuestion.Picture,
                     height: "auto",
                     decorative: false
                 });
