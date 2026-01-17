@@ -432,7 +432,7 @@
     {
         "QuestionID": 1122,
         "QuestionText": "Neu eingestellte Mitarbeitende einer Firma können individuelle Ziele mit ihren Vorgesetzten vereinbaren, an deren Erreichung die Auszahlung einer Prämie gekoppelt ist. Diese Prämie wird ihnen aber erst ausgezahlt, wenn sie länger als ein Jahr im Unternehmen beschäftigt sind.\nDieser Sachverhalt lässt sich in einer Entscheidungstabelle darstellen:\n\nWelcher der folgenden Testfälle beschreibt eine in der Praxis gültige, durchführbare Situation und fehlt in der oben aufgeführten Entscheidungstabelle?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_a_id1122_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_a_id1122_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_A_v2_2_de",
         "AnswerA": "Bedingung1 = „J“, Bedingung2 = „N“, Bedingung3 = „J“, Aktion = „N“",
@@ -451,7 +451,7 @@
     {
         "QuestionID": 1123,
         "QuestionText": "Welche der folgenden Aussagen zum Zustandsübergangsdiagramm und der dargestellten Tabelle von Testfällen ist WAHR?\n\nWählen Sie EINE Option!",
-        "Picture": "model/images/QuestionsISTQBFV4/set_a_id1123_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_a_id1123_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_A_v2_2_de",
         "AnswerA": "Die Testfälle führen alle Übergänge im Zustandsübergangsdiagramm aus, damit wird 100% Überdeckung aller Übergänge erreicht.",
@@ -632,7 +632,7 @@
     {
         "QuestionID": 1133,
         "QuestionText": "Sie testen eine mobile Applikation, die es Benutzern ermöglicht, ein nahegelegenes Restaurant zu finden, das die gewünschte Art des Essens anbietet. Gegeben ist die folgende Liste von Testfällen, Prioritäten (eine kleinere Zahl bedeutet eine höhere Priorität) und Abhängigkeiten:\n\nWelcher der folgenden Testfälle soll als dritter ausgeführt werden?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_a_id1133_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_a_id1133_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_A_v2_2_de",
         "AnswerA": "TF 003",
@@ -837,7 +837,7 @@
     {
         "QuestionID": 1204,
         "QuestionText": "Betrachten Sie das folgende Testmittel:\n\nIn welcher Testaktivität wird dieses Testmittel erstellt?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_b_id1204_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_b_id1204_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_B_v1_3_3_de",
         "AnswerA": "Testplanung",
@@ -1162,7 +1162,7 @@
     {
         "QuestionID": 1222,
         "QuestionText": "Die folgende Entscheidungstabelle enthält die Regeln zur Bestimmung des Risikos für Arteriosklerose (Arterienverkalkung) auf der Grundlage der Cholesterin- und Blutdruckwerte des Patienten.\n\nSie haben die Testfälle mit den folgenden Testdaten entworfen:\nTC1: Cholesterin = 125 mg/dl – Blutdruck = 141 mm Hg\nTC2: Cholesterin = 200 mg/dl – Blutdruck = 201 mm Hg\nTC3: Cholesterin = 124 mg/dl – Blutdruck = 201 mm Hg\nTC4: Cholesterin = 109 mg/dl – Blutdruck = 200 mm Hg\nTC5: Cholesterin = 201 mg/dl – Blutdruck = 140 mm Hg\n\nWelche Überdeckung der Entscheidungstabelle wird durch diese Testfälle erreicht?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_b_id1222_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_b_id1222_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_B_v1_3_3_de",
         "AnswerA": "40 %",
@@ -1181,7 +1181,7 @@
     {
         "QuestionID": 1223,
         "QuestionText": "Gegeben sei folgendes Zustandsdiagramm für die Software eines Batterieladegerätes:\n\nWelcher der folgenden Testfälle enthält sowohl gültige als auch ungültige Übergänge?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_b_id1223_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_b_id1223_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_B_v1_3_3_de",
         "AnswerA": "Start -> Warten -> Aus -> Warten -> Erhaltungsladen -> Warten",
@@ -1326,7 +1326,7 @@
 {
         "QuestionID": 1231,
         "QuestionText": "Sie möchten den Testaufwand für ein neues Projekt mit Hilfe einer auf Kennzahlen basierenden Schätzung abschätzen. Sie berechnen das Verhältnis von Testaufwand zu Entwicklungsaufwand, indem Sie die Durchschnittsdaten sowohl für den Entwicklungs- als auch für den Testaufwand aus vier historischen Projekten verwenden, die dem neuen Projekt ähnlich sind.\n\nDer geschätzte Entwicklungsaufwand für das neue Projekt beträgt 800.000 €.\nWie hoch schätzen Sie den Testaufwand in diesem Projekt ein?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_b_id1231_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_b_id1231_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_B_v1_3_3_de",
         "AnswerA": "40.000 €",
@@ -1345,7 +1345,7 @@
     {
         "QuestionID": 1232,
         "QuestionText": "Sie wurden gebeten, eine optimale, risikobasierte Ausführungsreihenfolge der folgenden Testfälle festzulegen, die bereits priorisiert und auf mögliche Abhängigkeiten hin untersucht wurden:\n\nPriorität 1 ist dringlicher als Priorität 2 usw.\n\nWelche der folgenden Testabläufe berücksichtigt die oben genannten Abhängigkeiten und Prioritäten?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_b_id1232_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_b_id1232_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_B_v1_3_3_de",
         "AnswerA": "T1 -> T2 -> T4 -> T5 -> T3 -> T6",
@@ -1454,7 +1454,7 @@
     {
         "QuestionID": 1238,
         "QuestionText": "Sie testen eine Sortierfunktion, die eine Reihe von Zahlen als Eingabe erhält und dieselben Zahlen in aufsteigender Reihenfolge sortiert zurückgibt.\nDas Protokoll der Testausführung sieht wie folgt aus: (siehe Diagramm)\n\nWelche der folgenden Beschreibungen ist die BESTE Fehlerbeschreibung, die in einem Fehlerbericht verwendet werden kann?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_b_id1238_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_b_id1238_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_B_v1_3_3_de",
         "AnswerA": "Das System kann mehrere Zahlensätze nicht sortieren. Referenz: TC3, TC4, TC5.",
@@ -1879,7 +1879,7 @@
 {
         "QuestionID": 1321,
         "QuestionText": "Gegeben ist die folgende Geschäftsregel:\n\nSie möchten Testfälle mit Hilfe einer Grenzwertanalyse mit jeweils zwei Werten pro Grenze entwerfen.\nWelcher der folgenden Mengen von Testwerten deckt die relevanten Grenzwerte AM BESTEN ab?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_c_id1321_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_c_id1321_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_C_v2_3_0_de",
         "AnswerA": "100, 150, 200, 201",
@@ -1898,7 +1898,7 @@
     {
         "QuestionID": 1322,
         "QuestionText": "Gegeben ist ein System zur Analyse von Fahrprüfungsergebnissen. Die folgenden Regeln wurden in einer Entscheidungstabelle formuliert: (siehe Diagramm) \n\nWelche Kombination von Eingabedaten zeigt, dass die Entscheidungstabelle widersprüchliche Regeln enthält?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_c_id1322_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_c_id1322_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_C_v2_3_0_de",
         "AnswerA": "C1 = T, C2 = T, C3 = F",
@@ -1917,7 +1917,7 @@
     {
         "QuestionID": 1323,
         "QuestionText": "Sie entwerfen Testfälle auf der Grundlage des folgenden Zustandsübergangsdiagramm:\n\nWie viele Testfälle sind MINDESTENS erforderlich, um eine vollständige Überdeckung aller gültiger Übergänge zu erreichen?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_c_id1323_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_c_id1323_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_C_v2_3_0_de",
         "AnswerA": "3",
@@ -1936,7 +1936,7 @@
     {
         "QuestionID": 1324,
         "QuestionText": "Sie sollen einen Verzweigungstest für den folgenden Programmcode durchführen, dessen Ablauf im Kontrollflussdiagramm dargestellt ist.\n\nWie viele Entscheidungen bzw. Zweige müssen getestet werden, um vollständige Verzweigungsüberdeckung zu erreichen?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_c_id1324_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_c_id1324_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_C_v2_3_0_de",
         "AnswerA": "2",
@@ -2063,7 +2063,7 @@
 {
         "QuestionID": 1331,
         "QuestionText": "Zu Beginn jeder Iteration schätzt das Team den Arbeitsaufwand (in Personentagen), den es während dieser Iteration leisten wird.\n\nBezeichnet sei E(n) als der geschätzte und A(n) als der tatsächlich geleistete Aufwand in Iteration n.\n\nAb der dritten Iteration verwendet das Team folgendes Extrapolationsmodell zur Aufwandsschätzung:\nE(n) = (3 * A(n-1) + A(n-2)) / 4\n\nEine Grafik zeigt die geschätzten und tatsächlichen Werte für die ersten vier Iterationen. (siehe Grafik) \n\nWie hoch ist der geschätzte Arbeitsaufwand für Iteration Nr. 5?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_c_id1331_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_c_id1331_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_C_v2_3_0_de",
         "AnswerA": "10,5 Personentage",
@@ -2082,7 +2082,7 @@
     {
         "QuestionID": 1332,
         "QuestionText": "Sie erstellen einen Testausführungsplan für sieben Testfälle ( TC 1 bis TC 7 ).\nEine Abbildung zeigt:\n– Die Priorität jedes Testfalls (1 = höchste, 3 = niedrigste)\n– Abhängigkeiten zwischen den Testfällen in Form gerichteter Pfeile.\n\nEin Testfall darf nur ausgeführt werden, wenn alle vorgelagerten (abhängigen) Testfälle bereits ausgeführt wurden.\nWelcher Testfall sollte gemäß diesen Vorgabe als sechster ausgeführt werden?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_c_id1332_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_c_id1332_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_C_v2_3_0_de",
         "AnswerA": "TC 3",
@@ -2191,7 +2191,7 @@
     {
         "QuestionID": 1338,
         "QuestionText": "Betrachten Sie den folgenden Fehlerbericht für eine webbasierte Einkaufsanwendung: (siehe Grafik) \n\nWelche wichtigen Informationen fehlen in diesem Bericht?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_c_id1338_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_c_id1338_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_C_v2_3_0_de",
         "AnswerA": "Name des Testers und Datum des Berichts.",
@@ -2595,7 +2595,7 @@
     {
         "QuestionID": 1520,
         "QuestionText": "Ein Gerät zur Messung des täglichen Strahlungseinfalls für Pflanzen ermittelt einen Einstrahlungswert für Sonnenschein. Dieser ergibt sich aus der Kombination der Anzahl der Stunden, in denen eine Pflanze der Sonne ausgesetzt ist (unter 3 Stunden, 3 bis 6 Stunden, über 6 Stunden), und der durchschnittlichen Intensität des Sonnenscheins (sehr niedrig, niedrig, mittel, hoch). \nDie folgenden Testfälle existieren bereits: (siehe Grafik) \n\nWie viele Testfälle müssen mindestens noch erzeugt werden, um eine vollständige Überdeckung ALLER GÜLTIGEN Eingabe-Äquivalenzklassen zu gewährleisten?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_e_id1520_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_e_id1520_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_E_v1_3_de",
         "AnswerA": "1",
@@ -2632,7 +2632,7 @@
     {
         "QuestionID": 1522,
         "QuestionText": "Ein System zur Berechnung der Strafe für Geschwindigkeitsübertretungen im Straßenverkehr wird mit folgender Entscheidungstabelle spezifiziert: (siehe Grafik) \n\nIhnen liegen bereits die folgenden Testfälle vor:\nTF1: 65, Ja (entspricht R2)\nTF2: 45, Ja (entspricht R3)\nTF3: 50, Nein (entspricht R4)\nTF4: 49, Nein (entspricht R4)\n\nWelche der Regeln der Entscheidungstabelle ist (noch) NICHT durch einen Testfall überdeckt?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_e_id1522_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_e_id1522_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_E_v1_3_de",
         "AnswerA": "Regel 4",
@@ -2651,7 +2651,7 @@
     {
         "QuestionID": 1523,
         "QuestionText": "Betrachten Sie das folgende Zustandsdiagramm für eine Zapfsäule, die nur mit einer Kreditkarte bedient wird: (siehe Grafik) \n\nNehmen Sie an, dass Sie eine minimale Anzahl von Tests entwickeln möchten, um jeden Übergang im Zustandsdiagramm abzudecken. Nehmen Sie weiter an, dass jeder Test im Anfangszustand beginnen muss, also beim Warten auf den Kunden, und jeder Test endet, wenn ein Übergang im Anfangszustand ankommt. \n\nWie viele Tests benötigen Sie?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_e_id1523_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_e_id1523_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_E_v1_3_de",
         "AnswerA": "4",
@@ -2835,7 +2835,7 @@
     {
         "QuestionID": 1533,
         "QuestionText": "Sie wurden gebeten, eine optimale, risikobasierte Ausführungsreihenfolge nachfolgender Testfälle festzulegen, die bereits priorisiert und auf etwaige Abhängigkeiten hin untersucht wurden: (siehe Grafik) \nPriorität 1 ist dringlicher als Priorität 2 usw.\n Welche der folgenden Testabläufe berücksichtigt die oben genannten Abhängigkeiten und Prioritäten?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_e_id1533_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_e_id1533_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_E_v1_3_de",
         "AnswerA": "T7 -> T8 -> T10 -> T11 -> T9 -> T12",
@@ -3372,7 +3372,7 @@
     {
         "QuestionID": 1422,
         "QuestionText": "Sie entwerfen Testfälle basierend auf der folgenden Entscheidungstabelle. (siehe Grafik) \n\nBisher haben Sie die folgenden Testfälle entworfen:\n· TC1: 19-jähriger, nicht registrierter Mann ohne Erfahrung; erwartetes Ergebnis: Kategorie A\n· TC2: 65-jährige, nicht registrierte Frau mit 5 Jahren Erfahrung; erwartetes Ergebnis: Kategorie B\n· TC3: 66-jähriger, registrierter Mann ohne Erfahrung; erwartetes Ergebnis: Kategorie C\n· TC4: 65-jährige, registrierte Frau mit 4 Jahren Erfahrung; erwartetes Ergebnis: Kategorie D\n\nWelcher der folgenden Testfälle erhöht die Überdeckung der Entscheidungstabelle, wenn er zu den bestehenden Testfällen hinzugefügt wird?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_d_id1422_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_d_id1422_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_D_v1_5_0_de",
         "AnswerA": "66-jähriger, nicht registrierter Mann ohne Erfahrung; erwartetes Ergebnis: Kategorie B.",
@@ -3391,7 +3391,7 @@
     {
         "QuestionID": 1423,
         "QuestionText": "Sie wenden den Zustandsübergangstest auf das Zimmerreservierungssystem an, das durch die folgende Zustandsübergangstabelle mit vier Zuständen und fünf Ereignissen modelliert wird.\n\nAngenommen, alle Testfälle beginnen im Zustand „Anfordern“.\nWelcher der folgenden Testfälle (Abfolge von Ereignissen), erreicht die GRÖßTMÖGLICHE ÜBERDECKUNG GÜLTIGER ÜBERGÄNGE?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_d_id1423_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_d_id1423_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_D_v1_5_0_de",
         "AnswerA": "Nicht verfügbar, Verfügbar, Zimmer wechseln, Nicht verfügbar, Stornieren",
@@ -3557,7 +3557,7 @@
     {
         "QuestionID": 1432,
         "QuestionText": "Die Tabelle zeigt die Nachverfolgbarkeitsmatrix zwischen Testfällen und Anforderungen. Ein „X“ bedeutet, dass ein Testfall die Anforderung überdeckt.\n\nDie Testfälle sollen mithilfe des Verfahrens der zusätzlichen Überdeckung priorisiert und anschließend alle ausgeführt werden.\n\nWelcher Testfall sollte gemäß diesem Verfahren ALS LETZTER ausgeführt werden?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_d_id1432_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_d_id1432_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL40_SET_D_v1_5_0_de",
         "AnswerA": "TC1",
@@ -4091,7 +4091,7 @@
 {
         "QuestionID": 1621,
         "QuestionText": "Sie testen ein System, das die Endnote für die Kursteilnehmer berechnet.\n\nDie Endnote wird auf der Grundlage der Gesamtpunktzahl zwischen 0 und 100 nach den folgenden Regeln ermittelt:\n· 0 - 50 Punkte: nicht bestanden\n· 51 - 70 Punkte: ausreichend\n· 71 - 90 Punkte: gut\n· 91 - 100 Punkte: sehr gut\n\nSie haben die folgenden Testfälle vorbereitet: (siehe Tabelle) \n\nWie hoch ist die Überdeckung der 2-Wert-Grenzwertanalyse, die mit den vorhanden Testfällen erreicht wird?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_f_id1621_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_f_id1621_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL_SET_F_v1_2_de",
         "AnswerA": "60 %",
@@ -4110,7 +4110,7 @@
     {
         "QuestionID": 1622,
         "QuestionText": "Sie testen ein neues Customer-Relationship-Management-System für einen Fahrrad-Tagesverleih. Die Anforderungen an das System lauten wie folgt: \n- Jeder kann ein Fahrrad ausleihen, aber nur Mitglieder erhalten einen Rabatt von 20 %. \n- Wird die Rückgabefrist jedoch versäumt, kann der Rabatt nicht mehr in Anspruch genommen werden. \n- Nach 15 Ausleihen erhalten die Mitglieder ein T-Shirt geschenkt. \n\nEin Tester hat die folgende Entscheidungstabelle entworfen, um die implementierten Funktionen zu testen (J=Wahr, N=Falsch, X=Aktion ausführen): (siehe Tabelle) \n\nWelche Regel (Kombination von Bedingungen und Aktionen) entspricht NICHT den oben angegebenen Anforderungen?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_f_id1622_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_f_id1622_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL_SET_F_v1_2_de",
         "AnswerA": "R4",
@@ -4132,7 +4132,7 @@
     {
         "QuestionID": 1623,
         "QuestionText": "Sie testen ein System, dessen Lebenszyklus durch das nachstehende Zustandsübergangsdiagramm modelliert wird. Das System startet im INIT-Zustand und beendet seinen Betrieb im OFF-Zustand. \nWas ist die MINDESTZAHL von Testfällen, um eine Überdeckung der gültigen Übergänge von 100 % zu erreichen (0-Switch-Überdeckung)?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_f_id1623_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_f_id1623_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL_SET_F_v1_2_de",
         "AnswerA": "2",
@@ -4313,7 +4313,7 @@
     {
         "QuestionID": 1633,
         "QuestionText": "Folgende Prioritäten und Abhängigkeiten der Testfälle sind gegeben: (siehe Tabelle) \n\nWelcher der folgenden Testausführungspläne berücksichtigt AM BESTEN die Prioritäten sowie die technischen und logischen Abhängigkeiten?",
-        "Picture": "model/images/QuestionsISTQBFV4/set_f_id1633_img.png",
+        "Picture": "model/images/QuestionsISTQBFV4/set_f_id1633_img.PNG",
         "AmountOfTrueAnswers": 1,
         "QuestionTopicArea": "CTFL_SET_F_v1_2_de",
         "AnswerA": "TF1 – TF3 – TF4 – TF6 – TF2 – TF5",
