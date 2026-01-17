@@ -3,6 +3,17 @@
 
 
 ---
+## [v1.1.6] - 17.01.2026
+
+### Added
+
+### Changed
+
+### Fixed
+
+- Major Bugfix of evaluateAnswer
+
+---
 ## [v1.1.5] - 17.01.2026
 
 ### Added

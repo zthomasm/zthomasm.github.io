@@ -198,7 +198,7 @@ sap.ui.define([
                 }
 
                 // Zähler für komplett richtige Antworten
-                if (ans.selected === ans.correct && ans.correct) {
+                if (ans.selected === ans.correct) {
                     nCorrectThisQuestion++;
                 }
             });
