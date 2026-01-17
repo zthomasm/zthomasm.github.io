@@ -1,6 +1,16 @@
 # Changelog
 
 
+---
+## [v1.1.8] - 17.01.2026
+
+### Added
+
+### Changed
+
+### Fixed
+
+- Major Bugfix of showing pictures in GitHub Pages
 
 ---
 ## [v1.1.7] - 17.01.2026
