@@ -174,7 +174,8 @@ sap.ui.define([
 
         onCheckAnswerLinear: function(oQuestion, aAnswerControls, oStepPanel, currentIndex) {
             
-            const nCorrectThisQuestion = QuestionHelper.evaluateAnswer(oQuestion, aAnswerControls);
+            // const nCorrectThisQuestion = QuestionHelper.evaluateAnswer(oQuestion, aAnswerControls);
+            const oEvalResult = QuestionHelper.evaluateAnswer(oQuestion, aAnswerControls);
 
 
             // Lösungsvorschau unter der Frage
@@ -195,7 +196,12 @@ sap.ui.define([
             oVBoxSolution.addItem(oBtnAskGPT);
 
             // Gesamtanzahl der korrekten Antworten aktualisieren
-            if (nCorrectThisQuestion === oQuestion.AmountOfTrueAnswers) {
+            // if (nCorrectThisQuestion === oQuestion.AmountOfTrueAnswers) {
+            //     const nTotalCorrect = this.oGameSettings.getProperty("/correctAnswersCount") + 1;
+            //     this.oGameSettings.setProperty("/correctAnswersCount", nTotalCorrect);
+            // }
+
+            if (oEvalResult.isFullyCorrect) {
                 const nTotalCorrect = this.oGameSettings.getProperty("/correctAnswersCount") + 1;
                 this.oGameSettings.setProperty("/correctAnswersCount", nTotalCorrect);
             }
@@ -216,7 +222,13 @@ sap.ui.define([
                 MessageToast.show(`Du hast ${nCorrect} von ${nTotal} richtig beantwortet!`);
             }
 
-            if (nCorrectThisQuestion === oQuestion.AmountOfTrueAnswers) {
+            // if (nCorrectThisQuestion === oQuestion.AmountOfTrueAnswers) {
+            //     oStepPanel.addStyleClass("panelCorrect");
+            // } else {
+            //     oStepPanel.addStyleClass("panelWrong");
+            // }
+
+            if (oEvalResult.isFullyCorrect) {
                 oStepPanel.addStyleClass("panelCorrect");
             } else {
                 oStepPanel.addStyleClass("panelWrong");

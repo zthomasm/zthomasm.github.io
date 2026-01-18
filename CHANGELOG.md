@@ -2,6 +2,18 @@
 
 
 ---
+## [v1.1.10] - 18.01.2026
+
+### Added
+
+### Changed
+
+### Fixed
+
+- Changed default settings
+- Major Bugfix of evaluateAnswer + controller
+
+---
 ## [v1.1.9] - 17.01.2026
 
 ### Added
