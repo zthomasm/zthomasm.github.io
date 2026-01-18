@@ -182,7 +182,9 @@ sap.ui.define([
 
         // ========== CheckAnswer ==========
         evaluateAnswer: function(oQuestion, aAnswerControls) {
-            let nCorrectThisQuestion = 0;
+            // let nCorrectThisQuestion = 0;
+            let nCorrectSelected = 0;
+            let nTotalSelected = 0;
 
             // Nutzer-Antworten auswerten und einfärben
             oQuestion.Answers.forEach((ans, i) => {
@@ -198,12 +200,27 @@ sap.ui.define([
                 }
 
                 // Zähler für komplett richtige Antworten
-                if (ans.selected === ans.correct) {
-                    nCorrectThisQuestion++;
+                // alt
+                // if (ans.selected === ans.correct && ans.correct) {
+                // if (ans.selected === ans.correct) {
+                // if (ans.selected && ans.correct) {
+                //     nCorrectThisQuestion++;
+                // }
+                if (ans.selected && ans.correct) {
+                    nCorrectSelected++;
+                }
+                if (ans.selected) {
+                    nTotalSelected++;
                 }
             });
 
-            return nCorrectThisQuestion;
+            // return nCorrectThisQuestion;
+            return {
+                nCorrectSelected: nCorrectSelected,
+                nTotalSelected: nTotalSelected,
+                nCorrectExpected: oQuestion.AmountOfTrueAnswers,
+                isFullyCorrect: nCorrectSelected === oQuestion.AmountOfTrueAnswers && nTotalSelected === oQuestion.AmountOfTrueAnswers
+            };
         },
 
         createSolutionDisplay: function(oQuestion, oVBoxSolution) {
@@ -297,12 +314,27 @@ sap.ui.define([
                 const solutionVisible = panel._oVBoxSolutionBelow.getVisible();
                 if (solutionVisible) {
                     // Prüfen ob die Frage richtig war
-                    let nCorrect = 0;
-                    const oQuestion = panel.data("question");
-                    oQuestion.Answers.forEach(a => { if (a.selected === a.correct && a.correct) nCorrect++; });
+                    // let nCorrect = 0;
+                    // const oQuestion = panel.data("question");
+                    // oQuestion.Answers.forEach(a => { if (a.selected === a.correct && a.correct) nCorrect++; });
 
-                    if (nCorrect === oQuestion.AmountOfTrueAnswers) dotClass += " correct";
-                    else dotClass += " wrong";
+                    // if (nCorrect === oQuestion.AmountOfTrueAnswers) dotClass += " correct";
+                    // else dotClass += " wrong";
+
+                    const oQuestion = panel.data("question");
+                    let nCorrectSelected = 0;
+                    let nTotalSelected = 0;
+                    oQuestion.Answers.forEach(a => { 
+                        if (a.selected && a.correct) nCorrectSelected++;
+                        if (a.selected) nTotalSelected++;
+                    });
+
+                    if (nCorrectSelected === oQuestion.AmountOfTrueAnswers && 
+                        nTotalSelected === oQuestion.AmountOfTrueAnswers) {
+                        dotClass += " correct";
+                    } else {
+                        dotClass += " wrong";
+                    }
                 }
 
                 const dot = new Text({ text: "●" });

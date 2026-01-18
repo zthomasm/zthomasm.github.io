@@ -103,7 +103,8 @@ sap.ui.define([
         
         _onConfirmQuestion: function(oQuestion, oPanel) {
             // ← QuestionHelper.evaluateAnswer nutzen
-            const nCorrectThisQuestion = QuestionHelper.evaluateAnswer(oQuestion, oPanel._aAnswerControls);
+            // const nCorrectThisQuestion = QuestionHelper.evaluateAnswer(oQuestion, oPanel._aAnswerControls);
+            const oEvalResult = QuestionHelper.evaluateAnswer(oQuestion, oPanel._aAnswerControls);
             
             // ← QuestionHelper.createSolutionDisplay nutzen
             const oVBoxSolution = oPanel._oVBoxSolutionBelow;
@@ -128,13 +129,20 @@ sap.ui.define([
             oPanel._oBtnConfirm.setEnabled(false);
             
             // Panel farblich markieren
-            if (nCorrectThisQuestion === oQuestion.AmountOfTrueAnswers) {
+            // if (nCorrectThisQuestion === oQuestion.AmountOfTrueAnswers) {
+            //     oPanel.addStyleClass("panelCorrect");
+            // } else {
+            //     oPanel.addStyleClass("panelWrong");
+            // }
+            if (oEvalResult.isFullyCorrect) {
                 oPanel.addStyleClass("panelCorrect");
             } else {
                 oPanel.addStyleClass("panelWrong");
             }
-            
-            console.log(`Frage ${oQuestion.QuestionID}: ${nCorrectThisQuestion}/${oQuestion.AmountOfTrueAnswers} korrekt`);
+
+
+            // console.log(`Frage ${oQuestion.QuestionID}: ${nCorrectThisQuestion}/${oQuestion.AmountOfTrueAnswers} korrekt`);
+            console.log(`Frage ${oQuestion.QuestionID}: ${oEvalResult.isFullyCorrect ? "✅ RICHTIG" : "❌ FALSCH"}`);
         },
         
         _openHelpOfAI: function(oQuestion) {

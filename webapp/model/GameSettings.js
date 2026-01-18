@@ -97,7 +97,7 @@ sap.ui.define([
                 sMode: "",
                 settingsAreSet: false,
                 bTCA: true,                 // TellCorrectAnswerToAI
-                numberOfQuestions: 5,
+                numberOfQuestions: 10,
                 singleTopic: "",
                 selectedTopics: [],
                 availableTopics: [
