@@ -18,7 +18,8 @@ sap.ui.define([
         sanitizeText: function(text) {
             if (!text) return "";
             return text
-                .replace(/\$/g, "S|")           // $ → S
+                // .replace(/\$/g, "S|")           // $ → S
+                .replace(/\$/g, "\$")           // $ → S, better
                 .replace(/@/g, "(at)")          // @ → at
                 .replace(/#/g, "(HASHTAG)")     // # → -
                 .replace(/\{/g, "((")           // { → (
