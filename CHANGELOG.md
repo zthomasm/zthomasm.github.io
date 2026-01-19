@@ -2,6 +2,17 @@
 
 
 ---
+## [v1.1.12] - 19.01.2026
+
+### Added
+
+### Changed
+
+- Changed sanitizeText
+
+### Fixed
+
+---
 ## [v1.1.11] - 18.01.2026
 
 ### Added
