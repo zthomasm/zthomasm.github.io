@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/mvc/Controller","sap/m/library","sap/m/MessageToast","sap/m/Label","learninggame/model/GameSettings"],function(e,n,a,o,r){"use strict";return e.extend("learninggame.controller.BaseController",{onInit(){},onDebug(e){console.log(e)}})});
+//# sourceMappingURL=BaseController.js.map
