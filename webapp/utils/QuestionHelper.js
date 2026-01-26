@@ -309,7 +309,8 @@ sap.ui.define([
         updateFooterProgress: function(oFooter, aQuestionControls, oGameSettings) {
             oFooter.removeAllItems();
 
-            aQuestionControls.forEach(panel => {
+            const maxDots = sap.ui.Device.system.phone ? 0 : 40;
+            aQuestionControls.slice(0, maxDots).forEach(panel => {
                 let dotClass = "footerProgressDot";
 
                 const solutionVisible = panel._oVBoxSolutionBelow.getVisible();
@@ -350,7 +351,8 @@ sap.ui.define([
             let sText = "";
             if (nTotal > 0) {
                 const percent = Math.round((nCorrectTotal / nTotal) * 100);
-                sText = nCorrectTotal + " / " + nTotal + " (" + percent + "%)";
+                // sText = nCorrectTotal + " / " + nTotal + " (" + percent + "%)";
+                sText = nCorrectTotal + " von " + nTotal + " richtig" + " (" + percent + "%)";
             } else {
                 sText = "0 / 0 (0%)";
             }

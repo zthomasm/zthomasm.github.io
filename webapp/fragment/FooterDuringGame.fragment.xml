@@ -4,6 +4,17 @@
         <HBox id="footerProgress" class="footerProgressContainer" alignItems="Center" justifyContent="Center"/>
         
         <ToolbarSpacer/>
+
+        <Button 
+            id="footerButtonTimer0010"
+            visible="{Timer>/bTimerActivated}"
+            text="Timer"
+            press=".onShowTimerPopover"
+            type="Neutral"
+            icon="sap-icon://pending"
+        ></Button>
+
+        <ToolbarSpacer/>
         
         <CheckBox 
             text="TCA"

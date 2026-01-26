@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Popover
+        id="timerPopover"
+        placement="Top"
+        showHeader="true"
+        title="Zeit verbleibend">
+        
+        <VBox class="sapUiSmallMargin" alignItems="Center">
+            <Text 
+                text="{Timer>/sRemainingTimeFormatted}"
+                textAlign="Center"
+                class="sapUiLargeSmallBottom timerDisplay" />
+            
+            <HBox justifyContent="Center" class="sapUiSmallMargin">
+                <Button 
+                    text="⏸ Pausieren"
+                    visible="{Timer>/bTimerRunning}"
+                    press=".onPauseTimer"
+                    type="Transparent" />
+                
+                <Button 
+                    text="▶ Fortsetzen"
+                    visible="{= !${Timer>/bTimerRunning}}"
+                    press=".onResumeTimer"
+                    type="Transparent"
+                    class="sapUiTinyMarginBegin" />
+            </HBox>
+
+            <Button 
+                text="Schließen"
+                press=".onClosePopover"
+                width="100%"
+                class="sapUiSmallMarginTop" />
+        </VBox>
+
+    </Popover>
+</core:FragmentDefinition>

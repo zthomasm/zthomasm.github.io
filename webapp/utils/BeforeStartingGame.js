@@ -1,7 +1,11 @@
 sap.ui.define([
   "sap/ui/core/Fragment",
-  "sap/m/MessageToast"
-], function(Fragment, MessageToast) {
+  "sap/m/MessageToast",
+
+  // Utils
+  "learninggame/utils/Timer",
+
+], function(Fragment, MessageToast, Timer) {
   "use strict";
 
   return {
@@ -31,9 +35,24 @@ sap.ui.define([
           controller: {
 
             onSliderChange: function(oEvent) {
-                var iValue = oEvent.getParameter("value");
-                oModel.setProperty("/numberOfQuestions", iValue);
-                console.log("Slider changed to " + iValue)
+              var iValue = oEvent.getParameter("value");
+              oModel.setProperty("/numberOfQuestions", iValue);
+              console.log("Slider changed to " + iValue);
+
+              // Timer
+              this._updateTimerCalculation();
+            },
+
+            onChangeTimePicker: function(oEvent) {
+              this._updateTimerCalculation();
+            },
+
+            _updateTimerCalculation: function() {
+                const iValue = oModel.getProperty("/numberOfQuestions");
+                const oTimerModel = oView.getModel("Timer");
+                const sTimer = oTimerModel.getProperty("/sValueOfTimer");
+                const iSecondsPerQuestion = Timer.calculateTimePerQuestion(iValue, sTimer);
+                oTimerModel.setProperty("/iValueInSeconds", iSecondsPerQuestion);
             },
 
             onSelectAllTopics: function() {
@@ -54,6 +73,19 @@ sap.ui.define([
 
             onConfirmDialog: function() {
               const sMode = oModel.getProperty("/sMode");
+
+
+              const oTimerModel = oView.getModel("Timer");
+                if (oTimerModel.getProperty("/bTimerActivated")) {
+                  const sTimer = oTimerModel.getProperty("/sValueOfTimer");
+                  const iSeconds = this._parseTimeToSeconds(sTimer);
+                  
+                  if (iSeconds === 0 || !sTimer || sTimer === "00:00:00") {
+                      MessageToast.show("Bitte geben Sie eine gültige Zeit ein");
+                      return;
+                  }
+              }
+
 
               switch (sMode) {
                 // CASE
@@ -102,6 +134,13 @@ sap.ui.define([
                 default:
                   break;
               }
+            },
+
+            _parseTimeToSeconds: function(sTimeString) {
+                var aParts = sTimeString.split(":");
+                return parseInt(aParts[0], 10) * 3600 + 
+                      parseInt(aParts[1], 10) * 60 + 
+                      parseInt(aParts[2], 10);
             },
 
             onDebug: function() {

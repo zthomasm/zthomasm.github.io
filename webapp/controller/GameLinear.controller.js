@@ -12,8 +12,9 @@ sap.ui.define([
     // Utils
     "learninggame/utils/QuestionHelper",
     "learninggame/utils/CleanupHelper",
+    "learninggame/utils/Timer",
 
-], function(BaseController, JSONModel, MessageToast, VBox, HBox, CheckBox, Text, Button, Panel, QuestionHelper, CleanupHelper) {
+], function(BaseController, JSONModel, MessageToast, VBox, HBox, CheckBox, Text, Button, Panel, QuestionHelper, CleanupHelper, Timer) {
     "use strict";
 
     return BaseController.extend("learninggame.controller.GameLinear", {
@@ -170,6 +171,15 @@ sap.ui.define([
                 oContainer.addItem(oPanel);
                 this._questionControls.push(oPanel);
             });
+
+            this._updateFooterProgress();
+
+            // Timer starten
+            const oTimerModel = this.getOwnerComponent().getModel("Timer");
+            if (oTimerModel.getProperty("/bTimerActivated")) {
+                const iTotalSeconds = oTimerModel.getProperty("/iValueInSeconds") * aQuestions.length;
+                Timer.startTimer(oTimerModel, iTotalSeconds);
+            }
         },
 
         onCheckAnswerLinear: function(oQuestion, aAnswerControls, oStepPanel, currentIndex) {
@@ -268,7 +278,43 @@ sap.ui.define([
 
         onNavBack: function() {
             this.getOwnerComponent().getRouter().navTo("RouteStartPage");
-        }
+        },
+
+        onShowTimerPopover: function(oEvent) {
+            const oButton = oEvent.getSource();
+            const oGameLinearController = this;
+            
+            if (!this._oTimerPopover) {
+                sap.ui.require(["sap/ui/core/Fragment"], (Fragment) => {
+                    const oView = this.getView();
+                    this._oTimerPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "learninggame.fragment.TimerPopover",
+                        controller: {
+                            onPauseTimer: () => {
+                                const oTimerModel = this.getOwnerComponent().getModel("Timer");
+                                Timer.pauseTimer(oTimerModel);
+                            },
+                            
+                            onResumeTimer: () => {
+                                const oTimerModel = this.getOwnerComponent().getModel("Timer");
+                                Timer.resumeTimer(oTimerModel);
+                            },
+                            
+                            onClosePopover: () => {
+                                oGameLinearController._oTimerPopover.close();
+                            }
+                        }
+                    }).then((oPopover) => {
+                        oView.addDependent(oPopover);
+                        oGameLinearController._oTimerPopover = oPopover;
+                        oPopover.openBy(oButton);
+                    });
+                });
+            } else {
+                this._oTimerPopover.openBy(oButton);
+            }
+        },
 
 
 
