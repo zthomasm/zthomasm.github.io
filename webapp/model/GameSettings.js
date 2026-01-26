@@ -4,6 +4,27 @@ sap.ui.define([
     "use strict";
 
     return {
+        basicSettings: function() {
+            return new JSONModel({
+                // 
+                bLaunchpad: false,
+                sUser: "",
+                sDevice: "",
+
+            })
+        },
+
+        optionalfunctionTimer: function() {
+            return new JSONModel({
+                // 
+                bAllowTimer: true,
+                bTimerActivated: false,
+                sValueOfTimer: "00:00:00",
+                iValueInSeconds: 0,
+
+            })
+        },
+
         bundleofAIModels: function() {
             return new JSONModel({
                 // 

@@ -17,6 +17,12 @@ sap.ui.define([
             // call the base component's init function
             UIComponent.prototype.init.apply(this, arguments);
 
+            const oBasicSettings = GameSettings.basicSettings();
+            this.setModel(oBasicSettings, "basicSettings");
+
+            const oTimer = GameSettings.optionalfunctionTimer();
+            this.setModel(oTimer, "Timer");
+
             const oTopicModel = GameSettings.createTopicModel();
             this.setModel(oTopicModel, "TopicModel");
 

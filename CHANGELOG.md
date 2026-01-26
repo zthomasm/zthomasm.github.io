@@ -2,6 +2,30 @@
 
 
 ---
+## [v1.1.13] - 26.01.2026
+
+### Added
+
+- Added a timer in the quiz
+    - Timer selection in Dialog
+    - Timer-Button in Footer
+    - Logic placed in Timer.js
+
+- Added new model: basicSettings for basic information while using
+
+### Changed
+
+- Footer logic of footerProgress
+    - Now when someone is on a mobile device, the person wont see the colored progress because there is not enough space in the footer, only the text is shown
+    - Desktop remains the same up to 40 questions
+
+- Maximum of Question is set to 40 now
+
+### Fixed
+
+- Small improvements
+
+---
 ## [v1.1.12] - 19.01.2026
 
 ### Added

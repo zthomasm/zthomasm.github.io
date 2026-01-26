@@ -15,7 +15,7 @@
         <Slider
             visible="{= ${topicModel>/sMode} === 'gameMode' }"
             min="3"
-            max="15"
+            max="40"
             step="1"
             value="{topicModel>/numberOfQuestions}"
             liveChange=".onSliderChange"
@@ -55,6 +55,7 @@
 
         <VBox>
           <SegmentedButton 
+            class="sapUiSmallMarginEnd"
             selectedKey="{AIModels>/selectedAI}" 
             items="{
               path: 'AIModels>/availableAI'
@@ -64,6 +65,40 @@
               <SegmentedButtonItem key="{AIModels>key}" text="{AIModels>text}" />
             </items>
           </SegmentedButton>
+        </VBox>
+
+      <!-- Optional -->
+      <!-- Optional: Timer -->
+      <Text text="Optional" class="sapUiMediumMarginTop" visible="{= ${topicModel>/sMode} === 'gameMode' }"/>
+      <Toolbar height="1px" width="100%" visible="{= ${topicModel>/sMode} === 'gameMode' }"/>
+
+        <VBox visible="{= ${topicModel>/sMode} === 'gameMode' }">
+
+          <HBox alignItems="Center" class="sapUiTinyMarginTop sapUiSmallMarginBottom" >
+            <CheckBox 
+              text="Timer"
+              selected="{Timer>/bTimerActivated}"
+            ></CheckBox>
+
+            <!-- <TimePickerInputs></TimePickerInputs> -->
+            <TimePicker
+              class="sapUiTinyMarginBegin"
+              visible="{Timer>/bTimerActivated}"
+              valueFormat="HH:mm:ss"
+              valueState="Information"
+              valueStateText="Stunden : Minuten : Sekunden"
+              displayFormat="HH:mm:ss"
+              value="{Timer>/sValueOfTimer}"
+              change=".onChangeTimePicker"
+            ></TimePicker>
+
+            <Text 
+              class="sapUiMediumMarginBegin"
+              visible="{Timer>/bTimerActivated}"
+              text="= {Timer>/iValueInSeconds} Sekunden pro Frage"
+            ></Text>
+          </HBox>
+
         </VBox>
 
         <!-- <Button text="Debug" press=".onDebug"></Button> -->

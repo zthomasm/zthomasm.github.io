@@ -143,3 +143,12 @@
         max-width: 100%;
     }
 }
+
+.timerDisplay {
+    font-size: 2rem !important;
+    /* font-weight: bold !important; */
+}
+
+
+
+
