@@ -22,6 +22,13 @@ sap.ui.define([], function() {
     return {
         // ==================== PUBLIC API ====================
 
+        isWinterMonth: function (months) {
+            const now = new Date();
+            const currentMonth = now.getMonth() + 1; // +1 weil Januar ist 0, Februar ist 1, ...
+            return months.includes(currentMonth);
+        },
+
+
         /**
          * Schnee-Effekt STARTEN
          * 

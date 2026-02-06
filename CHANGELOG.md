@@ -2,6 +2,17 @@
 
 
 ---
+## [v1.1.14] - 06.02.2026
+
+### Added
+
+### Changed
+
+- SnowEffect changed to showing the effect only in the german winter months: 12, 01, 02
+
+### Fixed
+
+---
 ## [v1.1.13] - 26.01.2026
 
 ### Added
