@@ -15,8 +15,9 @@ sap.ui.define([
 
 
             const bSnowEffect = true;
+            const aWinterMonths = [12, 1, 2]; // Wintermonate 12, 01, 02
 
-            if (bSnowEffect) {
+            if (bSnowEffect && SnowHelper.isWinterMonth(aWinterMonths)) {
                 
                 // Delegate für beforeHide/ beforeShow auf die View hängen
                 this.getView().addEventDelegate({
