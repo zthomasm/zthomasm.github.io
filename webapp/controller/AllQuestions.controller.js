@@ -25,7 +25,7 @@ sap.ui.define([
             let sGameSettingsModelName;
             switch(sActiveTopic) {
                 case "FIORI":
-                    sGameSettingsModelName = "GameSettings";
+                    sGameSettingsModelName = "GameSettingsFIORI";
                     break;
                 case "ABAP":
                     sGameSettingsModelName = "GameSettingsABAP";

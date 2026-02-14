@@ -26,8 +26,8 @@ sap.ui.define([
             const oTopicModel = GameSettings.createTopicModel();
             this.setModel(oTopicModel, "TopicModel");
 
-            const oGameSettingsModel = GameSettings.createSettingsForModels();
-            this.setModel(oGameSettingsModel, "GameSettings");
+            const oGameSettingsModel1 = GameSettings.createSettingsForModelsFIORI();
+            this.setModel(oGameSettingsModel1, "GameSettingsFIORI");
 
             const oGameSettingsModel2 = GameSettings.createSettingsForModelsABAP();
             this.setModel(oGameSettingsModel2, "GameSettingsABAP");

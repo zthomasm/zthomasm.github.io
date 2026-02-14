@@ -64,7 +64,7 @@ sap.ui.define([
             });
         },
 
-        createSettingsForModels: function() {
+        createSettingsForModelsFIORI: function() {
             return new JSONModel({
                 // 
                 sMode: "",
@@ -128,7 +128,7 @@ sap.ui.define([
                     { key: "CTFL40_SET_C_v2_3_0_de", text: "ISTQB CTFL40 SET C v2.3.0 (Deutsch)" },     // ab ID 1301   // done
                     { key: "CTFL40_SET_D_v1_5_0_de", text: "ISTQB CTFL40 SET D v1.5.0 (Deutsch)" },     // ab ID 1401   // done
                     { key: "CTFL40_SET_E_v1_3_de", text: "ISTQB CTFL40 SET E v1.3 (Deutsch)" },         // ab ID 1501   // done
-                    { key: "CTFL_SET_F_v1_2_de", text: "ISTQB CTFL SET F v1.2 (Deutsch)" },             // ab ID 1601
+                    { key: "CTFL_SET_F_v1_2_de", text: "ISTQB CTFL SET F v1.2 (Deutsch)" },             // ab ID 1601   // done
                     ],
                 correctAnswersCount: 0
 

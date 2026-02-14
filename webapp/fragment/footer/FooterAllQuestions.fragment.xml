@@ -11,7 +11,7 @@
         <ToolbarSpacer/>
         <Button 
             enabled="false"
-            text="{= ${quiz>/questions}.length } Fragen zum Thema: {GameSettings>/selectedSingleTopic}"
+            text="{= ${quiz>/questions}.length } Fragen zum Thema"
         ></Button>
 
 

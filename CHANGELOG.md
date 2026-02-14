@@ -1,5 +1,17 @@
 # Changelog
 
+---
+## [v1.1.15] - 14.02.2026
+
+### Added
+
+### Changed
+
+- Changed some structures
+
+### Fixed
+
+- Small improvements
 
 ---
 ## [v1.1.14] - 06.02.2026

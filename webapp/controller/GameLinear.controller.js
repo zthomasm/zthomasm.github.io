@@ -36,7 +36,7 @@ sap.ui.define([
             let sGameSettingsModelName;
             switch(sActiveTopic) {
                 case "FIORI":
-                    sGameSettingsModelName = "GameSettings";
+                    sGameSettingsModelName = "GameSettingsFIORI";
                     break;
                 case "ABAP":
                     sGameSettingsModelName = "GameSettingsABAP";
@@ -84,8 +84,6 @@ sap.ui.define([
                 
                 console.log("Loading from:", sJsonPath);
                 oQuizModel.loadData(sJsonPath);                
-
-                // oQuizModel.loadData("/model/QuestionsFiori.json"); // #zchange, muss generisch werden
 
                 oQuizModel.attachRequestCompleted(() => {
                     console.log("QuestionsFiori.json LOADED");

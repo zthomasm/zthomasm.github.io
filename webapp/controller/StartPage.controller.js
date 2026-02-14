@@ -38,7 +38,7 @@ sap.ui.define([
             const oTopicModel = this.getOwnerComponent().getModel("TopicModel");
             oTopicModel.setProperty("/activeTopic", "FIORI");
 
-            const sModel = "GameSettings";
+            const sModel = "GameSettingsFIORI";
             const sMode = "gameMode"; 
             BeforeStartingGame.openBeforeStartDialog(this, sModel, sMode);
         },
@@ -68,7 +68,7 @@ sap.ui.define([
             const oTopicModel = this.getOwnerComponent().getModel("TopicModel");
             oTopicModel.setProperty("/activeTopic", "FIORI");
 
-            const sModel = "GameSettings";
+            const sModel = "GameSettingsFIORI";
             const sMode = "showAllQuestions"; 
             BeforeStartingGame.openBeforeStartDialog(this, sModel, sMode);
         },
