@@ -65,7 +65,7 @@ sap.ui.define([], function() {
          * @public
          */
         stopSnow: function(oController) {
-            console.log("❌ SnowHelper: Schnee GESTOPPT");
+            console.log("SnowHelper: Schnee GESTOPPT");
 
             // === State deaktivieren ===
             oController._isSnowActive = false;

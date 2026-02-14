@@ -168,7 +168,7 @@
         </content>
 
         <footer>
-            <core:Fragment fragmentName="learninggame.fragment.FooterMain" type="XML" />
+            <core:Fragment fragmentName="learninggame.fragment.footer.FooterMain" type="XML" />
         </footer>
 
     </Page>

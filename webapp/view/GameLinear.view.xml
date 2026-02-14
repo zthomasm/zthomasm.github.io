@@ -26,7 +26,7 @@
     </content>
 
     <footer>
-        <core:Fragment fragmentName="learninggame.fragment.FooterDuringGame" type="XML" />
+        <core:Fragment fragmentName="learninggame.fragment.footer.FooterDuringGame" type="XML" />
     </footer>
 </Page>
     
