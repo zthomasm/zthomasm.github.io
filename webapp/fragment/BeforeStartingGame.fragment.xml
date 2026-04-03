@@ -3,10 +3,10 @@
     id="beforeStartingDialog"
     title="Bevor du startest"
     class="sapUiContentPadding"
-    draggable="true"
+    draggable="false"
     resizable="false"
-    contentHeight="50%"
-    contentWidth="50%">
+    contentHeight="55%"
+    contentWidth="55%">
 
     <VBox class="sapUiSmallMargin">
 
@@ -74,7 +74,12 @@
 
         <VBox visible="{= ${topicModel>/sMode} === 'gameMode' }">
 
-          <HBox alignItems="Center" class="sapUiTinyMarginTop sapUiSmallMarginBottom" >
+            <CheckBox 
+              text="Tipp"
+              selected="{topicModel>/bHintEnabled}"
+              class="sapUiTinyMarginTop sapUiTinyMarginEnd"
+            ></CheckBox>
+          <HBox alignItems="Center" class="sapUiSmallMarginBottom" >
             <CheckBox 
               text="Timer"
               selected="{Timer>/bTimerActivated}"

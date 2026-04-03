@@ -158,10 +158,12 @@ sap.ui.define([
             const aQuestions = this.getView().getModel("quiz").getProperty("/questions");
             this._questionControls = [];
 
+            const bHintEnabled = this.oGameSettings.getProperty("/bHintEnabled");
+
             aQuestions.forEach((q, index) => {
 
                 // Helper
-                const oPanel = QuestionHelper.createQuestionPanel(q, index);
+                const oPanel = QuestionHelper.createQuestionPanel(q, index, bHintEnabled);
 
                 oPanel._oBtnConfirm.attachPress(() => this.onCheckAnswerLinear(q, oPanel._aAnswerControls, oPanel, index));
                 oPanel._oBtnAskGPT.attachPress(() => this._openHelpOfAI(q));

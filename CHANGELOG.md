@@ -1,6 +1,20 @@
 # Changelog
 
 ---
+## [v1.1.16] - 03.04.2026
+
+### Added
+
+- Added a new optional setting "tipp" for the quiz, so the user can get a tip for the current question
+- Dialog: Tipp option
+
+### Changed
+
+- Dialog is not draggable anymore
+
+### Fixed
+
+---
 ## [v1.1.15] - 14.02.2026
 
 ### Added
