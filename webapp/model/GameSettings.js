@@ -1,10 +1,10 @@
 sap.ui.define([
     "sap/ui/model/json/JSONModel"
-], function(JSONModel) {
+], function (JSONModel) {
     "use strict";
 
     return {
-        basicSettings: function() {
+        basicSettings: function () {
             return new JSONModel({
                 // 
                 bLaunchpad: false,
@@ -14,7 +14,7 @@ sap.ui.define([
             })
         },
 
-        optionalfunctionTimer: function() {
+        optionalfunctionTimer: function () {
             return new JSONModel({
                 // 
                 bAllowTimer: true,
@@ -25,7 +25,7 @@ sap.ui.define([
             })
         },
 
-        bundleofAIModels: function() {
+        bundleofAIModels: function () {
             return new JSONModel({
                 // 
                 selectedAI: "AI03",
@@ -38,7 +38,7 @@ sap.ui.define([
             })
         },
 
-        createTopicModel: function() {
+        createTopicModel: function () {
             return new JSONModel({
                 activeTopic: "",
                 topics: {
@@ -64,11 +64,12 @@ sap.ui.define([
             });
         },
 
-        createSettingsForModelsFIORI: function() {
+        createSettingsForModelsFIORI: function () {
             return new JSONModel({
                 // 
                 sMode: "",
                 settingsAreSet: false,
+                bHintEnabled: false,
                 bTCA: true,                 // TellCorrectAnswerToAI
                 numberOfQuestions: 10,
                 singleTopic: "",
@@ -85,38 +86,40 @@ sap.ui.define([
                     { key: "DUMP_COLL", text: "Dump, Collection" },
                     // AI
                     { key: "DUMP_AI", text: "Questions from AI based on Dumps" }
-                    ],
+                ],
                 correctAnswersCount: 0
 
             });
         },
-        
-        
-        createSettingsForModelsABAP: function() {
+
+
+        createSettingsForModelsABAP: function () {
             return new JSONModel({
                 // 
                 sMode: "",
                 settingsAreSet: false,
+                bHintEnabled: false,
                 bTCA: true,                 // TellCorrectAnswerToAI
                 numberOfQuestions: 10,
                 singleTopic: "",
                 selectedTopics: [],
                 availableTopics: [
                     // X
-                    { key: "0010", text: "1, XXX" },  
-                    { key: "0020", text: "2, XXX" },  
-                    { key: "0030", text: "3, XXX" },  
-                    ],
+                    { key: "0010", text: "1, XXX" },
+                    { key: "0020", text: "2, XXX" },
+                    { key: "0030", text: "3, XXX" },
+                ],
                 correctAnswersCount: 0
 
             });
         },
 
-        createSettingsForModelsISTQBFV4: function() {
+        createSettingsForModelsISTQBFV4: function () {
             return new JSONModel({
                 // 
                 sMode: "",
                 settingsAreSet: false,
+                bHintEnabled: false,
                 bTCA: true,                 // TellCorrectAnswerToAI
                 numberOfQuestions: 10,
                 singleTopic: "",
@@ -129,7 +132,7 @@ sap.ui.define([
                     { key: "CTFL40_SET_D_v1_5_0_de", text: "ISTQB CTFL40 SET D v1.5.0 (Deutsch)" },     // ab ID 1401   // done
                     { key: "CTFL40_SET_E_v1_3_de", text: "ISTQB CTFL40 SET E v1.3 (Deutsch)" },         // ab ID 1501   // done
                     { key: "CTFL_SET_F_v1_2_de", text: "ISTQB CTFL SET F v1.2 (Deutsch)" },             // ab ID 1601   // done
-                    ],
+                ],
                 correctAnswersCount: 0
 
             });

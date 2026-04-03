@@ -6,16 +6,19 @@ sap.ui.define([
     "sap/m/Button",
     "sap/m/Panel",
     "sap/m/Image",
-], function(VBox, HBox, CheckBox, Text, Button, Panel, Image) {
+    "learninggame/utils/HintHelper"
+], function (VBox, HBox, CheckBox, Text, Button, Panel, Image, HintHelper) {
     "use strict";
 
-        // Konstanten
-        const bWrapping = true;
+    // Konstanten
+    const bWrapping = true;
+    const c_sHINT_ICON = "sap-icon://hint";
+    const c_sHINT_TEXT = "Tipp";
 
     return {
 
         // ========== Question-Helper ==========
-        sanitizeText: function(text) {
+        sanitizeText: function (text) {
             if (!text) return "";
             return text
                 // .replace(/\$/g, "S|")           // $ → S
@@ -27,7 +30,7 @@ sap.ui.define([
                 .replace(/\*/g, "•");           // * → •
         },
 
-        filterQuestionsByTopics: function(aAllQuestions, selectedTopics) {
+        filterQuestionsByTopics: function (aAllQuestions, selectedTopics) {
             if (selectedTopics.length > 0) {
                 aAllQuestions = aAllQuestions.filter(q => selectedTopics.includes(q.QuestionTopicArea));
                 console.log(`${aAllQuestions.length} Fragen nach Filter`);
@@ -35,7 +38,7 @@ sap.ui.define([
             return aAllQuestions;
         },
 
-        shuffleQuestions: function(aAllQuestions) {
+        shuffleQuestions: function (aAllQuestions) {
             for (let i = aAllQuestions.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [aAllQuestions[i], aAllQuestions[j]] = [aAllQuestions[j], aAllQuestions[i]];
@@ -43,19 +46,19 @@ sap.ui.define([
             return aAllQuestions;
         },
 
-        transformQuestionsToModel: function(aQuestions) {
+        transformQuestionsToModel: function (aQuestions) {
             return aQuestions.map(q => ({
                 QuestionID: q.QuestionID,
                 QuestionText: this.sanitizeText(q.QuestionText),
                 Picture: q.Picture, // wenn vorhanden
                 AmountOfTrueAnswers: q.AmountOfTrueAnswers,
                 QuestionTopicArea: q.QuestionTopicArea,
-                Answers: ["A","B","C","D","E","F"]
+                Answers: ["A", "B", "C", "D", "E", "F"]
                     .map(key => ({
                         key,
-                        text: this.sanitizeText(q["Answer"+key]),
-                        description: this.sanitizeText(q["Answer"+key+"_description"] || ""),
-                        correct: q["Answer"+key+"_boolean"],
+                        text: this.sanitizeText(q["Answer" + key]),
+                        description: this.sanitizeText(q["Answer" + key + "_description"] || ""),
+                        correct: q["Answer" + key + "_boolean"],
                         selected: false
                     }))
                     .filter(a => a.text)
@@ -64,7 +67,7 @@ sap.ui.define([
         },
 
         // ========== Panel-Helper ==========
-        createQuestionPanel: function(oQuestion, index) {
+        createQuestionPanel: function (oQuestion, index, bHintEnabled) {
             // Zusatz---
             // Info-Button Box (ID + TopicArea)
             const oInfoBox = new HBox({
@@ -146,6 +149,23 @@ sap.ui.define([
             });
             oBtnConfirm.addStyleClass("sapUiSmallMarginBottom sapUiTinyMarginBegin");
 
+            const oHBoxMainButtons = new HBox({ items: [oBtnConfirm] });
+            let oBtnHint = null;
+
+            if (bHintEnabled && HintHelper.bIsHintApplicable(oQuestion)) {
+                oBtnHint = new Button({
+                    text: c_sHINT_TEXT,
+                    icon: c_sHINT_ICON,
+                    type: "Default",
+                    press: function () {
+                        HintHelper.fApplyHint(oQuestion, aAnswerControls, oBtnHint);
+                    }
+                });
+                oBtnHint.addStyleClass("sapUiSmallMarginBottom sapUiTinyMarginBegin sapUiTinyMarginEnd");
+                // oHBoxMainButtons.insertItem(oBtnHint, 0); // Hint Button an erster Stelle
+                oHBoxMainButtons.addItem(oBtnHint); // Hint Button an letzter Stelle
+            }
+
             const oBtnAskGPT = new Button({
                 text: "Bei Perplexity nachfragen",
                 icon: "sap-icon://message-information"
@@ -165,7 +185,7 @@ sap.ui.define([
                 content: [
                     oVBoxQuestionInfo,
                     oVBoxUser,
-                    new HBox({ items: [oBtnConfirm] }),
+                    oHBoxMainButtons,
                     oInfoBox,
                     oVBoxSolution
                 ],
@@ -176,13 +196,14 @@ sap.ui.define([
             oPanel._oVBoxSolutionBelow = oVBoxSolution;
             oPanel._aAnswerControls = aAnswerControls;
             oPanel._oBtnConfirm = oBtnConfirm;
+            oPanel._oBtnHint = oBtnHint;
             oPanel._oBtnAskGPT = oBtnAskGPT;
 
             return oPanel;
         },
 
         // ========== CheckAnswer ==========
-        evaluateAnswer: function(oQuestion, aAnswerControls) {
+        evaluateAnswer: function (oQuestion, aAnswerControls) {
             // let nCorrectThisQuestion = 0;
             let nCorrectSelected = 0;
             let nTotalSelected = 0;
@@ -224,7 +245,7 @@ sap.ui.define([
             };
         },
 
-        createSolutionDisplay: function(oQuestion, oVBoxSolution) {
+        createSolutionDisplay: function (oQuestion, oVBoxSolution) {
             oVBoxSolution.removeAllItems();
             oVBoxSolution.addItem(new Text({ text: "Richtige Antworten:" }));
 
@@ -243,9 +264,9 @@ sap.ui.define([
                     oSolutionCheckBox.addStyleClass("solutionWrong");
                 }
 
-                
+
                 oVBoxSolution.addItem(oSolutionCheckBox);
-                
+
                 // Neu
                 if (ans.description) {
                     const oDescText = new Text({
@@ -255,7 +276,7 @@ sap.ui.define([
                     oDescText.addStyleClass("sapUiSmallMarginBeginEnd sapUiSmallMarginBottom answerDescription");
                     oVBoxSolution.addItem(oDescText);
                 }
-                
+
                 oSolutionCheckBox.addStyleClass("sapUiTinyMarginBottom");
 
             });
@@ -266,7 +287,7 @@ sap.ui.define([
 
 
         // ========== AI-Integration ==========
-        generatePrompt: function(oQuestion, bTCA) {
+        generatePrompt: function (oQuestion, bTCA) {
             // Prompt generieren
             let prompt = "Bitte erkläre mir folgende Prüfungsfrage:\n\n";
             prompt += "Frage:\n" + oQuestion.QuestionText + "\n\n";
@@ -274,7 +295,7 @@ sap.ui.define([
 
             prompt += "Antwortmöglichkeiten:\n";
 
-            if (bTCA) { 
+            if (bTCA) {
                 oQuestion.Answers.forEach(a => {
                     prompt += `- ${a.text} (${a.correct ? "RICHTIG" : "FALSCH"})`;
 
@@ -295,7 +316,7 @@ sap.ui.define([
             return prompt;
         },
 
-        getAIUrl: function(aiKey) {
+        getAIUrl: function (aiKey) {
             const URLCollection = {
                 "AI01": "https://chat.openai.com",  // ChatGPT
                 "AI02": "https://gemini.google.com", // Gemini  
@@ -306,7 +327,7 @@ sap.ui.define([
         },
 
         // ========== FooterProgress ==========
-        updateFooterProgress: function(oFooter, aQuestionControls, oGameSettings) {
+        updateFooterProgress: function (oFooter, aQuestionControls, oGameSettings) {
             oFooter.removeAllItems();
 
             const maxDots = sap.ui.Device.system.phone ? 0 : 40;
@@ -326,12 +347,12 @@ sap.ui.define([
                     const oQuestion = panel.data("question");
                     let nCorrectSelected = 0;
                     let nTotalSelected = 0;
-                    oQuestion.Answers.forEach(a => { 
+                    oQuestion.Answers.forEach(a => {
                         if (a.selected && a.correct) nCorrectSelected++;
                         if (a.selected) nTotalSelected++;
                     });
 
-                    if (nCorrectSelected === oQuestion.AmountOfTrueAnswers && 
+                    if (nCorrectSelected === oQuestion.AmountOfTrueAnswers &&
                         nTotalSelected === oQuestion.AmountOfTrueAnswers) {
                         dotClass += " correct";
                     } else {
