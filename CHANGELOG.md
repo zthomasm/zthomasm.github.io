@@ -1,6 +1,17 @@
 # Changelog
 
 ---
+## [v1.1.17] - 08.04.2026
+
+### Added
+
+### Changed
+
+### Fixed
+
+- replaced an image, part of the model sources
+
+---
 ## [v1.1.16] - 03.04.2026
 
 ### Added
