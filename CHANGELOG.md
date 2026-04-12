@@ -1,6 +1,18 @@
 # Changelog
 
 ---
+## [v1.1.18] - 12.04.2026
+
+### Added
+
+### Changed
+
+### Fixed
+
+- fixed the call of the reset function in the GameLinear controller
+- fixed an issue: On some devices the pictures were not shown in the quiz, especially on Safari
+
+---
 ## [v1.1.17] - 08.04.2026
 
 ### Added
