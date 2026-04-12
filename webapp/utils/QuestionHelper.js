@@ -104,10 +104,15 @@ sap.ui.define([
             // Wenn Picture vorhanden, hinzufügen
             if (oQuestion.Picture && oQuestion.Picture.trim()) {
                 // console.log("Bild gefunden:", oQuestion.Picture);
+
+                // Use toUrl to ensure the path is resolved correctly depending on the deployment environment
+                // This prevents 404 errors when running inside a Fiori Launchpad where the root path is different
+                const sImagePath = sap.ui.require.toUrl("learninggame") + "/" + oQuestion.Picture.trim();
+
                 const oQuestionImage = new Image({
-                    src: "/" + oQuestion.Picture,
-                    // src: sap.ui.require.toUrl("learninggame") + "/" + oQuestion.Picture,
+                    src: sImagePath,
                     height: "auto",
+                    width: "100%", // Explicitly give Safari a width hint
                     decorative: false
                 });
                 // console.log("🖼️ Image Control erstellt:", oQuestionImage);

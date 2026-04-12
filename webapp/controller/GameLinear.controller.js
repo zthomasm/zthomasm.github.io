@@ -14,27 +14,27 @@ sap.ui.define([
     "learninggame/utils/CleanupHelper",
     "learninggame/utils/Timer",
 
-], function(BaseController, JSONModel, MessageToast, VBox, HBox, CheckBox, Text, Button, Panel, QuestionHelper, CleanupHelper, Timer) {
+], function (BaseController, JSONModel, MessageToast, VBox, HBox, CheckBox, Text, Button, Panel, QuestionHelper, CleanupHelper, Timer) {
     "use strict";
 
     return BaseController.extend("learninggame.controller.GameLinear", {
 
-        onInit: function() {
+        onInit: function () {
             const oRouter = this.getOwnerComponent().getRouter();
             oRouter.getRoute("RouteGameLinear").attachPatternMatched(this._onRouteMatched, this);
             // oRouter.getRoute("RouteGameLinear").attachPatternMatched(this._cleanupAndInit, this);
         },
-        
-        _onRouteMatched: function() {
+
+        _onRouteMatched: function () {
             // ← JEDESMAL wenn Route matched!
             CleanupHelper.cleanupGameView(this);
 
 
             const oTopicModel = this.getOwnerComponent().getModel("TopicModel");
             const sActiveTopic = oTopicModel.getProperty("/activeTopic");
-    
+
             let sGameSettingsModelName;
-            switch(sActiveTopic) {
+            switch (sActiveTopic) {
                 case "FIORI":
                     sGameSettingsModelName = "GameSettingsFIORI";
                     break;
@@ -49,31 +49,29 @@ sap.ui.define([
                     this.getOwnerComponent().getRouter().navTo("RouteStartPage");
                     return;
             }
-    
+
             this.oGameSettings = this.getOwnerComponent().getModel(sGameSettingsModelName);
             this.oTopicModel = oTopicModel;
-    
+
             // this.oGameSettings = this.getOwnerComponent().getModel("GameSettings");
-    
+
             if (!this.oGameSettings.getProperty("/settingsAreSet")) {
                 this.getOwnerComponent().getRouter().navTo("RouteStartPage");
                 return;
             }
-    
-            if (!this.oGameSettings.getProperty("/correctAnswersCount")) {
-                this.oGameSettings.setProperty("/correctAnswersCount", 0);
-            }
-    
+
+            this.oGameSettings.setProperty("/correctAnswersCount", 0);
+
             this._prepareQuiz()
                 .then(() => this._createLinearSteps())
                 .catch(err => console.error("Fehler beim Quiz vorbereiten:", err));
         },
-        
-        onBeforeRendering: function() {
+
+        onBeforeRendering: function () {
 
         },
 
-        _prepareQuiz: function() {
+        _prepareQuiz: function () {
             return new Promise((resolve, reject) => {
                 console.log("_prepareQuiz STARTED");
                 console.log("GameSettings Data:", this.oGameSettings.getData());
@@ -81,9 +79,9 @@ sap.ui.define([
 
                 const sActiveTopic = this.oTopicModel.getProperty("/activeTopic");
                 const sJsonPath = this.oTopicModel.getProperty(`/topics/${sActiveTopic}/jsonPath`);
-                
+
                 console.log("Loading from:", sJsonPath);
-                oQuizModel.loadData(sJsonPath);                
+                oQuizModel.loadData(sJsonPath);
 
                 oQuizModel.attachRequestCompleted(() => {
                     console.log("QuestionsFiori.json LOADED");
@@ -105,8 +103,8 @@ sap.ui.define([
 
                     const available = aAllQuestions.length;
                     if (available < nQuestions) {
-                    console.warn(`Nur ${available}/${nQuestions} Fragen verfügbar!`);
-                    MessageToast.show(`Nur ${available}/${nQuestions} Fragen für "${selectedTopics}" verfügbar!`);
+                        console.warn(`Nur ${available}/${nQuestions} Fragen verfügbar!`);
+                        MessageToast.show(`Nur ${available}/${nQuestions} Fragen für "${selectedTopics}" verfügbar!`);
                     }
 
                     // Fragen mischen
@@ -124,21 +122,21 @@ sap.ui.define([
                     const oModel = new JSONModel({ questions: aQuizQuestions });
                     console.log("Quiz Questions IDs:", aQuizQuestions.map(q => q.QuestionID));
                     console.log("Model vor setModel:", {
-                    questions: aQuizQuestions.length,
-                    firstQuestion: aQuizQuestions[0],
-                    dataStructure: JSON.stringify(aQuizQuestions[0], null, 2)
+                        questions: aQuizQuestions.length,
+                        firstQuestion: aQuizQuestions[0],
+                        dataStructure: JSON.stringify(aQuizQuestions[0], null, 2)
                     });
 
                     console.log("Try-Catch START");
                     try {
                         this.getView().setModel(oModel, "quiz");
                         console.log("✅ setModel SUCCESSFUL");
-                    } catch(e) {
+                    } catch (e) {
                         console.error("❌ setModel FAILED:", e.message, e);
                         reject(e);
                         return;
                     }
-                    
+
                     console.log("About to resolve()");
                     resolve();
                     console.log("After resolve() call");
@@ -148,7 +146,7 @@ sap.ui.define([
             });
         },
 
-        _createLinearSteps: function() {
+        _createLinearSteps: function () {
             const oContainer = this.byId("quizContainerVBox");
             if (!oContainer) {
                 console.error("Container Control nicht gefunden!");
@@ -182,8 +180,8 @@ sap.ui.define([
             }
         },
 
-        onCheckAnswerLinear: function(oQuestion, aAnswerControls, oStepPanel, currentIndex) {
-            
+        onCheckAnswerLinear: function (oQuestion, aAnswerControls, oStepPanel, currentIndex) {
+
             // const nCorrectThisQuestion = QuestionHelper.evaluateAnswer(oQuestion, aAnswerControls);
             const oEvalResult = QuestionHelper.evaluateAnswer(oQuestion, aAnswerControls);
 
@@ -248,7 +246,7 @@ sap.ui.define([
             this._updateFooterProgress();
         },
 
-        _openHelpOfAI: function(oQuestion) {
+        _openHelpOfAI: function (oQuestion) {
 
             // const oGameSettings = this.getOwnerComponent().getModel("GameSettings");
             // const sActiveTopic = this.oTopicModel.getProperty("/activeTopic");
@@ -268,7 +266,7 @@ sap.ui.define([
 
         },
 
-        _updateFooterProgress: function() {
+        _updateFooterProgress: function () {
             const oFooter = this.byId("footerProgress");
             if (!oFooter) return;
 
@@ -276,14 +274,17 @@ sap.ui.define([
 
         },
 
-        onNavBack: function() {
+        onNavBack: function () {
+            if (this.oGameSettings) {
+                CleanupHelper.resetSettings(this.oGameSettings);
+            }
             this.getOwnerComponent().getRouter().navTo("RouteStartPage");
         },
 
-        onShowTimerPopover: function(oEvent) {
+        onShowTimerPopover: function (oEvent) {
             const oButton = oEvent.getSource();
             const oGameLinearController = this;
-            
+
             if (!this._oTimerPopover) {
                 sap.ui.require(["sap/ui/core/Fragment"], (Fragment) => {
                     const oView = this.getView();
@@ -295,12 +296,12 @@ sap.ui.define([
                                 const oTimerModel = this.getOwnerComponent().getModel("Timer");
                                 Timer.pauseTimer(oTimerModel);
                             },
-                            
+
                             onResumeTimer: () => {
                                 const oTimerModel = this.getOwnerComponent().getModel("Timer");
                                 Timer.resumeTimer(oTimerModel);
                             },
-                            
+
                             onClosePopover: () => {
                                 oGameLinearController._oTimerPopover.close();
                             }
