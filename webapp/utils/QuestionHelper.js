@@ -17,6 +17,33 @@ sap.ui.define([
 
     return {
 
+        // // ========== UI Helper ==========
+        // showPlusOneAnimation: function () {
+        //     const bShowAnimation = false; // Toggle für +1 Animation
+
+        //     if (!bShowAnimation) {
+        //         return;
+        //     }
+
+        //     // Spielerische "+1" Animation
+        //     const oOverlay = document.createElement("div");
+        //     oOverlay.className = "plusOneOverlay";
+
+        //     const oText = document.createElement("div");
+        //     oText.className = "plusOneText";
+        //     oText.innerText = "+1";
+
+        //     oOverlay.appendChild(oText);
+        //     document.body.appendChild(oOverlay);
+
+        //     // Entfernen nach der Animation (1.2s)
+        //     setTimeout(() => {
+        //         if (document.body.contains(oOverlay)) {
+        //             document.body.removeChild(oOverlay);
+        //         }
+        //     }, 1200);
+        // },
+
         // ========== Question-Helper ==========
         sanitizeText: function (text) {
             if (!text) return "";
@@ -137,7 +164,7 @@ sap.ui.define([
             oVBoxQuestionInfo.addItem(oTextAnswers);
 
             // VBox für Nutzerantworten (Checkboxen)
-            const oVBoxUser = new VBox({ width: "100%" }); // PanelScollBreite
+            const oVBoxUser = new VBox({ width: "auto" }); // PanelScollBreite
             oVBoxUser.addStyleClass("sapUiMediumMarginBottom sapUiTinyMarginBeginEnd");
 
             const aAnswerControls = oQuestion.Answers.map(ans => {
@@ -178,7 +205,7 @@ sap.ui.define([
             oBtnAskGPT.addStyleClass("sapUiSmallMarginBottom sapUiTinyMarginBegin");
 
             // VBox für Lösungsvorschau
-            const oVBoxSolution = new VBox({ width: "100%" });
+            const oVBoxSolution = new VBox({ width: "auto" });
             oVBoxSolution.setVisible(false);
             oVBoxSolution.addStyleClass("sapUiSmallMarginTop sapUiTinyMarginBeginEnd");
 
@@ -331,24 +358,14 @@ sap.ui.define([
             return URLCollection[aiKey];
         },
 
-        // ========== FooterProgress ==========
-        updateFooterProgress: function (oFooter, aQuestionControls, oGameSettings) {
+        updateFooterProgress: function (oFooter, aQuestionControls, oGameSettings, oTextControl) {
             oFooter.removeAllItems();
 
-            const maxDots = sap.ui.Device.system.phone ? 0 : 40;
-            aQuestionControls.slice(0, maxDots).forEach(panel => {
-                let dotClass = "footerProgressDot";
+            aQuestionControls.forEach(panel => {
+                let segmentClass = "absoluteProgressSegment";
 
                 const solutionVisible = panel._oVBoxSolutionBelow.getVisible();
                 if (solutionVisible) {
-                    // Prüfen ob die Frage richtig war
-                    // let nCorrect = 0;
-                    // const oQuestion = panel.data("question");
-                    // oQuestion.Answers.forEach(a => { if (a.selected === a.correct && a.correct) nCorrect++; });
-
-                    // if (nCorrect === oQuestion.AmountOfTrueAnswers) dotClass += " correct";
-                    // else dotClass += " wrong";
-
                     const oQuestion = panel.data("question");
                     let nCorrectSelected = 0;
                     let nTotalSelected = 0;
@@ -359,37 +376,33 @@ sap.ui.define([
 
                     if (nCorrectSelected === oQuestion.AmountOfTrueAnswers &&
                         nTotalSelected === oQuestion.AmountOfTrueAnswers) {
-                        dotClass += " correct";
+                        segmentClass += " correct";
                     } else {
-                        dotClass += " wrong";
+                        segmentClass += " wrong";
                     }
                 }
 
-                const dot = new Text({ text: "●" });
-                dot.addStyleClass(dotClass);
-                oFooter.addItem(dot);
+                // Ein leeres HBox-Element als Segment, da flex: 1 es ausdehnt
+                const segment = new sap.m.HBox();
+                segment.addStyleClass(segmentClass);
+                oFooter.addItem(segment);
             });
 
-            // --- Prozentanzeige rechts im Footer ergänzen ---
+            // --- Prozentanzeige setzen ---
             const nTotal = aQuestionControls ? aQuestionControls.length : 0;
             const nCorrectTotal = oGameSettings.getProperty("/correctAnswersCount") || 0;
 
             let sText = "";
             if (nTotal > 0) {
                 const percent = Math.round((nCorrectTotal / nTotal) * 100);
-                // sText = nCorrectTotal + " / " + nTotal + " (" + percent + "%)";
-                sText = nCorrectTotal + " von " + nTotal + " richtig" + " (" + percent + "%)";
+                sText = nCorrectTotal + " von " + nTotal + " richtig (" + percent + "%)";
             } else {
                 sText = "0 / 0 (0%)";
             }
 
-            // Spacer + Text ans Toolbar-Ende setzen
-            const oSpacer = new sap.m.ToolbarSpacer();
-            const oPercentText = new Text({ text: sText });
-            oPercentText.addStyleClass("footerProgressPercent");
-
-            oFooter.addItem(oSpacer);
-            oFooter.addItem(oPercentText);
+            if (oTextControl) {
+                oTextControl.setText(sText);
+            }
         }
 
     };
