@@ -238,6 +238,7 @@ sap.ui.define([
 
             if (oEvalResult.isFullyCorrect) {
                 oStepPanel.addStyleClass("panelCorrect");
+                // QuestionHelper.showPlusOneAnimation();
             } else {
                 oStepPanel.addStyleClass("panelWrong");
             }
@@ -268,9 +269,10 @@ sap.ui.define([
 
         _updateFooterProgress: function () {
             const oFooter = this.byId("footerProgress");
+            const oText = this.byId("footerPercentText");
             if (!oFooter) return;
 
-            QuestionHelper.updateFooterProgress(oFooter, this._questionControls, this.oGameSettings);
+            QuestionHelper.updateFooterProgress(oFooter, this._questionControls, this.oGameSettings, oText);
 
         },
 

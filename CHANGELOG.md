@@ -1,6 +1,21 @@
 # Changelog
 
 ---
+## [v1.1.19] - 02.05.2026
+
+### Added
+
+- gamemode: added progress bar on the footer
+
+### Changed
+
+- gamemode: removed progress symbol on the footer
+- gamemode: added icons on the footer to improve phone experience
+- gamemode: comment out a possible +1 animation
+
+### Fixed
+
+---
 ## [v1.1.18] - 12.04.2026
 
 ### Added

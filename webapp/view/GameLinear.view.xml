@@ -23,6 +23,10 @@
                 class="sapUiContentPadding sapUiSmallMarginAuto"/>
                 
         </ScrollContainer>
+        
+        <!-- Progress Bar at the bottom -->
+        <HBox id="footerProgress" class="absoluteProgressBar"/>
+        
     </content>
 
     <footer>

@@ -1,7 +1,11 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
     <OverflowToolbar>
-    
-        <HBox id="footerProgress" class="footerProgressContainer" alignItems="Center" justifyContent="Center"/>
+
+        <core:Icon
+            src="sap-icon://ai"
+        ></core:Icon>
+
+        <Text id="footerPercentText" text="" class="footerProgressPercent"/>
         
         <ToolbarSpacer/>
 
@@ -20,7 +24,10 @@
             text="TCA"
             selected="{GameSettings>/bTCA}"
         ></CheckBox>
-    
-    
+
+        <core:Icon
+            src="sap-icon://ai"
+        ></core:Icon>
+
     </OverflowToolbar>
 </core:FragmentDefinition>
