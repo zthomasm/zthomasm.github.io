@@ -1,0 +1,48 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Dialog
+        id="loginDialog"
+        title="Login"
+        contentWidth="320px"
+        contentHeight="auto"
+        stretchOnPhone="false"
+        horizontalScrolling="false"
+        verticalScrolling="false">
+
+        <content>
+            <VBox
+                width="100%"
+                class="sapUiSmallMargin">
+                <Label text="User" labelFor="inputUser" />
+                <Input
+                    id="inputUser"
+                    width="80%" />
+
+                <Label
+                    text="Password"
+                    labelFor="inputPassword"
+                    class="sapUiSmallMarginTop" />
+                <Input
+                    id="inputPassword"
+                    type="Password"
+                    width="80%" />
+            </VBox>
+        </content>
+
+        <beginButton>
+            <Button
+                text="Login"
+                type="Emphasized"
+                press=".onLoginDialogConfirm" />
+        </beginButton>
+
+        <endButton>
+            <Button
+                text="Abbrechen"
+                press=".onLoginDialogCancel" />
+        </endButton>
+    </Dialog>
+
+</core:FragmentDefinition>

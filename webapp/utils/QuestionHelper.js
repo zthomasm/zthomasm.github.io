@@ -6,8 +6,9 @@ sap.ui.define([
     "sap/m/Button",
     "sap/m/Panel",
     "sap/m/Image",
-    "learninggame/utils/HintHelper"
-], function (VBox, HBox, CheckBox, Text, Button, Panel, Image, HintHelper) {
+    "learninggame/utils/HintHelper",
+    "learninggame/utils/SupabaseHelper"
+], function (VBox, HBox, CheckBox, Text, Button, Panel, Image, HintHelper, SupabaseHelper) {
     "use strict";
 
     // Konstanten
@@ -55,6 +56,81 @@ sap.ui.define([
                 .replace(/\{/g, "((")           // { → (
                 .replace(/\}/g, "))")           // } → )
                 .replace(/\*/g, "•");           // * → •
+        },
+
+        buildQuestionSet: async function (oController, aAllQuestions) {
+            const oGameSettings = oController.oGameSettings;
+            const sMode = oGameSettings.getProperty("/sMode") || "gameMode";
+            const nQuestions = oGameSettings.getProperty("/numberOfQuestions") || 3;
+            const selectedTopics = oGameSettings.getProperty("/selectedTopics") || [];
+
+            // 1) Immer zuerst nach Topics filtern (gilt für alle Modi)
+            let aPool = this.filterQuestionsByTopics(aAllQuestions, selectedTopics);
+
+            if (sMode === "studyMode") {
+                // Übungsmodus: IDs aus Supabase / Level-basiert
+                return await this._buildStudySet(oController, aPool, nQuestions);
+            }
+
+            if (sMode === "showAllQuestions") {
+                // Alle Fragen anzeigen, keine Beschränkung durch nQuestions
+                return aPool;
+            }
+
+            // Default: gameMode = freies Quiz
+            return this._buildGameSet(oController, aPool, nQuestions);
+        },
+
+        _buildGameSet: function (oController, aPool, nQuestions) {
+            // Falls du im freien Modus gar keinen Level-Filter willst, lass das weg.
+            // Wenn du einen weichen Level-Filter willst, kannst du ihn hier reinziehen:
+            // aPool = await this.filterQuestionsByLevel(oController, aPool);
+
+            aPool = this.shuffleQuestions(aPool);
+            return aPool.slice(0, nQuestions);
+        },
+
+        _buildStudySet: async function (oController, aPool, nQuestions) {
+            const oComponent = oController.getOwnerComponent();
+            const oUserSettings = oComponent.getModel("userSettings");
+            const oGameSettings = oController.oGameSettings;
+
+            const bLoggedIn = oUserSettings.getProperty("/bUserIsLoggedIn");
+            const sUsername = oUserSettings.getProperty("/sUsername");
+            const sSupabaseKey = oUserSettings.getProperty("/sApiKey");
+            const iMaxLevel = oGameSettings.getProperty("/iLevelQuestions") || 1;
+
+            if (!bLoggedIn || !sUsername || !sSupabaseKey) {
+                console.warn("StudyMode: kein Login vorhanden.");
+                return [];
+            }
+
+            // Level-IDs aus Supabase holen
+            const aLevelRows = await SupabaseHelper.getQuestionsForUserByMaxLevel(
+                sUsername,
+                iMaxLevel,
+                sSupabaseKey
+            );
+
+            const aIds = aLevelRows.map(row => row.question_id);
+            console.log("StudyMode-IDs:", aIds);
+
+            if (!aIds.length) {
+                console.warn("StudyMode: keine Fragen im gewünschten Level gefunden.");
+                return [];
+            }
+
+            // Pool auf Fehler-/Level-Fragen einschränken
+            let aStudyQuestions = aPool.filter(q => aIds.includes(Number(q.QuestionID)));
+
+            if (aStudyQuestions.length > nQuestions) {
+                aStudyQuestions = this.shuffleQuestions(aStudyQuestions).slice(0, nQuestions);
+            } else {
+                aStudyQuestions = this.shuffleQuestions(aStudyQuestions);
+                // keine Auffüllung, wenn du im Study-Mode wirklich NUR Fehler üben willst
+            }
+
+            return aStudyQuestions;
         },
 
         filterQuestionsByTopics: function (aAllQuestions, selectedTopics) {
@@ -402,6 +478,67 @@ sap.ui.define([
 
             if (oTextControl) {
                 oTextControl.setText(sText);
+            }
+        },
+
+        filterQuestionsByLevel: async function (oController, aAllQuestions) {
+            const oComponent = oController.getOwnerComponent();
+            const oUserSettings = oComponent.getModel("userSettings");
+            const oGameSettings = oController.oGameSettings; // im Controller gesetzt
+
+            const bLoggedIn = oUserSettings.getProperty("/bUserIsLoggedIn");
+            const sUsername = oUserSettings.getProperty("/sUsername");
+            const sSupabaseKey = oUserSettings.getProperty("/sApiKey");
+            const iMaxLevel = oGameSettings.getProperty("/iLevelQuestions");
+            const nQuestions = oGameSettings.getProperty("/numberOfQuestions") || 3;
+
+            // Kein Login oder Slider = 5 → nichts filtern
+            if (!bLoggedIn || !sUsername || !sSupabaseKey || iMaxLevel === null || iMaxLevel === 5) {
+                console.log("Level-Filter übersprungen (kein Login oder MaxLevel=5).");
+                return aAllQuestions;
+            }
+
+            try {
+                const aLevelRows = await SupabaseHelper.getQuestionsForUserByMaxLevel(
+                    sUsername,
+                    iMaxLevel,
+                    sSupabaseKey
+                );
+
+                const aAllowedIds = aLevelRows.map(row => row.question_id);
+                console.log("Level-Filter IDs:", aAllowedIds, "maxLevel:", iMaxLevel);
+
+                if (!aAllowedIds.length) {
+                    console.warn("Keine Level-Fragen in DB. Fallback: alle Fragen.");
+                    return aAllQuestions;
+                }
+
+                // 1) Alle Fragen, die im Level-Bereich sind
+                const aLevelQuestions = aAllQuestions.filter(function (q) {
+                    const iId = Number(q.QuestionID);
+                    const bMatch = aAllowedIds.includes(iId);
+                    if (bMatch) {
+                        console.log("MATCH in Level-Filter:", q.QuestionID);
+                    }
+                    return bMatch;
+                });
+
+                // 2) Restfragen (nicht im Level-Bereich)
+                const aRemainingQuestions = aAllQuestions.filter(function (q) {
+                    const iId = Number(q.QuestionID);
+                    return !aAllowedIds.includes(iId);
+                });
+
+                // 3) Level-Fragen + Restfragen zusammen
+                const aCombined = aLevelQuestions.concat(aRemainingQuestions);
+
+                // Wichtig: Hier NICHT slicen – das macht dein Controller wie bisher
+                // Dadurch sind Level-Fragen garantiert Teil der Liste, bevor gemischt wird.
+
+                return aCombined;
+            } catch (e) {
+                console.error("Fehler beim Laden der Levels aus Supabase:", e);
+                return aAllQuestions;
             }
         }
 

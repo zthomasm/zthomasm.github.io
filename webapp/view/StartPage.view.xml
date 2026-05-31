@@ -8,6 +8,14 @@
 
 
         <content>
+
+            <MessageStrip
+                class="sapUiSmallMargin"
+                visible="{userSettings>/bUserIsLoggedIn}"
+                type="Success"
+                showIcon="true"
+                showCloseButton="false"
+                text="Eingeloggt als {userSettings>/sUsername}" />
         
             <VBox id="Start0010" class="sapUiSmallMargin" visible="{TopicModel>/topics/FIORI/bShowOnStartPage}">
             
@@ -32,6 +40,17 @@
                             </TileContent>
                         </GenericTile>
 
+                        <!-- Tile 4 -->
+                        <GenericTile
+                            visible="{= ${userSettings>/bUserIsLoggedIn} }"
+                            class="tileLayout"
+                            header="{i18n>T0040}"
+                            subheader="{i18n>FIORI}"
+                            press=".onPressBeforeStartGame">
+                            <TileContent footer="{i18n>admin}">
+                                <ImageContent src="sap-icon://da"></ImageContent>
+                            </TileContent>
+                        </GenericTile>
 
                         <!-- Tile 2 -->
                         <GenericTile
@@ -136,6 +155,17 @@
                             </TileContent>
                         </GenericTile>
 
+                        <!-- Tile 4 -->
+                        <GenericTile
+                            visible="{= ${userSettings>/bUserIsLoggedIn} }"
+                            class="tileLayout"
+                            header="{i18n>T0040}"
+                            subheader="{i18n>ISTQBFV4}"
+                            press=".onPressBeforeStartStudyISTQBFV4">
+                            <TileContent footer="{i18n>user}">
+                                <ImageContent src="sap-icon://journey-change"></ImageContent>
+                            </TileContent>
+                        </GenericTile>
 
                         <!-- Tile 2 -->
                         <GenericTile

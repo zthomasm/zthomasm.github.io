@@ -7,9 +7,28 @@
             enabled="false"
         ></Button>
 
+        <Button
+            visible="{= ${adminSettings>/bDebugMode} }"
+            text="DebugMode"
+            icon="sap-icon://wrench"
+            press="onDebugModePress"
+        ></Button>
+
         <ToolbarSpacer/>
 
-        
+        <Button 
+            visible="{= !${userSettings>/bUserIsLoggedIn} }"
+            text="Log In"
+            icon="sap-icon://customer"
+            press="onLogInPress"
+        ></Button>
+
+        <Button 
+            visible="{= ${userSettings>/bUserIsLoggedIn} }"
+            text="Log Out"
+            icon="sap-icon://user-edit"
+            press="onLogOutPress"
+        ></Button>
     
     
     </OverflowToolbar>
