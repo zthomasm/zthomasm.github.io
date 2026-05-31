@@ -13,8 +13,9 @@ sap.ui.define([
     "learninggame/utils/QuestionHelper",
     "learninggame/utils/CleanupHelper",
     "learninggame/utils/Timer",
+    "learninggame/utils/SupabaseHelper"
 
-], function (BaseController, JSONModel, MessageToast, VBox, HBox, CheckBox, Text, Button, Panel, QuestionHelper, CleanupHelper, Timer) {
+], function (BaseController, JSONModel, MessageToast, VBox, HBox, CheckBox, Text, Button, Panel, QuestionHelper, CleanupHelper, Timer, SupabaseHelper) {
     "use strict";
 
     return BaseController.extend("learninggame.controller.GameLinear", {
@@ -83,63 +84,99 @@ sap.ui.define([
                 console.log("Loading from:", sJsonPath);
                 oQuizModel.loadData(sJsonPath);
 
-                oQuizModel.attachRequestCompleted(() => {
-                    console.log("QuestionsFiori.json LOADED");
+                // oQuizModel.attachRequestCompleted(async () => {
+                //     console.log("QuestionsFiori.json LOADED");
+                //     const oData = oQuizModel.getData();
+                //     if (!oData || !oData.results) return reject("Keine Fragen vorhanden");
+
+                //     let aAllQuestions = oData.results;
+                //     const nQuestions = this.oGameSettings.getProperty("/numberOfQuestions") || 3;
+                //     const selectedTopics = this.oGameSettings.getProperty("/selectedTopics") || [];
+
+                //     // console.log("Filter Start:", { 
+                //     //     totalQuestions: aAllQuestions.length, 
+                //     //     nQuestions, 
+                //     //     selectedTopics 
+                //     // });
+
+                //     console.log("ALL QuestionIDs vor Level-Filter:", aAllQuestions.map(q => q.QuestionID));
+                //     // Level-Filter (falls Login + Slider 0–4)
+                //     aAllQuestions = await QuestionHelper.filterQuestionsByLevel(this, aAllQuestions);
+                //     console.log("IDs nach Level-Filter, vor Topic-Filter:", aAllQuestions.map(q => q.QuestionID));
+
+                //     // Nach Themen filtern
+                //     aAllQuestions = QuestionHelper.filterQuestionsByTopics(aAllQuestions, selectedTopics);
+                //     console.log("IDs nach Topic-Filter:", aAllQuestions.map(q => q.QuestionID));
+                //     console.log("selectedTopics:", selectedTopics);
+
+                //     const available = aAllQuestions.length;
+                //     if (available < nQuestions) {
+                //         console.warn(`Nur ${available}/${nQuestions} Fragen verfügbar!`);
+                //         MessageToast.show(`Nur ${available}/${nQuestions} Fragen für "${selectedTopics}" verfügbar!`);
+                //     }
+
+                //     // Fragen mischen
+                //     aAllQuestions = QuestionHelper.shuffleQuestions(aAllQuestions);
+
+                //     // N Fragen auswählen
+                //     const aRandomQuestions = aAllQuestions.slice(0, nQuestions);
+                //     console.log("Nach Shuffle & Slice:", aRandomQuestions.map(q => q.QuestionID));
+                //     console.log("First Question before mapping:", JSON.stringify(aRandomQuestions[0], null, 2));
+
+                //     // Antworten zufällig sortieren
+                //     const aQuizQuestions = QuestionHelper.transformQuestionsToModel(aRandomQuestions);
+
+
+                //     const oModel = new JSONModel({ questions: aQuizQuestions });
+                //     console.log("Quiz Questions IDs:", aQuizQuestions.map(q => q.QuestionID));
+                //     console.log("Model vor setModel:", {
+                //         questions: aQuizQuestions.length,
+                //         firstQuestion: aQuizQuestions[0],
+                //         dataStructure: JSON.stringify(aQuizQuestions[0], null, 2)
+                //     });
+
+                //     console.log("Try-Catch START");
+                //     try {
+                //         this.getView().setModel(oModel, "quiz");
+                //         console.log("✅ setModel SUCCESSFUL");
+                //     } catch (e) {
+                //         console.error("❌ setModel FAILED:", e.message, e);
+                //         reject(e);
+                //         return;
+                //     }
+
+                //     console.log("About to resolve()");
+                //     resolve();
+                //     console.log("After resolve() call");
+                // });
+
+                oQuizModel.attachRequestCompleted(async () => {
+                    console.log("Questions JSON LOADED");
                     const oData = oQuizModel.getData();
                     if (!oData || !oData.results) return reject("Keine Fragen vorhanden");
 
                     let aAllQuestions = oData.results;
-                    const nQuestions = this.oGameSettings.getProperty("/numberOfQuestions") || 3;
-                    const selectedTopics = this.oGameSettings.getProperty("/selectedTopics") || [];
 
-                    // console.log("Filter Start:", { 
-                    //     totalQuestions: aAllQuestions.length, 
-                    //     nQuestions, 
-                    //     selectedTopics 
-                    // });
+                    // Zentrale Logik im Helper
+                    const aSelectedQuestions = await QuestionHelper.buildQuestionSet(this, aAllQuestions);
 
-                    // Nach Themen filtern
-                    aAllQuestions = QuestionHelper.filterQuestionsByTopics(aAllQuestions, selectedTopics);
-
-                    const available = aAllQuestions.length;
-                    if (available < nQuestions) {
-                        console.warn(`Nur ${available}/${nQuestions} Fragen verfügbar!`);
-                        MessageToast.show(`Nur ${available}/${nQuestions} Fragen für "${selectedTopics}" verfügbar!`);
+                    if (!aSelectedQuestions || !aSelectedQuestions.length) {
+                        MessageToast.show("Keine passenden Fragen gefunden.");
+                        return reject("Keine Fragen für aktuelle Auswahl.");
                     }
 
-                    // Fragen mischen
-                    aAllQuestions = QuestionHelper.shuffleQuestions(aAllQuestions);
-
-                    // N Fragen auswählen
-                    const aRandomQuestions = aAllQuestions.slice(0, nQuestions);
-                    console.log("Nach Shuffle & Slice:", aRandomQuestions.map(q => q.QuestionID));
-                    console.log("First Question before mapping:", JSON.stringify(aRandomQuestions[0], null, 2));
-
-                    // Antworten zufällig sortieren
-                    const aQuizQuestions = QuestionHelper.transformQuestionsToModel(aRandomQuestions);
-
+                    const aQuizQuestions = QuestionHelper.transformQuestionsToModel(aSelectedQuestions);
 
                     const oModel = new JSONModel({ questions: aQuizQuestions });
-                    console.log("Quiz Questions IDs:", aQuizQuestions.map(q => q.QuestionID));
-                    console.log("Model vor setModel:", {
-                        questions: aQuizQuestions.length,
-                        firstQuestion: aQuizQuestions[0],
-                        dataStructure: JSON.stringify(aQuizQuestions[0], null, 2)
-                    });
-
-                    console.log("Try-Catch START");
                     try {
                         this.getView().setModel(oModel, "quiz");
-                        console.log("✅ setModel SUCCESSFUL");
                     } catch (e) {
-                        console.error("❌ setModel FAILED:", e.message, e);
+                        console.error("setModel FAILED:", e);
                         reject(e);
                         return;
                     }
 
-                    console.log("About to resolve()");
                     resolve();
-                    console.log("After resolve() call");
                 });
 
                 oQuizModel.attachRequestFailed(err => reject(err));
@@ -245,6 +282,28 @@ sap.ui.define([
 
             oStepPanel.data("question", oQuestion);
             this._updateFooterProgress();
+
+            // Supabase Logging mit Statuslogik
+            const oUserSettingsModel = this.getOwnerComponent().getModel("userSettings");
+            const sUsername = oUserSettingsModel.getProperty("/sUsername");
+            const sSupabaseKey = oUserSettingsModel.getProperty("/sApiKey");
+            const bLoggedIn = oUserSettingsModel.getProperty("/bUserIsLoggedIn");
+
+            if (!bLoggedIn || !sUsername || !sSupabaseKey) {
+                console.warn("Supabase-Logging übersprungen: kein Login oder kein API-Key vorhanden.");
+                return;
+            }
+
+            const sQuestionId = oQuestion.QuestionID;
+
+            SupabaseHelper
+                .updateStatusLevelForQuestion(sUsername, sQuestionId, oEvalResult.isFullyCorrect, sSupabaseKey)
+                .then(function (oRow) {
+                    console.log("Supabase status_level updated:", oRow);
+                })
+                .catch(function (err) {
+                    console.error("Supabase status_level update error:", err);
+                });
         },
 
         _openHelpOfAI: function (oQuestion) {

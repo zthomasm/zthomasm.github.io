@@ -71,6 +71,7 @@ sap.ui.define([
                 settingsAreSet: false,
                 bHintEnabled: false,
                 bTCA: true,                 // TellCorrectAnswerToAI
+                iLevelQuestions: 2,         // 0 to 5
                 numberOfQuestions: 10,
                 singleTopic: "",
                 selectedTopics: [],
@@ -100,6 +101,7 @@ sap.ui.define([
                 settingsAreSet: false,
                 bHintEnabled: false,
                 bTCA: true,                 // TellCorrectAnswerToAI
+                iLevelQuestions: 2,         // 0 to 5
                 numberOfQuestions: 10,
                 singleTopic: "",
                 selectedTopics: [],
@@ -121,6 +123,7 @@ sap.ui.define([
                 settingsAreSet: false,
                 bHintEnabled: false,
                 bTCA: true,                 // TellCorrectAnswerToAI
+                iLevelQuestions: 2,         // 0 to 5
                 numberOfQuestions: 10,
                 singleTopic: "",
                 selectedTopics: [],

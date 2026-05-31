@@ -1,6 +1,23 @@
 # Changelog
 
 ---
+## [v1.1.20] - 31.05.2026
+
+### Added
+
+- login
+    - Login Page
+    - Login Logic
+    - Logout Logic
+- db connection 
+- new mode: Study Mode
+- Improved key collector
+
+### Changed
+
+### Fixed
+
+---
 ## [v1.1.19] - 02.05.2026
 
 ### Added

@@ -1,8 +1,10 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
     "learninggame/model/models",
-    "learninggame/model/GameSettings"
-], (UIComponent, models, GameSettings) => {
+    "learninggame/model/GameSettings",
+    "learninggame/model/UserSettings",
+    "learninggame/utils/AuthHelper"
+], (UIComponent, models, GameSettings, UserSettings, AuthHelper) => {
     "use strict";
 
     return UIComponent.extend("learninggame.Component", {
@@ -19,6 +21,15 @@ sap.ui.define([
 
             const oBasicSettings = GameSettings.basicSettings();
             this.setModel(oBasicSettings, "basicSettings");
+
+            const oUserSettings = UserSettings.userSettings();
+            this.setModel(oUserSettings, "userSettings");
+
+            const oAllUsers = UserSettings.allUsers();
+            this.setModel(oAllUsers, "allUsers");
+
+            const oAdminSettings = UserSettings.adminSettings();
+            this.setModel(oAdminSettings, "adminSettings");
 
             const oTimer = GameSettings.optionalfunctionTimer();
             this.setModel(oTimer, "Timer");
@@ -37,6 +48,8 @@ sap.ui.define([
 
             const oBundleofAIModels = GameSettings.bundleofAIModels();
             this.setModel(oBundleofAIModels, "AIModels");
+
+            AuthHelper.loadSessionIntoModel(oUserSettings);
 
             // set the device model
             this.setModel(models.createDeviceModel(), "device");

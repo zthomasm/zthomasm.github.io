@@ -1,0 +1,97 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+  <Dialog
+    id="beforeStartingDialogStudy"
+    title="Bevor du startest"
+    class="sapUiContentPadding"
+    draggable="false"
+    resizable="false"
+    contentHeight="55%"
+    contentWidth="55%">
+
+    <VBox class="sapUiSmallMargin">
+
+      <!-- Themenauswahl -->
+      <Text text="Wähle Themenbereiche aus:" class="" />
+        <HBox>
+          <MultiComboBox
+              visible="{= ${topicModel>/sMode} === 'studyMode' }"
+              items="{topicModel>/availableTopics}"
+              selectedKeys="{topicModel>/selectedTopics}"
+              width="100%"
+              showClearIcon="true">
+              <core:Item key="{topicModel>key}" text="{topicModel>text}" />
+          </MultiComboBox>
+
+          <ComboBox
+            visible="{= ${topicModel>/sMode} === 'showAllQuestions' }"
+            items="{topicModel>/availableTopics}"
+            selectedKey="{topicModel>/singleTopic}"
+            width="100%"
+            showClearIcon="true">
+            <core:Item key="{topicModel>key}" text="{topicModel>text}" />
+          </ComboBox>
+        </HBox>
+        <HBox class="sapUiSmallMarginTop" visible="{= ${topicModel>/sMode} === 'studyMode' }">
+            <Button text="Alle selektieren" press=".onSelectAllTopics" type="Accept"/>
+            <Button text="Alle deselektieren" press=".onDeselectAllTopics" type="Reject" class="sapUiTinyMarginBegin"/>
+        </HBox>
+
+      <!-- Level-Fragen -->
+      <Text text="Level-Fragen" class="sapUiMediumMarginTop" visible="{= ${topicModel>/sMode} === 'studyMode' || ${userSettings>/bUserIsLoggedIn} }"/>
+      <Slider 
+        visible="{= ${topicModel>/sMode} === 'studyMode' || ${userSettings>/bUserIsLoggedIn} }"
+        enableTickmarks="true" 
+        min="0" 
+        max="5" 
+        step="1"
+        class="sapUiMediumMarginBottom" 
+        width="80%"
+        showAdvancedTooltip="true"
+				showHandleTooltip="false"
+        value="{topicModel>/iLevelQuestions}"
+        />
+
+      <!-- HelpOfAI-Auswahl -->
+      <Text text="Unterstützende KI" class="sapUiMediumMarginTop" />
+
+        <VBox>
+          <SegmentedButton 
+            class="sapUiSmallMarginEnd"
+            selectedKey="{AIModels>/selectedAI}" 
+            items="{
+              path: 'AIModels>/availableAI'
+              }" 
+            >
+            <items>
+              <SegmentedButtonItem key="{AIModels>key}" text="{AIModels>text}" />
+            </items>
+          </SegmentedButton>
+        </VBox>
+
+      <!-- Optional -->
+      <Text text="Optional" class="sapUiMediumMarginTop" visible="{= ${topicModel>/sMode} === 'studyMode' }"/>
+      <Toolbar height="1px" width="100%" visible="{= ${topicModel>/sMode} === 'studyMode' }"/>
+
+        <VBox visible="{= ${topicModel>/sMode} === 'studyMode' }">
+
+            <CheckBox 
+              text="Tipp"
+              selected="{topicModel>/bHintEnabled}"
+              class="sapUiTinyMarginTop sapUiTinyMarginEnd"
+            ></CheckBox>
+
+        </VBox>
+
+        <!-- <Button text="Debug" press=".onDebug"></Button> -->
+
+    </VBox>
+
+    <endButton>
+        <Button text="Abbrechen" press=".onCancelDialog" />
+    </endButton>
+    <beginButton>
+        <Button text="Beginnen" type="Emphasized" press=".onConfirmDialog" />
+    </beginButton>
+
+  </Dialog>
+</core:FragmentDefinition>
