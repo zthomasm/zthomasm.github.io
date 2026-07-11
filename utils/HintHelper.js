@@ -1,0 +1,2 @@
+sap.ui.define([],function(){"use strict";const t="hintCrossedOut";const e=1;return{bIsHintApplicable:function(t){const n=t.Answers;let s=0;for(let t=0;t<n.length;t++){if(!n[t].correct){s++}}return s>e},fApplyHint:function(e,n,s){const o=e.Answers;const c=[];for(let t=0;t<o.length;t++){const e=o[t];const s=n[t];if(!e.correct&&s.getEnabled()){c.push(t)}}if(c.length>0){const e=Math.floor(Math.random()*c.length);const s=c[e];const o=n[s];o.addStyleClass(t);o.setEnabled(false);o.setSelected(false)}if(s){s.setEnabled(false)}}}});
+//# sourceMappingURL=HintHelper.js.map
