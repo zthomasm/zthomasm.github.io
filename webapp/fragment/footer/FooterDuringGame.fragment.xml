@@ -20,6 +20,13 @@
 
         <ToolbarSpacer/>
         
+        <core:Icon
+            src="sap-icon://record"
+            color="{= ${userSettings>/bIsNetworkOnline} ? '#2b7d2b' : '#bb0000' }"
+            visible="{userSettings>/bUserIsLoggedIn}"
+            class="liveBlink"
+        ></core:Icon>
+
         <CheckBox 
             text="TCA"
             selected="{GameSettings>/bTCA}"

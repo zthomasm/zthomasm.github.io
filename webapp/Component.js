@@ -3,8 +3,9 @@ sap.ui.define([
     "learninggame/model/models",
     "learninggame/model/GameSettings",
     "learninggame/model/UserSettings",
-    "learninggame/utils/AuthHelper"
-], (UIComponent, models, GameSettings, UserSettings, AuthHelper) => {
+    "learninggame/utils/AuthHelper",
+    "learninggame/utils/OfflineSyncHelper"
+], (UIComponent, models, GameSettings, UserSettings, AuthHelper, OfflineSyncHelper) => {
     "use strict";
 
     return UIComponent.extend("learninggame.Component", {
@@ -50,6 +51,7 @@ sap.ui.define([
             this.setModel(oBundleofAIModels, "AIModels");
 
             AuthHelper.loadSessionIntoModel(oUserSettings);
+            OfflineSyncHelper.initSync(oUserSettings);
 
             // set the device model
             this.setModel(models.createDeviceModel(), "device");

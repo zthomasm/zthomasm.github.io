@@ -1,6 +1,19 @@
 # Changelog
 
 ---
+## [v1.1.21] - 12.07.2026
+
+### Added
+
+- For logged in user: In the footer is now a led displayed for the network status
+- For logged in user: OfflineSync was implemented which means that data is updated when you have internet again in case you used the app offline (only works with caches)
+- Better feedback in console log
+
+### Changed
+
+### Fixed
+
+---
 ## [v1.1.20] - 31.05.2026
 
 ### Added
