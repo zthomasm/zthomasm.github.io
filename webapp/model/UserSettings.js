@@ -10,7 +10,8 @@ sap.ui.define([
                 sUsername: "",
                 sApiKey: "",
                 sApiKeyHashed: "",
-                bUserIsLoggedIn: false
+                bUserIsLoggedIn: false,
+                bIsNetworkOnline: navigator.onLine
             })
         },
 

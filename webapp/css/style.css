@@ -193,3 +193,14 @@
     opacity: 0.6;
     pointer-events: none;
 }
+
+/* --- Live Blink Animation for Online Status --- */
+@keyframes liveBlinkEffect {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+.liveBlink {
+    animation: liveBlinkEffect 2s infinite ease-in-out;
+}

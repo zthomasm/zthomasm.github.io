@@ -1,5 +1,6 @@
 sap.ui.define([
-], function () {
+    "learninggame/utils/OfflineSyncHelper"
+], function (OfflineSyncHelper) {
     "use strict";
 
     const SUPABASE_URL = "https://sycksmhhgsnjxtvkpotm.supabase.co";
@@ -16,35 +17,53 @@ sap.ui.define([
 
     async function _postJson(sPath, oBody, sSupabaseKey) {
         const sUrl = SUPABASE_URL + sPath;
+        const oHeaders = _buildHeaders(sSupabaseKey);
 
-        const oResponse = await fetch(sUrl, {
-            method: "POST",
-            headers: _buildHeaders(sSupabaseKey),
-            body: JSON.stringify(oBody)
-        });
+        try {
+            const oResponse = await fetch(sUrl, {
+                method: "POST",
+                headers: oHeaders,
+                body: JSON.stringify(oBody)
+            });
 
-        if (!oResponse.ok) {
-            const sText = await oResponse.text();
-            throw new Error("Supabase-Fehler: " + oResponse.status + " " + sText);
+            if (!oResponse.ok) {
+                const sText = await oResponse.text();
+                throw new Error("Supabase-Fehler: " + oResponse.status + " " + sText);
+            }
+
+            return oResponse.json();
+        } catch (error) {
+            if (!navigator.onLine || error instanceof TypeError) {
+                OfflineSyncHelper.enqueueRequest(sUrl, "POST", oHeaders, JSON.stringify(oBody));
+                return [{ queued: true }];
+            }
+            throw error;
         }
-
-        return oResponse.json();
     }
 
     async function _getJson(sPath, sSupabaseKey) {
         const sUrl = SUPABASE_URL + sPath;
 
-        const oResponse = await fetch(sUrl, {
-            method: "GET",
-            headers: _buildHeaders(sSupabaseKey)
-        });
+        try {
+            const oResponse = await fetch(sUrl, {
+                method: "GET",
+                headers: _buildHeaders(sSupabaseKey)
+            });
 
-        if (!oResponse.ok) {
-            const sText = await oResponse.text();
-            throw new Error("Supabase-Fehler: " + oResponse.status + " " + sText);
+            if (!oResponse.ok) {
+                const sText = await oResponse.text();
+                throw new Error("Supabase-Fehler: " + oResponse.status + " " + sText);
+            }
+
+            return oResponse.json();
+        } catch (error) {
+            if (!navigator.onLine || error instanceof TypeError) {
+                // Can't queue a GET for background execution meaningfully in this context,
+                // but we return an empty array to avoid crashing the app offline.
+                return []; 
+            }
+            throw error;
         }
-
-        return oResponse.json();
     }
 
     async function _getCurrentStatusLevel(sUsername, iQuestionId, sSupabaseKey) {
@@ -68,19 +87,30 @@ sap.ui.define([
             "/rest/v1/" + TABLE_NAME +
             "?user_name=eq." + encodeURIComponent(sUsername) +
             "&question_id=eq." + encodeURIComponent(iQuestionId);
+        const sUrl = SUPABASE_URL + sPath;
+        const oHeaders = _buildHeaders(sSupabaseKey);
+        const sBody = JSON.stringify({ status_level: iStatusLevel });
 
-        const oResponse = await fetch(SUPABASE_URL + sPath, {
-            method: "PATCH",
-            headers: _buildHeaders(sSupabaseKey),
-            body: JSON.stringify({ status_level: iStatusLevel })
-        });
+        try {
+            const oResponse = await fetch(sUrl, {
+                method: "PATCH",
+                headers: oHeaders,
+                body: sBody
+            });
 
-        if (!oResponse.ok) {
-            const sText = await oResponse.text();
-            throw new Error("Supabase-Fehler: " + oResponse.status + " " + sText);
+            if (!oResponse.ok) {
+                const sText = await oResponse.text();
+                throw new Error("Supabase-Fehler: " + oResponse.status + " " + sText);
+            }
+
+            return oResponse.json();
+        } catch (error) {
+            if (!navigator.onLine || error instanceof TypeError) {
+                OfflineSyncHelper.enqueueRequest(sUrl, "PATCH", oHeaders, sBody);
+                return [{ queued: true }];
+            }
+            throw error;
         }
-
-        return oResponse.json();
     }
 
     // async function _upsertStatusLevel(sUsername, iQuestionId, iStatusLevel, sSupabaseKey) {
