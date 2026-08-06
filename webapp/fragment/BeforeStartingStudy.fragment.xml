@@ -12,7 +12,7 @@
 
       <!-- Themenauswahl -->
       <Text text="Wähle Themenbereiche aus:" class="" />
-        <HBox>
+        <VBox width="100%">
           <MultiComboBox
               visible="{= ${topicModel>/sMode} === 'studyMode' }"
               items="{topicModel>/availableTopics}"
@@ -30,7 +30,7 @@
             showClearIcon="true">
             <core:Item key="{topicModel>key}" text="{topicModel>text}" />
           </ComboBox>
-        </HBox>
+        </VBox>
         <HBox class="sapUiSmallMarginTop" visible="{= ${topicModel>/sMode} === 'studyMode' }">
             <Button text="Alle selektieren" press=".onSelectAllTopics" type="Accept"/>
             <Button text="Alle deselektieren" press=".onDeselectAllTopics" type="Reject" class="sapUiTinyMarginBegin"/>
