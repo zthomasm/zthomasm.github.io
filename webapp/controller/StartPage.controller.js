@@ -66,6 +66,16 @@ sap.ui.define([
             BeforeStartingGame.openBeforeStartDialog(this, sModel, sMode);
         },
 
+        onPressBeforeStartGameSPANISH() {
+            console.log("onPressBeforeStartGameSPANISH");
+            const oTopicModel = this.getOwnerComponent().getModel("TopicModel");
+            oTopicModel.setProperty("/activeTopic", "SPANISH");
+
+            const sModel = "GameSettingsSPANISH";
+            const sMode = "gameMode";
+            BeforeStartingGame.openBeforeStartDialog(this, sModel, sMode);
+        },
+
         onPressBeforeStartShowAllQuestions_FIORI() {
             console.log("onPressBeforeStartShowAllQuestions_FIORI");
             const oTopicModel = this.getOwnerComponent().getModel("TopicModel");
@@ -96,12 +106,32 @@ sap.ui.define([
             BeforeStartingGame.openBeforeStartDialog(this, sModel, sMode);
         },
 
+        onPressBeforeStartShowAllQuestions_SPANISH() {
+            console.log("onPressBeforeStartShowAllQuestions_SPANISH");
+            const oTopicModel = this.getOwnerComponent().getModel("TopicModel");
+            oTopicModel.setProperty("/activeTopic", "SPANISH");
+
+            const sModel = "GameSettingsSPANISH";
+            const sMode = "showAllQuestions";
+            BeforeStartingGame.openBeforeStartDialog(this, sModel, sMode);
+        },
+
         onPressBeforeStartStudyISTQBFV4() {
             console.log("onPressBeforeStartStudyISTQBFV4");
             const oTopicModel = this.getOwnerComponent().getModel("TopicModel");
             oTopicModel.setProperty("/activeTopic", "ISTQBFV4");
 
             const sModel = "GameSettingsISTQBFV4";
+            const sMode = "studyMode";
+            BeforeStartingStudy.openBeforeStartDialog(this, sModel, sMode);
+        },
+
+        onPressBeforeStartStudySPANISH() {
+            console.log("onPressBeforeStartStudySPANISH");
+            const oTopicModel = this.getOwnerComponent().getModel("TopicModel");
+            oTopicModel.setProperty("/activeTopic", "SPANISH");
+
+            const sModel = "GameSettingsSPANISH";
             const sMode = "studyMode";
             BeforeStartingStudy.openBeforeStartDialog(this, sModel, sMode);
         },

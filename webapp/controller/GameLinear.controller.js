@@ -45,6 +45,9 @@ sap.ui.define([
                 case "ISTQBFV4":
                     sGameSettingsModelName = "GameSettingsISTQBFV4";
                     break;
+                case "SPANISH":
+                    sGameSettingsModelName = "GameSettingsSPANISH";
+                    break;
                 default:
                     console.error("Unbekanntes Topic:", sActiveTopic);
                     this.getOwnerComponent().getRouter().navTo("RouteStartPage");
@@ -73,12 +76,67 @@ sap.ui.define([
         },
 
         _prepareQuiz: function () {
-            return new Promise((resolve, reject) => {
+            return new Promise(async (resolve, reject) => {
                 console.log("_prepareQuiz STARTED");
                 console.log("GameSettings Data:", this.oGameSettings.getData());
-                const oQuizModel = new JSONModel();
 
                 const sActiveTopic = this.oTopicModel.getProperty("/activeTopic");
+
+                if (sActiveTopic === "SPANISH") {
+                    const oUserSettingsModel = this.getOwnerComponent().getModel("userSettings");
+                    const sSupabaseKey = oUserSettingsModel.getProperty("/sApiKey");
+
+                    if (!sSupabaseKey) {
+                        MessageToast.show("Bitte einloggen, um Vokabeln zu laden.");
+                        return reject("Kein API Key");
+                    }
+
+                    try {
+                        let aAllSpanishWords = await SupabaseHelper.getAllSpanishWords(sSupabaseKey);
+                        
+                        let aAllQuestions = aAllSpanishWords.map(word => {
+                            let wrongWords = aAllSpanishWords.filter(w => w.id !== word.id).sort(() => 0.5 - Math.random()).slice(0, 3);
+                            let answers = [
+                                { key: "A", text: word.en_word, correct: true, _boolean: true }
+                            ];
+                            let keys = ["B", "C", "D"];
+                            wrongWords.forEach((w, idx) => {
+                                answers.push({ key: keys[idx], text: w.en_word, correct: false, _boolean: false });
+                            });
+                            
+                            return {
+                                QuestionID: word.id,
+                                QuestionText: word.sp_word,
+                                Picture: "",
+                                AmountOfTrueAnswers: 1,
+                                QuestionTopicArea: word.type_of_word,
+                                AnswerA: answers[0].text, AnswerA_boolean: answers[0].correct,
+                                AnswerB: answers[1] ? answers[1].text : "", AnswerB_boolean: answers[1] ? answers[1].correct : false,
+                                AnswerC: answers[2] ? answers[2].text : "", AnswerC_boolean: answers[2] ? answers[2].correct : false,
+                                AnswerD: answers[3] ? answers[3].text : "", AnswerD_boolean: answers[3] ? answers[3].correct : false,
+                                AnswerE: "", AnswerE_boolean: false,
+                                AnswerF: "", AnswerF_boolean: false
+                            };
+                        });
+
+                        const aSelectedQuestions = await QuestionHelper.buildQuestionSet(this, aAllQuestions);
+                        if (!aSelectedQuestions || !aSelectedQuestions.length) {
+                            MessageToast.show("Keine passenden Fragen gefunden.");
+                            return reject("Keine Fragen für aktuelle Auswahl.");
+                        }
+
+                        const aQuizQuestions = QuestionHelper.transformQuestionsToModel(aSelectedQuestions);
+                        const oModel = new JSONModel({ questions: aQuizQuestions });
+                        this.getView().setModel(oModel, "quiz");
+                        resolve();
+                    } catch (e) {
+                        console.error("Fehler beim Laden der Spanisch Vokabeln:", e);
+                        reject(e);
+                    }
+                    return;
+                }
+
+                const oQuizModel = new JSONModel();
                 const sJsonPath = this.oTopicModel.getProperty(`/topics/${sActiveTopic}/jsonPath`);
 
                 console.log("Loading from:", sJsonPath);
@@ -295,15 +353,27 @@ sap.ui.define([
             }
 
             const sQuestionId = oQuestion.QuestionID;
+            const sActiveTopic = this.oTopicModel.getProperty("/activeTopic");
 
-            SupabaseHelper
-                .updateStatusLevelForQuestion(sUsername, sQuestionId, oEvalResult.isFullyCorrect, sSupabaseKey)
-                .then(function (oRow) {
-                    console.log("Supabase status_level updated:", oRow);
-                })
-                .catch(function (err) {
-                    console.error("Supabase status_level update error:", err);
-                });
+            if (sActiveTopic === "SPANISH") {
+                SupabaseHelper
+                    .updateSpanishVocaLevel(sUsername, sQuestionId, oEvalResult.isFullyCorrect, sSupabaseKey)
+                    .then(function (oRow) {
+                        console.log("Supabase Spanish voca level updated:", oRow);
+                    })
+                    .catch(function (err) {
+                        console.error("Supabase Spanish voca level update error:", err);
+                    });
+            } else {
+                SupabaseHelper
+                    .updateStatusLevelForQuestion(sUsername, sQuestionId, oEvalResult.isFullyCorrect, sSupabaseKey)
+                    .then(function (oRow) {
+                        console.log("Supabase status_level updated:", oRow);
+                    })
+                    .catch(function (err) {
+                        console.error("Supabase status_level update error:", err);
+                    });
+            }
         },
 
         _openHelpOfAI: function (oQuestion) {

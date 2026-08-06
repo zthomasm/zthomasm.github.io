@@ -59,6 +59,12 @@ sap.ui.define([
                         text: "ISTQB Foundation V4.0",
                         bShowOnStartPage: true,
                         jsonPath: "/model/QuestionsISTQBFV4.json",
+                    },
+                    SPANISH: {
+                        key: "SPANISH",
+                        text: "Spanisch Vokabeln",
+                        bShowOnStartPage: true,
+                        jsonPath: "", // Werden aus Supabase geladen
                     }
                 }
             });
@@ -135,6 +141,30 @@ sap.ui.define([
                     { key: "CTFL40_SET_D_v1_5_0_de", text: "ISTQB CTFL40 SET D v1.5.0 (Deutsch)" },     // ab ID 1401   // done
                     { key: "CTFL40_SET_E_v1_3_de", text: "ISTQB CTFL40 SET E v1.3 (Deutsch)" },         // ab ID 1501   // done
                     { key: "CTFL_SET_F_v1_2_de", text: "ISTQB CTFL SET F v1.2 (Deutsch)" },             // ab ID 1601   // done
+                ],
+                correctAnswersCount: 0
+
+            });
+        },
+
+        createSettingsForModelsSPANISH: function () {
+            return new JSONModel({
+                // 
+                sMode: "",
+                settingsAreSet: false,
+                bHintEnabled: false,
+                bTCA: true,                 // TellCorrectAnswerToAI
+                iLevelQuestions: 2,         // 0 to 5
+                numberOfQuestions: 10,
+                singleTopic: "",
+                selectedTopics: [],
+                availableTopics: [
+                    { key: "noun", text: "Substantive (noun)" },
+                    { key: "verb", text: "Verben (verb)" },
+                    { key: "adjective", text: "Adjektive (adjective)" },
+                    { key: "phrase", text: "Phrasen (phrase)" },
+                    { key: "number", text: "Zahlen (number)" },
+                    { key: "other", text: "Sonstiges (other)" }
                 ],
                 correctAnswersCount: 0
 

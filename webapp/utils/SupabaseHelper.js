@@ -5,6 +5,8 @@ sap.ui.define([
 
     const SUPABASE_URL = "https://sycksmhhgsnjxtvkpotm.supabase.co";
     const TABLE_NAME = "LH_DB_0001";
+    const SP_VOCA_TABLE = "ZLANG_SP_VOCA";
+    const SP_STATUS_TABLE = "ZLANG_SP_STATUS_USER_VOCA";
 
     function _buildHeaders(sSupabaseKey) {
         return {
@@ -151,6 +153,74 @@ sap.ui.define([
         }
     }
 
+    // --- Spanisch Vokabel Helper ---
+    async function _getCurrentVocaLevel(sUserId, iVocaId, sSupabaseKey) {
+        const sQuery =
+            "/rest/v1/" + SP_STATUS_TABLE +
+            "?user_id=eq." + encodeURIComponent(sUserId) +
+            "&voca_id=eq." + encodeURIComponent(iVocaId) +
+            "&select=level";
+
+        const aRows = await _getJson(sQuery, sSupabaseKey);
+
+        if (!aRows || aRows.length === 0) {
+            return null;
+        }
+
+        return aRows[0].level;
+    }
+
+    async function _updateVocaLevelRow(sUserId, iVocaId, iLevel, sSupabaseKey) {
+        const sPath =
+            "/rest/v1/" + SP_STATUS_TABLE +
+            "?user_id=eq." + encodeURIComponent(sUserId) +
+            "&voca_id=eq." + encodeURIComponent(iVocaId);
+        const sUrl = SUPABASE_URL + sPath;
+        const oHeaders = _buildHeaders(sSupabaseKey);
+        const sBody = JSON.stringify({ level: iLevel });
+
+        try {
+            const oResponse = await fetch(sUrl, {
+                method: "PATCH",
+                headers: oHeaders,
+                body: sBody
+            });
+
+            if (!oResponse.ok) {
+                const sText = await oResponse.text();
+                throw new Error("Supabase-Fehler (Spanisch Voca UPDATE): " + oResponse.status + " " + sText);
+            }
+
+            return oResponse.json();
+        } catch (error) {
+            if (!navigator.onLine || error instanceof TypeError) {
+                OfflineSyncHelper.enqueueRequest(sUrl, "PATCH", oHeaders, sBody);
+                return [{ queued: true }];
+            }
+            throw error;
+        }
+    }
+
+    async function _upsertVocaLevel(sUserId, iVocaId, iLevel, sSupabaseKey) {
+        const iCurrent = await _getCurrentVocaLevel(sUserId, iVocaId, sSupabaseKey);
+
+        if (iCurrent === null || iCurrent === undefined) {
+            const oPayload = {
+                user_id: sUserId,
+                voca_id: iVocaId,
+                level: iLevel
+            };
+
+            const sPath = "/rest/v1/" + SP_STATUS_TABLE;
+            const aRows = await _postJson(sPath, [oPayload], sSupabaseKey);
+            return aRows[0];
+        } else {
+            const aRows = await _updateVocaLevelRow(sUserId, iVocaId, iLevel, sSupabaseKey);
+            return aRows[0];
+        }
+    }
+    // --- Ende Spanisch Vokabel Helper ---
+
     return {
         /**
          * Sorgt dafür, dass ein Statuslevel angepasst wird.
@@ -189,6 +259,46 @@ sap.ui.define([
 
             const aRows = await _getJson(sQuery, sSupabaseKey);
             return aRows || [];
+        },
+
+        // --- Spanisch Methoden für externe Aufrufe ---
+        getAllSpanishWords: async function (sSupabaseKey) {
+            const sQuery = "/rest/v1/" + SP_VOCA_TABLE + "?select=*";
+            const aRows = await _getJson(sQuery, sSupabaseKey);
+            return aRows || [];
+        },
+
+        getSpanishWordsForUserByMaxLevel: async function (sUserId, iMaxLevel, sSupabaseKey) {
+            const iMin = 0;
+            const sQuery =
+                "/rest/v1/" + SP_STATUS_TABLE +
+                "?user_id=eq." + encodeURIComponent(sUserId) +
+                "&level=gte." + iMin +
+                "&level=lte." + iMaxLevel +
+                "&select=voca_id,level";
+
+            const aRows = await _getJson(sQuery, sSupabaseKey);
+            return aRows || [];
+        },
+
+        updateSpanishVocaLevel: async function (sUserId, sVocaIdRaw, bIsCorrect, sSupabaseKey) {
+            const iVocaId = Number(sVocaIdRaw);
+            const iMin = 0;
+            const iMax = 4;
+            const iDefault = 3;
+
+            const iCurrent = await _getCurrentVocaLevel(sUserId, iVocaId, sSupabaseKey);
+            const iBase = (iCurrent === null || iCurrent === undefined) ? iDefault : iCurrent;
+
+            let iNew = iBase;
+            if (bIsCorrect) {
+                iNew = Math.min(iBase + 1, iMax);
+            } else {
+                iNew = Math.max(iBase - 1, iMin);
+            }
+
+            const oRow = await _upsertVocaLevel(sUserId, iVocaId, iNew, sSupabaseKey);
+            return oRow;
         }
     };
 });
