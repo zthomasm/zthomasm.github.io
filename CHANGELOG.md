@@ -1,6 +1,17 @@
 # Changelog
 
 ---
+## [v1.1.23] - 06.08.2026
+
+### Added
+
+### Changed
+
+### Fixed
+
+- fixed a fragment bug that showed only the first topics and was buggy at switching modes on the dialog
+
+---
 ## [v1.1.22] - 06.08.2026
 
 ### Added
