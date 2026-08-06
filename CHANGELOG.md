@@ -1,6 +1,19 @@
 # Changelog
 
 ---
+## [v1.1.22] - 06.08.2026
+
+### Added
+
+- Added a new Topic: Spanish learning
+- Reading new tables from Supabase to store spanish questions and words
+- Study Mode for Spanish
+
+### Changed
+
+### Fixed
+
+---
 ## [v1.1.21] - 12.07.2026
 
 ### Added

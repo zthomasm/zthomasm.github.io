@@ -47,6 +47,9 @@ sap.ui.define([
             const oGameSettingsModel3 = GameSettings.createSettingsForModelsISTQBFV4();
             this.setModel(oGameSettingsModel3, "GameSettingsISTQBFV4");
 
+            const oGameSettingsModel4 = GameSettings.createSettingsForModelsSPANISH();
+            this.setModel(oGameSettingsModel4, "GameSettingsSPANISH");
+
             const oBundleofAIModels = GameSettings.bundleofAIModels();
             this.setModel(oBundleofAIModels, "AIModels");
 

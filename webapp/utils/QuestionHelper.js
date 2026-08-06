@@ -106,13 +106,24 @@ sap.ui.define([
             }
 
             // Level-IDs aus Supabase holen
-            const aLevelRows = await SupabaseHelper.getQuestionsForUserByMaxLevel(
-                sUsername,
-                iMaxLevel,
-                sSupabaseKey
-            );
+            const sActiveTopic = oController.oTopicModel.getProperty("/activeTopic");
+            let aLevelRows;
 
-            const aIds = aLevelRows.map(row => row.question_id);
+            if (sActiveTopic === "SPANISH") {
+                aLevelRows = await SupabaseHelper.getSpanishWordsForUserByMaxLevel(
+                    sUsername,
+                    iMaxLevel,
+                    sSupabaseKey
+                );
+            } else {
+                aLevelRows = await SupabaseHelper.getQuestionsForUserByMaxLevel(
+                    sUsername,
+                    iMaxLevel,
+                    sSupabaseKey
+                );
+            }
+
+            const aIds = aLevelRows.map(row => row.question_id !== undefined ? row.question_id : row.voca_id);
             console.log("StudyMode-IDs:", aIds);
 
             if (!aIds.length) {

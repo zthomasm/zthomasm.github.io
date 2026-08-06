@@ -192,6 +192,55 @@
 
                     </f:GridContainer>
 
+            </VBox>
+
+            <VBox id="Start0040" class="sapUiSmallMargin" visible="{= ${userSettings>/bUserIsLoggedIn} }">
+            
+                <Title text="Aktionen - Spanisch lernen" level="H1" id="Title0040"></Title>
+                    <f:GridContainer class="sapUiSmallMargin">
+                        <f:layout>
+                            <f:GridContainerSettings
+                                rowSize="11rem"
+                                columnSize="11rem"
+                                gap="1rem" />
+                        </f:layout>
+
+
+                        <!-- Tile 1 -->
+                        <GenericTile
+                            class="tileLayout"
+                            header="{i18n>T0010}"
+                            subheader="Spanisch Vokabeln"
+                            press=".onPressBeforeStartGameSPANISH">
+                            <TileContent footer="{i18n>user}">
+                                <ImageContent src="sap-icon://da-2"></ImageContent>
+                            </TileContent>
+                        </GenericTile>
+
+                        <!-- Tile 4 (Study Mode) -->
+                        <GenericTile
+                            visible="{= ${userSettings>/bUserIsLoggedIn} }"
+                            class="tileLayout"
+                            header="{i18n>T0040}"
+                            subheader="Spanisch Vokabeln"
+                            press=".onPressBeforeStartStudySPANISH">
+                            <TileContent footer="{i18n>user}">
+                                <ImageContent src="sap-icon://journey-change"></ImageContent>
+                            </TileContent>
+                        </GenericTile>
+
+                        <!-- Tile 2 -->
+                        <GenericTile
+                            class="tileLayout"
+                            header="{i18n>T0020}"
+                            subheader="Spanisch Vokabeln"
+                            press=".onPressBeforeStartShowAllQuestions_SPANISH">
+                            <TileContent footer="{i18n>user}">
+                                <ImageContent src="sap-icon://da-2"></ImageContent>
+                            </TileContent>
+                        </GenericTile>
+
+                    </f:GridContainer>
 
             </VBox>
         
