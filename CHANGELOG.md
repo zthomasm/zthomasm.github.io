@@ -1,5 +1,20 @@
 # Changelog
 
+
+---
+
+## [v1.1.24] - 07.08.2026
+
+### Added
+
+- Added new categories for spanish questions
+
+### Changed
+
+### Fixed
+
+- Spanish game mode: Possible answers was buggy, now it only compares same categories
+
 ---
 ## [v1.1.23] - 06.08.2026
 

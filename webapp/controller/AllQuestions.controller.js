@@ -1,11 +1,13 @@
 sap.ui.define([
     "learninggame/controller/BaseController",
     "sap/ui/model/json/JSONModel",
+    "sap/m/MessageToast",
 
     // Utils
     "learninggame/utils/QuestionHelper",
     "learninggame/utils/CleanupHelper",
-], function (BaseController, JSONModel, QuestionHelper, CleanupHelper) {
+    "learninggame/utils/SupabaseHelper"
+], function (BaseController, JSONModel, MessageToast, QuestionHelper, CleanupHelper, SupabaseHelper) {
     "use strict";
 
     return BaseController.extend("learninggame.controller.AllQuestions", {
@@ -57,13 +59,39 @@ sap.ui.define([
 
         },
 
-        _loadAllQuestions: function () {
+        _loadAllQuestions: async function () {
             const sSingleTopic = this.oGameSettings.getProperty("/selectedSingleTopic");
             console.log("Lade ALLE Fragen für Topic:", sSingleTopic);
 
-            const oQuizModel = new JSONModel();
             const oTopicModel = this.getOwnerComponent().getModel("TopicModel");
             const sActiveTopic = oTopicModel.getProperty("/activeTopic");
+
+            if (sActiveTopic === "SPANISH") {
+                const oUserSettingsModel = this.getOwnerComponent().getModel("userSettings");
+                const sSupabaseKey = oUserSettingsModel.getProperty("/sApiKey");
+
+                if (!sSupabaseKey) {
+                    MessageToast.show("Bitte einloggen, um Vokabeln zu laden.");
+                    return;
+                }
+
+                try {
+                    let aAllSpanishWords = await SupabaseHelper.getAllSpanishWords(sSupabaseKey);
+                    let aAllQuestions = QuestionHelper.mapSpanishWordsToQuestions(aAllSpanishWords);
+                    
+                    aAllQuestions = QuestionHelper.filterQuestionsByTopics(aAllQuestions, [sSingleTopic]);
+                    const aAllTopicQuestions = QuestionHelper.transformQuestionsToModel(aAllQuestions);
+
+                    const oModel = new JSONModel({ questions: aAllTopicQuestions });
+                    this.getView().setModel(oModel, "quiz");
+                    this._createAllQuestionsDisplay();
+                } catch (e) {
+                    console.error("Fehler beim Laden der Spanisch Vokabeln in AllQuestions:", e);
+                }
+                return;
+            }
+
+            const oQuizModel = new JSONModel();
             const sJsonPath = oTopicModel.getProperty(`/topics/${sActiveTopic}/jsonPath`);
 
             oQuizModel.loadData(sJsonPath);

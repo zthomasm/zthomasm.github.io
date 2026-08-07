@@ -93,31 +93,7 @@ sap.ui.define([
 
                     try {
                         let aAllSpanishWords = await SupabaseHelper.getAllSpanishWords(sSupabaseKey);
-                        
-                        let aAllQuestions = aAllSpanishWords.map(word => {
-                            let wrongWords = aAllSpanishWords.filter(w => w.id !== word.id).sort(() => 0.5 - Math.random()).slice(0, 3);
-                            let answers = [
-                                { key: "A", text: word.en_word, correct: true, _boolean: true }
-                            ];
-                            let keys = ["B", "C", "D"];
-                            wrongWords.forEach((w, idx) => {
-                                answers.push({ key: keys[idx], text: w.en_word, correct: false, _boolean: false });
-                            });
-                            
-                            return {
-                                QuestionID: word.id,
-                                QuestionText: word.sp_word,
-                                Picture: "",
-                                AmountOfTrueAnswers: 1,
-                                QuestionTopicArea: word.type_of_word,
-                                AnswerA: answers[0].text, AnswerA_boolean: answers[0].correct,
-                                AnswerB: answers[1] ? answers[1].text : "", AnswerB_boolean: answers[1] ? answers[1].correct : false,
-                                AnswerC: answers[2] ? answers[2].text : "", AnswerC_boolean: answers[2] ? answers[2].correct : false,
-                                AnswerD: answers[3] ? answers[3].text : "", AnswerD_boolean: answers[3] ? answers[3].correct : false,
-                                AnswerE: "", AnswerE_boolean: false,
-                                AnswerF: "", AnswerF_boolean: false
-                            };
-                        });
+                        let aAllQuestions = QuestionHelper.mapSpanishWordsToQuestions(aAllSpanishWords);
 
                         const aSelectedQuestions = await QuestionHelper.buildQuestionSet(this, aAllQuestions);
                         if (!aSelectedQuestions || !aSelectedQuestions.length) {

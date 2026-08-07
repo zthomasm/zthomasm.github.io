@@ -36,6 +36,10 @@
             icon="sap-icon://user-edit"
             press="onLogOutPress"
         ></Button>
+
+        <core:Icon
+            src="sap-icon://ai"
+        ></core:Icon>
     
     
     </OverflowToolbar>
