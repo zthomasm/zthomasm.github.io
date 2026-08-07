@@ -162,6 +162,8 @@ sap.ui.define([
                     { key: "noun", text: "Substantive (noun)" },
                     { key: "verb", text: "Verben (verb)" },
                     { key: "adjective", text: "Adjektive (adjective)" },
+                    { key: "adverb", text: "Adverbien (adverb)" },
+                    { key: "pronoun", text: "Pronomen (pronoun)" },
                     { key: "phrase", text: "Phrasen (phrase)" },
                     { key: "number", text: "Zahlen (number)" },
                     { key: "other", text: "Sonstiges (other)" }
